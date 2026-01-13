@@ -28,6 +28,59 @@
 
         .font-grotesk { font-family: 'Space Grotesk', sans-serif; }
 
+        /* ANCHOR NAVIGATION */
+        .anchor-nav {
+            position: fixed;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .anchor-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--text-lighter);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .anchor-dot:hover,
+        .anchor-dot.active {
+            background: var(--text-dark);
+            transform: scale(1.3);
+        }
+
+        .anchor-dot::after {
+            content: attr(data-label);
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .anchor-dot:hover::after {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .anchor-nav {
+                display: none;
+            }
+        }
+
         /* SCROLL SNAP CONTAINER */
         .snap-container {
             height: 100vh;
@@ -60,11 +113,27 @@
             padding: 0 1rem;
         }
 
+        /* VIDEO BACKGROUNDS */
+        .bg-video {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .bg-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.2;
+            filter: grayscale(100%) contrast(1.1);
+        }
+
         /* BACKGROUNDS */
         .bg-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(255,255,255,0.92);
+            background: rgba(255,255,255,0.93);
             z-index: 1;
         }
 
@@ -73,7 +142,7 @@
             inset: 0;
             background-size: cover;
             background-position: center;
-            opacity: 0.15;
+            opacity: 0.12;
             filter: grayscale(100%) contrast(1.1);
             transition: transform 10s ease;
         }
@@ -117,7 +186,7 @@
 
         .body-text {
             font-size: clamp(1rem, 1.5vw, 1.5rem);
-            line-height: 1.6;
+            line-height: 1.7;
             font-weight: 300;
             color: var(--text-medium);
             max-width: 800px;
@@ -262,26 +331,48 @@
 </head>
 <body>
 
+    <!-- ANCHOR NAVIGATION -->
+    <nav class="anchor-nav">
+        <div class="anchor-dot active" data-label="Intro" data-target="intro"></div>
+        <div class="anchor-dot" data-label="Problem" data-target="problem"></div>
+        <div class="anchor-dot" data-label="Philosophy" data-target="philosophy"></div>
+        <div class="anchor-dot" data-label="Vision" data-target="vision"></div>
+        <div class="anchor-dot" data-label="Theater" data-target="theater"></div>
+        <div class="anchor-dot" data-label="Capabilities" data-target="capabilities"></div>
+        <div class="anchor-dot" data-label="Explorations" data-target="explorations"></div>
+        <div class="anchor-dot" data-label="Future" data-target="future"></div>
+        <div class="anchor-dot" data-label="Contact" data-target="contact"></div>
+    </nav>
+
     <div class="nav-fixed">
         <div class="font-grotesk font-bold text-2xl tracking-tighter" style="color: var(--text-dark);">Decentralize.</div>
         <div class="hidden md:flex gap-8 text-[10px] font-mono uppercase tracking-widest" style="color: var(--text-light);">
             <span>Milan / Metaverse</span>
             <span>Est. 2021</span>
         </div>
-        <a href="#contact" class="hidden md:block border px-6 py-2 rounded-full text-[10px] font-bold uppercase transition-colors" style="border-color: var(--text-dark); color: var(--text-dark);" onmouseover="this.style.backgroundColor='var(--text-dark)'; this.style.color='white';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--text-dark)';">Start Project</a>
     </div>
 
-    <div class="snap-container">
+    <div class="snap-container" id="snap-container">
 
         <!-- SLIDE 1: HERO -->
-        <section class="section-slide">
-            <div class="bg-image bg-1"></div>
+        <section class="section-slide" id="intro">
+            <div class="bg-video">
+                <video autoplay loop muted playsinline>
+                    <source src="https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4" type="video/mp4">
+                </video>
+            </div>
             <div class="bg-overlay"></div>
             <div class="slide-content">
                 <span class="font-mono text-xs mb-4 block" style="color: var(--text-lighter);">DECENTRALIZE DESIGN</span>
                 <h1 class="mega-title">THE INTERNET<br>IS STILL FLAT.</h1>
-                <p class="body-text" style="color: var(--text-dark);">
-                    We are spatial beings living in a two-dimensional digital world. Our screens are windows, but what lies beyond is still mostly flat—pages, feeds, grids. We believe digital space can be something more. Not a simulation of the physical world, but an entirely new realm with its own language, logic, and possibilities.
+                <p class="body-text" style="color: var(--text-dark); line-height: 1.8;">
+                    We are spatial beings living in a two-dimensional digital world. Think about it: your entire online existence happens through a rectangle. You scroll through rectangles on rectangles, tap icons arranged in grids, swipe between flat panels. Yet we're creatures who evolved to navigate three-dimensional space—to understand depth, to move through volumes, to orient ourselves in environments that extend in all directions.
+                </p>
+                <p class="body-text mt-6" style="color: var(--text-dark); line-height: 1.8;">
+                    Our screens are windows, but what lies beyond is still mostly flat—pages, feeds, grids. We've built a boundless virtual realm with infinite possibilities, yet we're still designing it like paper. Like trying to explain the ocean to someone who's only ever seen photographs of water.
+                </p>
+                <p class="body-text mt-6" style="color: var(--text-dark); line-height: 1.8;">
+                    We believe digital space can be something more. Not a simulation of the physical world—not virtual reality trying to be real reality—but an entirely new realm with its own language, logic, and possibilities. A place where the rules we take for granted can be questioned, where new forms of experience can emerge.
                 </p>
                 <div class="mt-8 text-sm font-mono" style="color: var(--text-lighter);">SCROLL TO EXPLORE</div>
             </div>
@@ -292,14 +383,26 @@
         <!-- ============================================= -->
 
         <!-- SLIDE 2: THE PROBLEM -->
-        <section class="section-slide">
+        <section class="section-slide" id="problem">
             <div class="bg-image bg-2"></div>
             <div class="bg-overlay"></div>
             <div class="slide-content">
                 <span class="slide-label">01 / THE PROBLEM</span>
                 <h2 class="mega-title text-5xl md:text-7xl">WE TRAPPED INFINITY<br>IN A RECTANGLE.</h2>
-                <p class="body-text">
-                    Think about how you experience the digital world: scrolling through rectangles on a rectangle, tapping icons arranged in grids. We've created a boundless virtual realm, yet we're still designing it like paper. We have the freedom to build spaces that defy gravity, transcend time zones, and exist in impossible geometries—but instead, we keep making digital versions of physical things.
+                <p class="body-text" style="line-height: 1.8;">
+                    Think about how you experience the digital world on any given day. You wake up and check your phone—a rectangle filled with smaller rectangles. You sit at your computer—a larger rectangle displaying even more rectangles. Email inboxes, social media feeds, document editors, video calls—all rectangles, nested within rectangles, ad infinitum.
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    This isn't just an interface choice. It's a fundamental limitation we've accepted without questioning. We scroll through rectangles on a rectangle, tapping icons arranged in grids, navigating hierarchies that could extend in any direction but instead only go up and down. We've created a boundless virtual realm—a space that could be anything—yet we're still designing it like paper, like books, like the physical media that came before.
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    We have the freedom to build spaces that defy gravity, that transcend time zones, that exist in impossible geometries. We could create environments where walls breathe with collective emotion, where galleries spiral infinitely upward, where the very fabric of space responds to presence and memory. But instead, we keep making digital versions of physical things. A virtual office with cubicles. A digital gallery with walls and floors. A metaverse cafe with chairs bolted to the ground.
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    Why? Because we're afraid. Afraid that if we let go of familiar metaphors, people won't understand. Afraid that true spatial thinking is too complex, too abstract, too... different. But every revolutionary medium in history went through this phase. Early films were just filmed stage plays. Early websites were just digital brochures. Early automobiles looked like carriages without horses.
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    The breakthrough comes when we stop imitating the old medium and start exploring what the new medium can uniquely do. That's where we are now with digital space. The question isn't "How do we make digital versions of physical places?" The question is: "What becomes possible when we let digital space be itself?"
                 </p>
             </div>
         </section>
@@ -311,15 +414,21 @@
             <div class="slide-content">
                 <span class="slide-label">02 / THE INSIGHT</span>
                 <h2 class="mega-title text-5xl md:text-7xl">DIGITAL SPACE<br>SPEAKS ITS OWN<br>LANGUAGE.</h2>
-                <p class="body-text">
-                    Imagine designing a building without gravity. Without walls that need to support ceilings. Without materials that decay. This isn't science fiction—it's the everyday reality of digital space. Yet most virtual environments still pretend to follow physical rules. A virtual gallery with walls. A digital office with cubicles. A metaverse cafe with chairs bolted to the floor.
+                <p class="body-text" style="line-height: 1.8;">
+                    Imagine being asked to design a building without gravity. Not a space station—where you're working around the absence of gravity—but a place where gravity simply isn't a constraint you need to consider. No walls need to support ceilings. No floors need to bear weight. Materials don't sag or decay. Structures don't need foundations. The entire logic of architecture—developed over millennia to work with and against gravity—suddenly becomes optional.
                 </p>
-                <p class="body-text mt-6">
-                    What if we stopped pretending? What if we let digital space be what it actually is?
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    This isn't science fiction. This is the everyday reality of digital space. Yet look at most virtual environments and you'll see them pretending to follow physical rules that don't apply. Virtual galleries with load-bearing walls. Digital offices with weight-bearing floors. Metaverse cafes with chairs that need to be stable. We're designing as if we're still bound by physics, even though we're working in pure mathematics.
                 </p>
-                <div class="mt-12 p-8 border-l-4" style="border-color: var(--text-dark); background: rgba(250,250,250,0.8);">
-                    <p class="text-xl italic" style="color: var(--text-medium);">
-                        "A digital chair doesn't need to support weight—it only needs to suggest the idea of support. The function becomes purely symbolic, at least for now."
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    What if we stopped pretending? What if we acknowledged that digital space doesn't speak the language of physics—it speaks the language of code, of data, of relationships and transformations? A digital room doesn't need walls to enclose it; the enclosure is defined by the boundaries we assign in code. A virtual object doesn't need to sit on a surface; its position is just a set of coordinates that can be anywhere, following any logic we want.
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    This realization changes everything. It means a museum could reshape itself based on which artworks you're drawn to. A theater could offer every seat as the best seat, because perspective is just data. A retail space could exist simultaneously in multiple configurations, each optimized for different types of exploration. Time itself becomes fluid—you could experience a fashion show at midnight in New York and noon in Tokyo, and it would be the perfect hour for both.
+                </p>
+                <div class="quote-box">
+                    <p>
+                        "A digital chair doesn't need to support weight—it only needs to suggest the idea of support. The function becomes purely symbolic. And once you realize function is symbolic, you start asking deeper questions: What is this symbol meant to evoke? What experience is it creating? What possibilities open up when we're freed from literal function?"
                     </p>
                 </div>
             </div>
@@ -330,45 +439,80 @@
         <!-- ============================================= -->
 
         <!-- SLIDE 4: RELIGIOUS ROBOTICS -->
-        <section class="section-slide">
+        <section class="section-slide" id="philosophy">
             <div class="bg-image bg-4"></div>
             <div class="bg-overlay"></div>
             <div class="slide-content">
                 <span class="slide-label">03 / OUR PHILOSOPHY</span>
                 <h2 class="mega-title text-5xl md:text-7xl">RELIGIOUS<br>ROBOTICS.</h2>
-                <p class="body-text">
-                    This is what we call our approach: <strong>Religious Robotics</strong>. Not making things look cool or futuristic, but letting digital space exist on its own terms. No gravity unless we want it. No solid masses unless they serve a purpose. Chrome surfaces, floating forms, impossible structures—these aren't just aesthetic choices. They're acts of honesty.
+                <p class="body-text" style="line-height: 1.8;">
+                    This is what we call our approach: <strong>Religious Robotics</strong>. The name might sound paradoxical—religious suggests the spiritual, the ineffable, the human; robotics suggests the mechanical, the precise, the artificial. But that tension is exactly the point. We're not making things look cool or futuristic. We're not adding chrome and floating forms because they're trendy. We're letting digital space exist on its own terms, and discovering that when you do that, something approaching the spiritual emerges from the mechanical.
                 </p>
-                <p class="body-text mt-6">
-                    Think of it like teaching a new language. You can't just translate word-for-word from English to Japanese and expect it to make sense. Each language has its own grammar, its own logic. Digital space is the same. It needs its own vocabulary, its own rules—or rather, its own freedom from rules.
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    No gravity unless we want it. No solid masses unless they serve a purpose. Chrome surfaces that reflect impossible vistas. Floating forms that defy expectation. Impossible structures that could never exist in physical reality. These aren't aesthetic choices made to look avant-garde. They're acts of honesty—acknowledging what digital space actually is, rather than what we're comfortable pretending it should be.
                 </p>
-                <p class="body-text mt-6">
-                    Like Lebbeus Woods' drawings that were never meant to be built—they were attempts to free architecture from its own limitations. That's what we're doing in code instead of paper. Letting digital space be what it actually is: minimal, spiritual, technically impossible in real life. When your chair doesn't need to support weight, suddenly you can focus on making it support the soul.
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    Think of it like teaching a new language. You can't just translate word-for-word from English to Japanese and expect it to make sense. Each language has its own grammar, its own logic, its own way of chunking the world into meaningful units. Try to force one language's structure onto another and you get gibberish. Digital space is the same. It has its own grammar—the grammar of code, of vectors and vertices, of transforms and triggers. It needs its own vocabulary, its own idioms, its own way of expressing ideas that might not even have names yet.
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    Like Lebbeus Woods' drawings that were never meant to be built—they were attempts to free architecture from its own self-imposed limitations, to imagine structures that followed emotional and philosophical logic rather than structural engineering. Woods wasn't designing buildings you could construct; he was designing ideas, provocations, questions in architectural form. That's what we're doing in code instead of paper.
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    Letting digital space be what it actually is: minimal when complexity isn't needed, because every polygon costs performance. Spiritual in its refusal to be bound by material constraints, because materiality is a choice rather than a given. Technically impossible in real life, because "impossible" is precisely where digital space finds its unique voice. When your chair doesn't need to support weight, suddenly you can focus on making it support the soul—on what it means, what it evokes, what experience it creates.
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    This is the core of Religious Robotics: using the precision of code to explore the ineffable, using the logic of systems to create experiences that transcend logic, using digital tools to build spaces that feel more human precisely because they're not trying to imitate human-scale physics. It's about finding the sacred in the algorithmic, the poetic in the procedural, the sublime in the simulated.
                 </p>
             </div>
         </section>
 
         <!-- SLIDE 5: THE VISION -->
-        <section class="section-slide bg-5">
+        <section class="section-slide bg-5" id="vision">
             <div class="slide-content">
                 <span class="slide-label">04 / THE VISION</span>
                 <h2 class="mega-title text-5xl md:text-7xl">SPACES THAT<br>THINK, BREATHE,<br>REMEMBER.</h2>
-                <div class="space-y-8 mt-12 max-w-2xl">
+                <div class="space-y-10 mt-12 max-w-3xl">
                     <div>
-                        <h3 class="text-xl font-bold mb-2" style="color: var(--text-dark);">Imagine a museum that remembers your footsteps.</h3>
-                        <p style="color: var(--text-medium); line-height: 1.7;">As you walk through, it learns which artworks captivate you, which corners invite contemplation. The next visitor experiences the space differently, shaped by the collective memory of everyone who came before. Like a city that grows wiser with every footstep.</p>
+                        <h3 class="text-2xl font-bold mb-3" style="color: var(--text-dark);">Imagine a museum that remembers your footsteps.</h3>
+                        <p style="color: var(--text-medium); line-height: 1.8; font-size: 1.05rem;">
+                            Not in some creepy surveillance way, but as collective memory. As you walk through, the space learns which artworks make you pause, which corners invite contemplation, which pathways feel natural. This isn't just tracking—it's a form of listening. The museum is learning the language of how people move through wonder.
+                        </p>
+                        <p class="mt-4" style="color: var(--text-medium); line-height: 1.8; font-size: 1.05rem;">
+                            The next visitor experiences the space differently, subtly shaped by the collective memory of everyone who came before. Walls might glow slightly warmer near artworks that often inspire long viewing. Pathways that many people discovered organically become slightly more inviting. The space itself becomes a record of shared aesthetic experience—like a city that grows wiser with every footstep, every choice, every moment of attention.
+                        </p>
+                        <p class="mt-4" style="color: var(--text-medium); line-height: 1.8; font-size: 1.05rem;">
+                            This isn't possible in physical architecture. A physical museum is static—it's the same space for everyone. But in digital space, the environment can be dynamic, responsive, alive. Not replacing the curator's vision, but augmenting it with the wisdom of the crowd, the patterns of genuine engagement.
+                        </p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold mb-2" style="color: var(--text-dark);">Imagine a theater where you choose your perspective.</h3>
-                        <p style="color: var(--text-medium); line-height: 1.7;">Not just from a fixed seat, but from inside the scene, floating above the stage, or walking alongside the performers. The story unfolds differently for each viewer, yet everyone shares the same moment. Time becomes fluid—replay a dancer's leap from inside the arc of motion.</p>
+                        <h3 class="text-2xl font-bold mb-3" style="color: var(--text-dark);">Imagine a theater where you choose your perspective.</h3>
+                        <p style="color: var(--text-medium); line-height: 1.8; font-size: 1.05rem;">
+                            Not just selecting from a menu of camera angles, but truly choosing—floating above the stage to see the choreography's geometry, stepping inside the scene to feel the spatial relationships between performers, walking alongside characters as they move through the narrative. The story unfolds differently for each viewer, yet everyone shares the same moment. You're experiencing different facets of the same gem.
+                        </p>
+                        <p class="mt-4" style="color: var(--text-medium); line-height: 1.8; font-size: 1.05rem;">
+                            Time becomes fluid in ways impossible in physical theater. Want to replay that dancer's leap from inside the arc of motion? The moment is there, waiting. Want to see how the same scene looks from behind the antagonist? Just walk there. The performance happens once, in real-time, with all the liveness and risk of theater—but your relationship to it can be as flexible as your curiosity demands.
+                        </p>
+                        <p class="mt-4" style="color: var(--text-medium); line-height: 1.8; font-size: 1.05rem;">
+                            This creates a new kind of collective experience. Everyone is watching the same performance, but each person's journey through it is unique. Afterwards, you can compare notes: "Did you see how it looked when you got close to the window?" "Did you notice the symbolism in the lighting from above?" Shared experience and individual exploration aren't opposites—they're layered, intertwined.
+                        </p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold mb-2" style="color: var(--text-dark);">Imagine a retail space that tells stories.</h3>
-                        <p style="color: var(--text-medium); line-height: 1.7;">Where every product sits within a narrative environment. A fashion collection displayed in a crystalline cavern. Digital artifacts arranged in an impossible forest. Shopping becomes exploration, commerce becomes culture, browsing becomes discovery.</p>
+                        <h3 class="text-2xl font-bold mb-3" style="color: var(--text-dark);">Imagine a retail space that tells stories.</h3>
+                        <p style="color: var(--text-medium); line-height: 1.8; font-size: 1.05rem;">
+                            Where every product sits within a narrative environment that explains its context, its creation, its meaning. A fashion collection displayed in a crystalline cavern where the walls show the design process, the inspirations, the technical innovations. Digital artifacts arranged in an impossible forest where each tree represents a different aspect of the creative vision. Shopping becomes exploration, commerce becomes culture, browsing becomes discovery.
+                        </p>
+                        <p class="mt-4" style="color: var(--text-medium); line-height: 1.8; font-size: 1.05rem;">
+                            The space itself becomes part of the brand narrative. Instead of products on shelves in a generic environment, the environment is designed to communicate what the brand means, what it values, what world it's trying to create. And because it's digital, that environment can be impossible—can be exactly what it needs to be to tell that story, unconstrained by construction budgets or physics.
+                        </p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold mb-2" style="color: var(--text-dark);">Imagine events that transcend time zones.</h3>
-                        <p style="color: var(--text-medium); line-height: 1.7;">A fashion show at midnight in New York, noon in Tokyo, yet somehow the perfect hour for everyone. Thousands attend, each from their own perfect viewpoint. The collective gasp when something beautiful happens—deeply personal yet undeniably shared.</p>
+                        <h3 class="text-2xl font-bold mb-3" style="color: var(--text-dark);">Imagine events that transcend time zones.</h3>
+                        <p style="color: var(--text-medium); line-height: 1.8; font-size: 1.05rem;">
+                            A fashion show that happens at midnight in New York, noon in Tokyo, and yet somehow feels like the perfect hour for everyone. Not because of clever scheduling, but because the space itself can present differently based on where you are, what time it is for you, what your relationship to day and night might be.
+                        </p>
+                        <p class="mt-4" style="color: var(--text-medium); line-height: 1.8; font-size: 1.05rem;">
+                            Thousands attend, each from their own perfect viewpoint—no bad seats, no obstructed views, no VIP sections that are actually better. Yet there's still that collective gasp when something beautiful happens. Deeply personal yet undeniably shared. The individual and the collective no longer in tension, but in harmony.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -379,30 +523,36 @@
         <!-- ============================================= -->
 
         <!-- SLIDE 6: VIRTUAL THEATER -->
-        <section class="section-slide">
+        <section class="section-slide" id="theater">
             <div class="bg-image bg-6"></div>
             <div class="bg-overlay"></div>
             <div class="slide-content">
                 <span class="slide-label">05 / THE MEDIUM</span>
                 <h2 class="mega-title text-5xl md:text-7xl">VIRTUAL THEATER:<br>A NEW MEDIUM.</h2>
-                <p class="body-text">
-                    We pioneered something we call <strong>Virtual Theater</strong>. It's not cinema—there's no fixed camera, no edited sequence. It's not traditional theater—there's no physical stage, no limitation of seats. It's something entirely new: a performance that happens in real-time, in virtual space, where you can watch from designated angles, wander freely through the scene, or even become an actor yourself.
+                <p class="body-text" style="line-height: 1.8;">
+                    We pioneered something we call <strong>Virtual Theater</strong>—not as a clever name for existing formats, but as a genuinely new medium that doesn't exist in physical space. It's not cinema, where the camera makes all the choices and the sequence is fixed. It's not traditional theater, where you're locked to a seat and the performance happens at a specific distance. It's something entirely new.
                 </p>
-                <p class="body-text mt-6">
-                    Think of it as the synthesis of cinema's visual language and theater's liveness, but freed from the constraints of both. The performance unfolds around you. Time can bend. Perspectives can shift. Reality becomes fluid.
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    A performance that happens in real-time, maintaining theater's essential liveness and risk. Happening in virtual space, where perspective is fluid and position is choice. Where you can watch from designated camera angles if you want the curated experience, wander freely through the scene if you want to explore, or even step into an actor's position if you want to become part of the narrative.
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    Think of it as the synthesis of cinema's visual language—its understanding of framing, pacing, visual storytelling—and theater's liveness—its immediacy, its risk, its unrepeatable now-ness. But freed from the constraints of both. No need for a fixed camera position. No need for a physical stage. No limitation on how many people can have the perfect view. The performance unfolds around you, through you, with you.
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    Time can bend in ways impossible in linear media. Want to experience a scene from multiple angles? The moment exists in space, not just in sequence. Want to focus on a particular character's journey? Follow them through the story. Want to see the whole choreography from above? Float up and watch the patterns emerge. Perspectives can shift, reality becomes fluid, and yet the core narrative maintains its integrity.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-                    <div class="p-6" style="background: rgba(250,250,250,0.8); border: 1px solid var(--border-medium);">
-                        <h4 class="font-bold text-sm mb-3 tracking-wider" style="color: var(--text-dark);">CINEMATIC MODE</h4>
-                        <p class="text-sm" style="color: var(--text-medium); line-height: 1.6;">Watch from designated camera angles. Like Hitchcock directing your gaze, but you choose when to cut.</p>
+                    <div class="info-card">
+                        <h4>CINEMATIC MODE</h4>
+                        <p>Watch from designated camera angles—carefully chosen viewpoints that guide your attention through the narrative. Like Hitchcock directing your gaze, but you choose when to cut, when to linger, when to move to the next beat. The director's vision meets your curiosity.</p>
                     </div>
-                    <div class="p-6" style="background: rgba(250,250,250,0.8); border: 1px solid var(--border-medium);">
-                        <h4 class="font-bold text-sm mb-3 tracking-wider" style="color: var(--text-dark);">IMMERSIVE MODE</h4>
-                        <p class="text-sm" style="color: var(--text-medium); line-height: 1.6;">Wander through the performance like a ghost. Experience moments from impossible angles.</p>
+                    <div class="info-card">
+                        <h4>IMMERSIVE MODE</h4>
+                        <p>Wander through the performance like a ghost—present but unseen, able to move freely through space and observe from any angle. Experience moments from impossible perspectives. Stand in the middle of a dance. Watch an argument from above. This is where spatial thinking transforms spectatorship.</p>
                     </div>
-                    <div class="p-6" style="background: rgba(250,250,250,0.8); border: 1px solid var(--border-medium);">
-                        <h4 class="font-bold text-sm mb-3 tracking-wider" style="color: var(--text-dark);">ACTOR MODE</h4>
-                        <p class="text-sm" style="color: var(--text-medium); line-height: 1.6;">Step into the story. Walk Hamlet's castle and become the prince yourself.</p>
+                    <div class="info-card">
+                        <h4>ACTOR MODE</h4>
+                        <p>Step into the story itself. Not just watching a character, but inhabiting their position in space. Walk through Hamlet's castle and become the prince yourself. Experience the geometry of the narrative from inside. This isn't just interactivity—it's embodied perspective-taking.</p>
                     </div>
                 </div>
             </div>
@@ -413,11 +563,20 @@
             <div class="slide-content">
                 <span class="slide-label">06 / ACCESSIBILITY</span>
                 <h2 class="mega-title text-5xl md:text-7xl">NO DOWNLOADS.<br>NO BARRIERS.<br>JUST CLICK.</h2>
-                <p class="body-text">
-                    Everything we create lives in your browser. No apps to download, no accounts to create, no expensive hardware required. Just a link, a click, and you're inside a three-dimensional world. This isn't just convenient—it's philosophical.
+                <p class="body-text" style="line-height: 1.8;">
+                    Everything we create lives in your browser. This isn't just convenient—it's philosophical. It's a statement about what the web should be.
                 </p>
-                <p class="body-text mt-6">
-                    The web was meant to be open, accessible, instant. We're bringing that ethos to spatial design. Whether you're on a high-end gaming PC or a basic smartphone, whether you're in Milan or Mumbai, whether you're 8 or 80—you can experience these spaces.
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    No apps to download means no gatekeepers deciding what you can access. No accounts to create means no surveillance capitalism, no data harvesting, no barriers between curiosity and experience. No expensive hardware required means this isn't just for people who can afford VR headsets or gaming PCs. Just a link, a click, and you're inside a three-dimensional world.
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    The web was meant to be open, accessible, instant—a space where information and experience could flow freely, where anyone with an internet connection could participate. Somewhere along the way, we forgot that. We built walled gardens, app stores, platform monopolies. We created artificial scarcity in a realm of infinite abundance.
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    We're bringing that original ethos to spatial design. Whether you're on a high-end gaming PC or a basic smartphone, whether you're in Milan or Mumbai, whether you're 8 or 80—you can experience these spaces. Same link, same access, same dignity of participation. This is what democratization actually looks like: removing barriers, not creating new platforms that claim to remove barriers while really just creating new forms of exclusion.
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    And here's the technical challenge that makes this meaningful: creating experiences rich enough to be worth experiencing, optimized enough to run on minimal hardware, beautiful enough to inspire, yet light enough to load instantly. Every polygon counts. Every texture matters. Every interaction needs to be smooth. We're not just designing spaces—we're designing the delicate balance between ambition and accessibility.
                 </p>
             </div>
         </section>
@@ -427,70 +586,92 @@
         <!-- ============================================= -->
 
         <!-- SLIDE 8: CAPABILITIES -->
-        <section class="section-slide">
+        <section class="section-slide" id="capabilities">
             <div class="bg-image bg-7"></div>
             <div class="bg-overlay"></div>
             <div class="slide-content">
                 <span class="slide-label">07 / CAPABILITIES</span>
                 <h2 class="mega-title text-5xl md:text-7xl">WHAT WE<br>CREATE.</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-lg font-light" style="color: var(--text-medium);">
-                    <div class="border-b pb-4" style="border-color: var(--border-medium);">
-                        <strong style="color: var(--text-dark);">Virtual Architecture</strong><br>
-                        <span style="font-size: 0.9rem;">Galleries, museums, stages, pavilions, headquarters—spaces designed for digital existence, not physical imitation.</span>
+                <p class="body-text mb-8" style="line-height: 1.8;">
+                    Our work spans the full spectrum of spatial digital experience—from pure research to commercial applications, from experimental art to practical tools. Each project is an exploration, a question asked in three-dimensional form.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 text-lg font-light" style="color: var(--text-medium);">
+                    <div class="border-b pb-6" style="border-color: var(--border-medium);">
+                        <strong style="color: var(--text-dark); font-size: 1.1rem;">Virtual Architecture</strong><br>
+                        <span style="font-size: 0.95rem; line-height: 1.7; display: block; margin-top: 0.5rem;">
+                            Galleries that spiral upward infinitely. Museums that remember your path. Stages where floors become ceilings. Pavilions composed of light and chrome. Headquarters where rooms float and rearrange. Each space designed for digital existence, not physical imitation. Each asking: what is architecture when freed from gravity?
+                        </span>
                     </div>
-                    <div class="border-b pb-4" style="border-color: var(--border-medium);">
-                        <strong style="color: var(--text-dark);">Virtual Theater Productions</strong><br>
-                        <span style="font-size: 0.9rem;">Interactive performances where stories unfold in real-time, perspectives shift, and viewers become participants.</span>
+                    <div class="border-b pb-6" style="border-color: var(--border-medium);">
+                        <strong style="color: var(--text-dark); font-size: 1.1rem;">Virtual Theater Productions</strong><br>
+                        <span style="font-size: 0.95rem; line-height: 1.7; display: block; margin-top: 0.5rem;">
+                            Interactive performances where stories unfold in real-time around you. Where perspectives shift based on choice. Where viewers become participants. Three full productions exploring existence, identity, freedom—each asking questions that only make sense in this new medium. Each unrepeatable, each alive.
+                        </span>
                     </div>
-                    <div class="border-b pb-4" style="border-color: var(--border-medium);">
-                        <strong style="color: var(--text-dark);">Fashion & Event Spaces</strong><br>
-                        <span style="font-size: 0.9rem;">Runways where gravity is optional, fashion shows attended by thousands, each with the perfect view.</span>
+                    <div class="border-b pb-6" style="border-color: var(--border-medium);">
+                        <strong style="color: var(--text-dark); font-size: 1.1rem;">Fashion & Event Spaces</strong><br>
+                        <span style="font-size: 0.95rem; line-height: 1.7; display: block; margin-top: 0.5rem;">
+                            Runways where gravity is optional. Fashion shows attended by thousands, each with the perfect view. Events that transcend time zones. Collections that transform mid-stride. Retail as narrative, commerce as culture, browsing as discovery. The future of how we experience and acquire objects of desire.
+                        </span>
                     </div>
-                    <div class="border-b pb-4" style="border-color: var(--border-medium);">
-                        <strong style="color: var(--text-dark);">Digital Design Objects</strong><br>
-                        <span style="font-size: 0.9rem;">Furniture, sculptures, environments—objects that exist purely in code but feel more real than pixels.</span>
+                    <div class="border-b pb-6" style="border-color: var(--border-medium);">
+                        <strong style="color: var(--text-dark); font-size: 1.1rem;">Digital Design Objects</strong><br>
+                        <span style="font-size: 0.95rem; line-height: 1.7; display: block; margin-top: 0.5rem;">
+                            Furniture that doesn't need to support weight. Sculptures that respond to music. Automobiles that defy aerodynamics. Objects that exist purely in code but feel more real than pixels. Form freed from material constraints, function transformed into symbol, design exploring what's possible when physics is optional.
+                        </span>
                     </div>
-                    <div class="border-b pb-4" style="border-color: var(--border-medium);">
-                        <strong style="color: var(--text-dark);">Complete Virtual Worlds</strong><br>
-                        <span style="font-size: 0.9rem;">Browser-based 3D environments where communities gather, culture happens, and the future takes shape.</span>
+                    <div class="border-b pb-6" style="border-color: var(--border-medium);">
+                        <strong style="color: var(--text-dark); font-size: 1.1rem;">Complete Virtual Worlds</strong><br>
+                        <span style="font-size: 0.95rem; line-height: 1.7; display: block; margin-top: 0.5rem;">
+                            Browser-based 3D environments where communities gather, culture happens, and the future takes shape. Not metaverse platforms trying to be everything—focused spaces designed for specific experiences. Optimized, accessible, beautiful. Places where people actually want to be.
+                        </span>
                     </div>
-                    <div class="border-b pb-4" style="border-color: var(--border-medium);">
-                        <strong style="color: var(--text-dark);">Spatial Consulting</strong><br>
-                        <span style="font-size: 0.9rem;">We help brands, institutions, and creators imagine and build their presence in virtual space.</span>
+                    <div class="border-b pb-6" style="border-color: var(--border-medium);">
+                        <strong style="color: var(--text-dark); font-size: 1.1rem;">Spatial Consulting</strong><br>
+                        <span style="font-size: 0.95rem; line-height: 1.7; display: block; margin-top: 0.5rem;">
+                            We help brands, institutions, and creators imagine and build their presence in virtual space. Not just translating physical spaces into digital—rethinking from first principles what spatial presence means when you're freed from physical constraints. Strategy, design, implementation.
+                        </span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- SLIDE 8.5: DIGITAL TOPOGRAPHIES -->
-        <section class="section-slide">
-            <div class="bg-image bg-2"></div>
+        <section class="section-slide" id="explorations">
+            <div class="bg-video">
+                <video autoplay loop muted playsinline>
+                    <source src="https://video.wixstatic.com/video/54a996_81dcccae716947fb925a2365cccaf4a9/720p/mp4/file.mp4" type="video/mp4">
+                </video>
+            </div>
             <div class="bg-overlay"></div>
             <div class="slide-content">
-                <span class="slide-label">07B / EXPLORATION</span>
-                <h2 class="mega-title text-5xl md:text-7xl">DIGITAL<br>TOPOGRAPHIES.</h2>
-                <p class="body-text">
-                    Over 50 architectural models exploring what buildings become when freed from earth's constraints. These aren't just 3D models—they're experiments in spatial language. Galleries that spiral upward infinitely. Museums that remember your path. Pavilions composed of light and chrome. Event spaces where floors become ceilings.
+                <span class="slide-label">08 / DIGITAL TOPOGRAPHIES</span>
+                <h2 class="mega-title text-5xl md:text-7xl">REIMAGINING<br>ARCHITECTURE.</h2>
+                <p class="body-text" style="line-height: 1.8;">
+                    Over 50 architectural models exploring what buildings become when freed from earth's constraints. These aren't just 3D models you can view—they're experiments in spatial language, each asking specific questions about what architecture means when physics is optional, when materiality is choice rather than constraint, when the only limits are imagination and performance.
                 </p>
-                <p class="body-text mt-6">
-                    Each model optimized to under 15MB. Each designed to load instantly in your browser. Each asking a question about what architecture means when physics is optional.
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    Galleries that spiral upward infinitely, each rotation revealing new exhibition spaces that shouldn't geometrically fit but somehow do. Museums that remember your path, glowing warmer near artworks that captured attention, creating heat maps of collective aesthetic experience. Pavilions composed entirely of light and chrome, their reflective surfaces creating impossible vistas. Event spaces where floors seamlessly become ceilings, where orientation becomes suggestion rather than fixed.
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    Each model optimized to under 15MB—small enough to load instantly, detailed enough to explore thoroughly. Each designed to run smoothly in browsers on modest hardware. Each asking a question: What is a museum when it can reshape itself? What is a stage when everyone can have the best seat? What is architecture when freed from gravity, time, and material constraint?
                 </p>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
-                    <div class="text-center p-4" style="background: rgba(250,250,250,0.8);">
-                        <div class="text-4xl font-bold font-grotesk mb-2" style="color: var(--text-dark);">50+</div>
-                        <div class="text-xs" style="color: var(--text-medium);">Architectural Models</div>
+                    <div class="stat-box">
+                        <div class="stat-number">52</div>
+                        <div class="stat-label">Architectural Models</div>
                     </div>
-                    <div class="text-center p-4" style="background: rgba(250,250,250,0.8);">
-                        <div class="text-4xl font-bold font-grotesk mb-2" style="color: var(--text-dark);">15MB</div>
-                        <div class="text-xs" style="color: var(--text-medium);">Maximum File Size</div>
+                    <div class="stat-box">
+                        <div class="stat-number">&lt;15MB</div>
+                        <div class="stat-label">Maximum File Size</div>
                     </div>
-                    <div class="text-center p-4" style="background: rgba(250,250,250,0.8);">
-                        <div class="text-4xl font-bold font-grotesk mb-2" style="color: var(--text-dark);">∞</div>
-                        <div class="text-xs" style="color: var(--text-medium);">Possibilities</div>
+                    <div class="stat-box">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Spatial Possibilities</div>
                     </div>
-                    <div class="text-center p-4" style="background: rgba(250,250,250,0.8);">
-                        <div class="text-4xl font-bold font-grotesk mb-2" style="color: var(--text-dark);">0</div>
-                        <div class="text-xs" style="color: var(--text-medium);">Downloads Required</div>
+                    <div class="stat-box">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Downloads Required</div>
                     </div>
                 </div>
             </div>
@@ -499,49 +680,68 @@
         <!-- SLIDE 8.6: VIRTUAL FURNITURE -->
         <section class="section-slide bg-5">
             <div class="slide-content">
-                <span class="slide-label">07C / DESIGN</span>
-                <h2 class="mega-title text-5xl md:text-7xl">VIRTUAL<br>FURNITURE.</h2>
-                <p class="body-text">
-                    Chairs that don't need to support weight. Tables that can float. Sculptures that respond to music. Over 60 design objects exploring the question: what is furniture when function becomes symbolic?
+                <span class="slide-label">09 / VIRTUAL FURNITURE</span>
+                <h2 class="mega-title text-5xl md:text-7xl">WHEN FUNCTION<br>BECOMES SYMBOL.</h2>
+                <p class="body-text" style="line-height: 1.8;">
+                    Chairs that don't need to support weight. Tables that can float. Sofas that pulse with data. Sculptures that respond to music. Over 60 design objects exploring the fundamental question: what is furniture when function becomes purely symbolic?
                 </p>
-                <p class="body-text mt-6">
-                    These aren't just digital twins of physical objects. They're explorations of form freed from material constraints. A chair can be made of light. A sofa can pulse with data. A sculpture can dance with visitors. This is design for spaces where gravity is a choice, not a law.
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    In physical space, furniture serves literal functions. A chair must support your weight. A table must hold objects. A lamp must emit light. Form follows function because function is non-negotiable. But in digital space, those functions are optional. A chair doesn't need to support anything—it only needs to suggest the idea of support, to create the experience of "chairness."
                 </p>
-                <div class="mt-12 p-8 border-l-4" style="border-color: var(--text-dark); background: rgba(255,255,255,0.5);">
-                    <p class="text-lg italic mb-4" style="color: var(--text-medium);">
-                        "Think of a virtual Eames chair. In the physical world, it's design you sit in. In digital space, it's design that shapes how you experience the environment around you."
-                    </p>
-                    <p class="text-sm font-mono" style="color: var(--text-lighter);">
-                        60+ objects across categories: Chairs, Sofas, Tables, Sculptures, Musical Instruments, Automobiles
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    These aren't just digital twins of physical objects—exact replicas rendered in polygons. They're explorations of form freed from material constraints. A chair can be made entirely of light. A sofa can exist as a field of particles that coalesce when you approach. A sculpture can dance with visitors, responding to their movement, their attention, their presence. This is design for spaces where gravity is a choice, not a law.
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    Once you realize function is symbolic, deeper questions emerge: What should this symbol evoke? What experience should it create? What possibilities open up when we're freed from literal function? A virtual Eames chair isn't just a place to sit—it's a marker of aesthetic history, a node in a design genealogy, a way of organizing space through iconic form. In physical space, it's design you sit in. In digital space, it's design that shapes how you experience the environment around you.
+                </p>
+                <div class="quote-box">
+                    <p>
+                        "Think of a virtual Eames chair. In the physical world, it's design you sit in—comfortable, beautiful, iconic. In digital space, it becomes something else: a spatial marker, an aesthetic touchstone, a way of communicating values and taste. It doesn't need to be comfortable because nobody sits in it literally. But it shapes the space around it, creating zones of aesthetic meaning."
                     </p>
                 </div>
+                <p class="body-text mt-6" style="color: var(--text-medium); font-size: 1rem;">
+                    <strong>60+ objects across categories:</strong> Chairs that float and spin. Sofas that breathe with ambient sound. Tables that hold light instead of objects. Sculptures that evolve based on viewer attention. Musical instruments that visualize sound. Automobiles that defy aerodynamics because air resistance doesn't exist.
+                </p>
             </div>
         </section>
 
         <!-- SLIDE 8.7: THE PROCESS -->
         <section class="section-slide">
-            <div class="bg-image bg-7"></div>
+            <div class="bg-video">
+                <video autoplay loop muted playsinline>
+                    <source src="https://video.wixstatic.com/video/54a996_089c17f8355849d5a11f6115ab1025ba/1080p/mp4/file.mp4" type="video/mp4">
+                </video>
+            </div>
             <div class="bg-overlay"></div>
             <div class="slide-content">
-                <span class="slide-label">07D / METHODOLOGY</span>
+                <span class="slide-label">10 / METHODOLOGY</span>
                 <h2 class="mega-title text-5xl md:text-7xl">HOW WE<br>BUILD.</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8">
                     <div>
-                        <h3 class="text-xl font-bold mb-4" style="color: var(--text-dark);">Technical Foundation</h3>
-                        <p class="text-base mb-4" style="color: var(--text-medium); line-height: 1.7;">
-                            Every space begins with performance. We optimize mesh geometry, implement LOD strategies, and use efficient texture mapping. glTF/GLB format for universal compatibility. PBR materials for realistic shading without heavy computation.
+                        <h3 class="text-2xl font-bold mb-4" style="color: var(--text-dark);">Technical Foundation</h3>
+                        <p class="text-base mb-4" style="color: var(--text-medium); line-height: 1.8;">
+                            Every space begins with performance. Before aesthetics, before narrative, before concept—performance. Because beauty means nothing if it doesn't load. We optimize mesh geometry ruthlessly, implement LOD (level of detail) strategies that adjust based on viewing distance, use efficient texture mapping that balances visual quality with file size. glTF/GLB format for universal compatibility across platforms. PBR (physically based rendering) materials for realistic shading without heavy computation.
                         </p>
-                        <p class="text-base" style="color: var(--text-medium); line-height: 1.7;">
-                            Smart objects coordinate everything from lighting changes to character movements. Chain reactions trigger seamlessly. NPCs guide visitors. Environments adapt in real-time.
+                        <p class="text-base mb-4" style="color: var(--text-medium); line-height: 1.8;">
+                            Smart objects coordinate everything from lighting changes to character movements. Chain reactions trigger seamlessly—one action cascades into the next in carefully orchestrated sequences. NPCs (non-player characters) guide visitors through spaces, providing context and wayfinding. Environments adapt in real-time based on presence, on attention, on the accumulated choices of visitors over time.
+                        </p>
+                        <p class="text-base" style="color: var(--text-medium); line-height: 1.8;">
+                            This isn't just technical craft—it's respect for the user. Respect for their time (instant loading), their hardware (runs on modest specs), their bandwidth (optimized file sizes), their attention (smooth performance that doesn't break immersion).
                         </p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold mb-4" style="color: var(--text-dark);">Design Philosophy</h3>
-                        <p class="text-base mb-4" style="color: var(--text-medium); line-height: 1.7;">
-                            Sound comes first—we build spaces around ambient sets, letting audio guide spatial rhythm. Pacing learned from TikTok: constant stimulation punctuated by silence. Lighting as narrative: spaces that respond to presence, that remember your path.
+                        <h3 class="text-2xl font-bold mb-4" style="color: var(--text-dark);">Design Philosophy</h3>
+                        <p class="text-base mb-4" style="color: var(--text-medium); line-height: 1.8;">
+                            Sound comes first. Always. We build spaces around ambient sets—three-hour compositions that define the emotional and temporal rhythm of an experience. Letting audio guide spatial rhythm means the architecture follows the music, not the other way around. Spaces breathe with sound, expand and contract with its pacing.
                         </p>
-                        <p class="text-base" style="color: var(--text-medium); line-height: 1.7;">
-                            Platforms: Hyperfy, Mona, Oncyber. Each chosen for specific strengths. All browser-based. All accessible. All pushing boundaries of what's possible without downloads.
+                        <p class="text-base mb-4" style="color: var(--text-medium); line-height: 1.8;">
+                            Pacing learned from TikTok (hear us out): constant stimulation punctuated by strategic silence. Digital attention is fragmented, impatient, hungry. We don't fight that—we work with it. Bombard with visual and sonic information, then suddenly: silence. That silence becomes profound precisely because of the noise around it.
+                        </p>
+                        <p class="text-base mb-4" style="color: var(--text-medium); line-height: 1.8;">
+                            Lighting as narrative: spaces that respond to presence, that remember your path. Walk near an installation and the light shifts to focus attention. Linger in a corner and the space around you softens. Leave and your passage is marked by a subtle glow that fades over time. Environmental storytelling through luminosity.
+                        </p>
+                        <p class="text-base" style="color: var(--text-medium); line-height: 1.8;">
+                            <strong>Platforms:</strong> Hyperfy, Mona, Oncyber. Each chosen for specific strengths. Hyperfy for multiplayer social experiences. Mona for NFT integration and ownership. Oncyber for curated gallery experiences. All browser-based. All accessible. All pushing boundaries of what's possible without downloads.
                         </p>
                     </div>
                 </div>
@@ -551,25 +751,34 @@
         <!-- SLIDE 9: PRINCIPLES -->
         <section class="section-slide bg-5">
             <div class="slide-content">
-                <span class="slide-label">08 / PRINCIPLES</span>
+                <span class="slide-label">11 / PRINCIPLES</span>
                 <h2 class="mega-title text-5xl md:text-7xl">THREE CORE<br>PRINCIPLES.</h2>
                 <div class="space-y-12 mt-12 max-w-3xl">
                     <div>
                         <h3 class="text-2xl font-bold mb-3" style="color: var(--text-dark);">1. Spatial Honesty</h3>
-                        <p class="text-lg" style="color: var(--text-medium); line-height: 1.7;">
-                            We don't fake physics. We don't pretend digital space needs walls or floors unless they serve a purpose. Every element exists because it enhances the experience, not because "that's how buildings work." This honesty creates spaces that feel authentic to their medium.
+                        <p class="text-lg" style="color: var(--text-medium); line-height: 1.8;">
+                            We don't fake physics. We don't pretend digital space needs walls or floors unless they serve a purpose beyond structural necessity. Every element exists because it enhances the experience, not because "that's how buildings work." This honesty creates spaces that feel authentic to their medium—not trying to be physical buildings in digital form, but being genuinely digital spaces that happen to share some spatial concepts with architecture.
+                        </p>
+                        <p class="text-lg mt-4" style="color: var(--text-medium); line-height: 1.8;">
+                            A wall in digital space doesn't need to support anything. So if it's there, it's there for reasons of enclosure, of framing views, of creating psychological boundaries. Function becomes entirely about experience and meaning. This shifts the entire logic of design—from engineering problems to phenomenological questions.
                         </p>
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold mb-3" style="color: var(--text-dark);">2. Technical Excellence</h3>
-                        <p class="text-lg" style="color: var(--text-medium); line-height: 1.7;">
-                            Beauty means nothing if it doesn't load. Every space we create is optimized to run smoothly in browsers—under 15MB, instant access, 60fps. We obsess over file sizes, rendering efficiency, and performance because accessibility is not optional.
+                        <p class="text-lg" style="color: var(--text-medium); line-height: 1.8;">
+                            Beauty means nothing if it doesn't load. Ambition means nothing if it excludes. Every space we create is optimized to run smoothly in browsers—under 15MB total size, instant access, 60fps minimum. We obsess over file sizes, rendering efficiency, performance budgets. Not because we're technical purists, but because accessibility is not optional.
+                        </p>
+                        <p class="text-lg mt-4" style="color: var(--text-medium); line-height: 1.8;">
+                            The constraint is the creativity. Having to work within tight performance budgets forces us to be smarter about what we include, how we build it, what truly matters. Every polygon counts. Every texture matters. This isn't limitation—it's discipline that makes the work sharper, more focused, more essential.
                         </p>
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold mb-3" style="color: var(--text-dark);">3. Narrative Architecture</h3>
-                        <p class="text-lg" style="color: var(--text-medium); line-height: 1.7;">
-                            Every space tells a story. Not through text or labels, but through form, light, movement, and interaction. A spiral that climbs suggests growth. A cave invites intimacy. A floating platform promises freedom. The architecture itself is the narrative.
+                        <p class="text-lg" style="color: var(--text-medium); line-height: 1.8;">
+                            Every space tells a story. Not through text or labels, but through form, light, movement, and interaction. A spiral that climbs suggests growth, evolution, transcendence. A cave invites intimacy, introspection, shelter. A floating platform promises freedom, possibility, risk. The architecture itself is the narrative—not a container for story, but the story made spatial.
+                        </p>
+                        <p class="text-lg mt-4" style="color: var(--text-medium); line-height: 1.8;">
+                            This means designing with metaphor, with symbolism, with an understanding of how humans read space emotionally and psychologically. Not decorating spaces with meaning, but embedding meaning in the fundamental spatial relationships, the geometries, the way light moves through form.
                         </p>
                     </div>
                 </div>
@@ -577,32 +786,38 @@
         </section>
 
         <!-- SLIDE 10: THE FUTURE -->
-        <section class="section-slide">
+        <section class="section-slide" id="future">
             <div class="bg-image bg-3"></div>
             <div class="bg-overlay"></div>
             <div class="slide-content">
-                <span class="slide-label">09 / THE FUTURE</span>
+                <span class="slide-label">12 / THE FUTURE</span>
                 <h2 class="mega-title text-5xl md:text-7xl">COLLECTIVE<br>IMAGINATION.</h2>
-                <p class="body-text">
-                    We're not building the metaverse. We're not creating the future of the internet. Those phrases are too grand, too final. What we're doing is simpler and more profound: we're exploring. Every project is an experiment. Every space is a question.
+                <p class="body-text" style="line-height: 1.8;">
+                    We're not building the metaverse. We're not creating the future of the internet. Those phrases are too grand, too final, too certain. What we're doing is simpler and more profound: we're exploring. Every project is an experiment. Every space is a question asked in three-dimensional form. We don't have all the answers. We're discovering them together, one space at a time.
                 </p>
-                <p class="body-text mt-6">
-                    What happens when a museum can reshape itself based on who's visiting? How does fashion change when runways can exist in impossible geometries? What new forms of theater emerge when viewers can float through scenes? What does ownership mean when spaces can be forked, remixed, and evolved collectively?
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    What happens when a museum can reshape itself based on who's visiting, when's visiting, how they're moving through it? Not just tracking but learning, not just observing but evolving. How does fashion change when runways can exist in impossible geometries—when gravity is optional and every seat is the best seat? What new forms of theater emerge when viewers can float through scenes, when time becomes fluid, when perspective is choice rather than constraint?
                 </p>
-                <p class="body-text mt-6">
-                    We don't have all the answers. We're discovering them together, one space at a time.
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    What does ownership mean when spaces can be forked, remixed, and evolved collectively? When the line between creator and user blurs? When virtual real estate isn't about scarcity but about attention, about meaning, about shared experience? These aren't rhetorical questions—they're the actual problems we're working through, day by day, project by project.
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    The future we're building isn't about replacing physical experiences. Physical spaces will always have irreplaceable qualities—the warmth of sun on skin, the smell of rain, the weight of actual presence. We're not trying to simulate those. We're trying to discover what digital space can do that physical space cannot. What experiences become possible when freed from material constraint? What new forms of gathering, of expression, of beauty emerge?
+                </p>
+                <p class="body-text mt-6" style="line-height: 1.8;">
+                    This is an invitation. Not to a finished product or a complete vision, but to a process of discovery. The spaces we're creating are meant to be explored, questioned, remixed. The ideas we're proposing are meant to be tested, challenged, evolved. This isn't one studio's vision of the future—it's a collective project we're all building together, whether we know it or not. Every time you question why digital spaces look the way they do, you're part of this. Every time you imagine what they could be instead, you're contributing.
                 </p>
             </div>
         </section>
 
         <!-- ============================================= -->
-        <!-- PART 5: SELECTED WORKS (Brief) -->
+        <!-- PART 5: TRACK RECORD & WORKS -->
         <!-- ============================================= -->
 
         <!-- SLIDE 11: TRACK RECORD -->
         <section class="section-slide bg-8">
             <div class="slide-content h-full flex flex-col justify-center">
-                <span class="slide-label">10 / RECOGNITION</span>
+                <span class="slide-label">13 / RECOGNITION</span>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
                     <div>
                         <span class="text-xs font-mono mb-6 block" style="color: var(--text-lighter);">AWARDS & HONORS</span>
@@ -683,7 +898,7 @@
                 </div>
 
                 <p class="text-center mt-12 text-sm font-mono" style="color: var(--text-light);">
-                    50+ architectural models • 60+ design objects • 3 virtual theater productions • Countless experiments
+                    52 architectural models • 60+ design objects • 3 virtual theater productions • Countless experiments
                 </p>
             </div>
         </section>
@@ -707,5 +922,48 @@
 
     </div>
 
+    <script>
+        // Anchor Navigation
+        const anchorDots = document.querySelectorAll('.anchor-dot');
+        const snapContainer = document.getElementById('snap-container');
+        const sections = document.querySelectorAll('.section-slide');
+
+        // Click navigation
+        anchorDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const target = dot.getAttribute('data-target');
+                const targetSection = document.getElementById(target);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Update active dot on scroll
+        const observerOptions = {
+            root: snapContainer,
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    anchorDots.forEach(dot => {
+                        dot.classList.remove('active');
+                        if (dot.getAttribute('data-target') === id) {
+                            dot.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            if (section.id) {
+                observer.observe(section);
+            }
+        });
+    </script>
 </body>
 </html>
