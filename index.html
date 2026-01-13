@@ -132,18 +132,13 @@
             min-height: 100vh;
             padding: 5rem 4rem;
             position: relative;
-            background: #0064FF;
+            background: red;
             color: #fff;
             text-align: center;
         }
 
         /* COLOR BACKGROUNDS - ALL BLUE NOW */
-        .bg-white { background: #0064FF; color: #fff; }
-        .bg-blue { background: #0064FF; color: #fff; }
-        .bg-red { background: #0064FF; color: #fff; }
-        .bg-yellow { background: #0064FF; color: #fff; }
-        .bg-orange { background: #0064FF; color: #fff; }
-        .bg-black { background: #0064FF; color: #fff; }
+        
 
         /* CONTAINER */
         .container {
@@ -199,12 +194,12 @@
         /* PARAGRAPH - Italianno font - 4 COLUMNS */
         .paragraph {
             font-family: 'Italianno', cursive;
-            font-size: clamp(0.9rem, 1.1vw, 1.2rem);
-            line-height: 2;
+            font-size: clamp(1.4rem, 1.8vw, 2rem);
+            line-height: 1.6;
             font-weight: 400;
             margin-bottom: 3rem;
             column-count: 4;
-            column-gap: 4rem;
+            column-gap: 3rem;
             text-align: left;
             color: #fff;
         }
@@ -227,17 +222,17 @@
 
         /* QUOTE BLOCKS */
         .quote-block {
-            border-left: 6px solid currentColor;
+            
             padding: 2rem;
             margin: 3rem 0;
-            background: rgba(0,0,0,0.05);
+            background: rgba(0,0,0,1);
         }
 
         .quote-block p {
             font-size: clamp(1.2rem, 2vw, 1.8rem);
             font-weight: 700;
             line-height: 1.4;
-            font-style: italic;
+            
         }
 
         /* GRID LAYOUTS */
@@ -299,29 +294,26 @@
             margin: 0;
         }
 
-        /* VIDEO TRIGGER BUTTONS - NO EMBED ON PAGE */
+        /* VIDEO TRIGGER BUTTONS */
         .video-trigger {
             display: inline-block;
-            padding: 2rem 4rem;
-            background: rgba(0,0,0,0.2);
-            border: 4px solid #000;
-            margin: 3rem auto;
+            padding: 1.5rem 3rem;
+            background: rgba(0,0,0,0.15);
+            border: 3px solid #000;
+            margin: 1.5rem 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1.2rem;
-            font-weight: 900;
+            font-size: 0.9rem;
+            font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
+            color: #fff;
         }
 
         .video-trigger:hover {
-            background: rgba(0,0,0,0.4);
-            transform: scale(1.05);
-        }
-
-        .video-trigger::before {
-            content: '▶ ';
-            margin-right: 1rem;
+            background: rgba(0,0,0,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         /* ANIMATIONS */
@@ -580,9 +572,9 @@
         /* SVG DIAGRAMS - ALL BLACK */
         .diagram {
             margin: 4rem 0;
-            padding: 3rem;
-            background: rgba(0,0,0,0.1);
-            border: 3px solid #000;
+            padding: 0;
+            background: transparent;
+            border: 0px;
         }
 
         .diagram svg {
@@ -602,11 +594,17 @@
 
         /* HORIZONTAL SCROLLING LOOP */
         .scroll-container {
-            width: 100%;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
             overflow: hidden;
             background: rgba(0,0,0,0.05);
             padding: 2rem 0;
-            margin: 4rem 0;
+            margin-top: 4rem;
+            margin-bottom: 4rem;
             border-top: 3px solid #000;
             border-bottom: 3px solid #000;
         }
@@ -615,6 +613,7 @@
             display: flex;
             animation: scroll 30s linear infinite;
             width: fit-content;
+            gap: 2rem;
         }
 
         .scroll-item {
@@ -625,6 +624,22 @@
             letter-spacing: 0.1em;
             color: #000;
             text-transform: uppercase;
+        }
+
+        .scroll-item img {
+            height: 100px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .scroll-item a {
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .scroll-item a:hover {
+            transform: scale(1.05);
         }
 
         @keyframes scroll {
@@ -738,62 +753,38 @@
 
                 <!-- DIAGRAM: FLAT VS SPATIAL -->
                 <div class="diagram">
-                    <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
-                        <!-- FLAT INTERNET (LEFT) -->
-                        <text x="100" y="30" font-size="14" font-weight="900" fill="#000">FLAT INTERNET</text>
-                        <rect x="20" y="50" width="180" height="120" fill="none" stroke="#000" stroke-width="3"/>
-                        <rect x="30" y="65" width="40" height="30" fill="#000" opacity="0.3"/>
-                        <rect x="80" y="65" width="40" height="30" fill="#000" opacity="0.3"/>
-                        <rect x="130" y="65" width="40" height="30" fill="#000" opacity="0.3"/>
-                        <rect x="30" y="105" width="40" height="30" fill="#000" opacity="0.3"/>
-                        <rect x="80" y="105" width="40" height="30" fill="#000" opacity="0.3"/>
-                        <rect x="130" y="105" width="40" height="30" fill="#000" opacity="0.3"/>
-                        <text x="60" y="200" font-size="11" font-weight="700" fill="#000">RECTANGLES</text>
-                        <text x="75" y="220" font-size="11" font-weight="700" fill="#000">2D</text>
-                        <text x="55" y="240" font-size="11" font-weight="700" fill="#000">CONSTRAINED</text>
-
-                        <!-- VS ARROW -->
-                        <text x="375" y="115" font-size="24" font-weight="900" fill="#000">VS</text>
-
-                        <!-- SPATIAL INTERNET (RIGHT) -->
-                        <text x="560" y="30" font-size="14" font-weight="900" fill="#000">SPATIAL INTERNET</text>
-                        <circle cx="650" cy="110" r="60" fill="none" stroke="#000" stroke-width="3"/>
-                        <polygon points="620,80 650,90 680,80" fill="#000" opacity="0.3"/>
-                        <polygon points="610,110 630,125 650,110" fill="#000" opacity="0.5"/>
-                        <polygon points="650,110 670,125 690,110" fill="#000" opacity="0.7"/>
-                        <polygon points="625,140 650,155 675,140" fill="#000" opacity="0.4"/>
-                        <line x1="650" y1="70" x2="650" y2="50" stroke="#000" stroke-width="2" opacity="0.5"/>
-                        <line x1="650" y1="150" x2="650" y2="170" stroke="#000" stroke-width="2" opacity="0.5"/>
-                        <text x="610" y="200" font-size="11" font-weight="700" fill="#000">VOLUMETRIC</text>
-                        <text x="630" y="220" font-size="11" font-weight="700" fill="#000">3D</text>
-                        <text x="620" y="240" font-size="11" font-weight="700" fill="#000">LIMITLESS</text>
-                    </svg>
-                    <div class="diagram-label">THE SHIFT FROM FLAT TO SPATIAL</div>
+                    <img src="https://static.wixstatic.com/media/54a996_54c73b3af02e4793941ebe4d7f6269f4~mv2.png" alt="DIAGRAM 1" style="width: 100%; height: auto; display: block;">
                 </div>
 
-                <div class="video-trigger" onclick="openWindow('METAOFFICE', 'https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: METAOFFICE
+                <div class="video-trigger" onclick="openWindow('DFW METAOFFICE', 'https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4', 'video')">
+                    ▶ WATCH: DFW METAOFFICE
+                </div>
+
+                <div class="video-trigger" onclick="openWindow('DFW DESIGN', 'https://video.wixstatic.com/video/54a996_089c17f8355849d5a11f6115ab1025ba/1080p/mp4/file.mp4', 'video')">
+                    ▶ WATCH: DFW DESIGN
                 </div>
 
                 <!-- HORIZONTAL SCROLL LOOP 1 -->
                 <div class="scroll-container">
                     <div class="scroll-track">
-                        <div class="scroll-item">SPATIAL DESIGN</div>
-                        <div class="scroll-item">◆</div>
-                        <div class="scroll-item">WEBGL ARCHITECTURE</div>
-                        <div class="scroll-item">◆</div>
-                        <div class="scroll-item">BROWSER-BASED</div>
-                        <div class="scroll-item">◆</div>
-                        <div class="scroll-item">NO DOWNLOAD</div>
-                        <div class="scroll-item">◆</div>
-                        <div class="scroll-item">SPATIAL DESIGN</div>
-                        <div class="scroll-item">◆</div>
-                        <div class="scroll-item">WEBGL ARCHITECTURE</div>
-                        <div class="scroll-item">◆</div>
-                        <div class="scroll-item">BROWSER-BASED</div>
-                        <div class="scroll-item">◆</div>
-                        <div class="scroll-item">NO DOWNLOAD</div>
-                        <div class="scroll-item">◆</div>
+                        <div class="scroll-item"><a href="#project1"><img src="https://static.wixstatic.com/media/54a996_4e9f8ec5649349a5ac7b21ef80e8272f~mv2.png" alt="Project 1"></a></div>
+                        <div class="scroll-item"><a href="#project2"><img src="https://static.wixstatic.com/media/54a996_5c1696cfda2a41909b021894f7236293~mv2.png" alt="Project 2"></a></div>
+                        <div class="scroll-item"><a href="#project3"><img src="https://static.wixstatic.com/media/54a996_edfe743a8afb47c2a7c743b9ec288da3~mv2.png" alt="Project 3"></a></div>
+                        <div class="scroll-item"><a href="#project4"><img src="https://static.wixstatic.com/media/54a996_eb3a59a9d22f454186e28c3c5d24461f~mv2.png" alt="Project 4"></a></div>
+                        <div class="scroll-item"><a href="#project5"><img src="https://static.wixstatic.com/media/54a996_145e862db9034dd9b0249c171eb5a3fa~mv2.png" alt="Project 5"></a></div>
+                        <div class="scroll-item"><a href="#project6"><img src="https://static.wixstatic.com/media/54a996_0f5300ff7aac4ad7aced9e84ec9a543a~mv2.png" alt="Project 6"></a></div>
+                        <div class="scroll-item"><a href="#project7"><img src="https://static.wixstatic.com/media/54a996_5555b50437514963a389e43f199d5e0b~mv2.png" alt="Project 7"></a></div>
+                        <div class="scroll-item"><a href="#project8"><img src="https://static.wixstatic.com/media/54a996_653b957c76d8468cb4d41dc8e051434f~mv2.png" alt="Project 8"></a></div>
+                        <div class="scroll-item"><a href="#project9"><img src="https://static.wixstatic.com/media/54a996_20b0ff7ed58c40c0a5ed9506dea9aeef~mv2.png" alt="Project 9"></a></div>
+                        <div class="scroll-item"><a href="#project1"><img src="https://static.wixstatic.com/media/54a996_4e9f8ec5649349a5ac7b21ef80e8272f~mv2.png" alt="Project 1"></a></div>
+                        <div class="scroll-item"><a href="#project2"><img src="https://static.wixstatic.com/media/54a996_5c1696cfda2a41909b021894f7236293~mv2.png" alt="Project 2"></a></div>
+                        <div class="scroll-item"><a href="#project3"><img src="https://static.wixstatic.com/media/54a996_edfe743a8afb47c2a7c743b9ec288da3~mv2.png" alt="Project 3"></a></div>
+                        <div class="scroll-item"><a href="#project4"><img src="https://static.wixstatic.com/media/54a996_eb3a59a9d22f454186e28c3c5d24461f~mv2.png" alt="Project 4"></a></div>
+                        <div class="scroll-item"><a href="#project5"><img src="https://static.wixstatic.com/media/54a996_145e862db9034dd9b0249c171eb5a3fa~mv2.png" alt="Project 5"></a></div>
+                        <div class="scroll-item"><a href="#project6"><img src="https://static.wixstatic.com/media/54a996_0f5300ff7aac4ad7aced9e84ec9a543a~mv2.png" alt="Project 6"></a></div>
+                        <div class="scroll-item"><a href="#project7"><img src="https://static.wixstatic.com/media/54a996_5555b50437514963a389e43f199d5e0b~mv2.png" alt="Project 7"></a></div>
+                        <div class="scroll-item"><a href="#project8"><img src="https://static.wixstatic.com/media/54a996_653b957c76d8468cb4d41dc8e051434f~mv2.png" alt="Project 8"></a></div>
+                        <div class="scroll-item"><a href="#project9"><img src="https://static.wixstatic.com/media/54a996_20b0ff7ed58c40c0a5ed9506dea9aeef~mv2.png" alt="Project 9"></a></div>
                     </div>
                 </div>
             </div>
@@ -816,31 +807,19 @@
 
                 <!-- DIAGRAM: RECTANGLE PRISON -->
                 <div class="diagram">
-                    <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
-                        <!-- NESTED RECTANGLES -->
-                        <rect x="50" y="30" width="700" height="240" fill="none" stroke="#000" stroke-width="4"/>
-                        <text x="60" y="55" font-size="11" font-weight="700" fill="#000">BROWSER</text>
-                        <rect x="80" y="70" width="640" height="180" fill="none" stroke="#000" stroke-width="3"/>
-                        <text x="90" y="90" font-size="10" font-weight="700" fill="#000">WEBSITE</text>
-                        <rect x="110" y="105" width="200" height="120" fill="#000" opacity="0.1"/>
-                        <text x="120" y="120" font-size="9" font-weight="700" fill="#000">EMAIL</text>
-                        <rect x="330" y="105" width="180" height="120" fill="#000" opacity="0.1"/>
-                        <text x="340" y="120" font-size="9" font-weight="700" fill="#000">SOCIAL</text>
-                        <rect x="530" y="105" width="170" height="120" fill="#000" opacity="0.1"/>
-                        <text x="540" y="120" font-size="9" font-weight="700" fill="#000">DOCS</text>
-
-                        <!-- LABELS -->
-                        <text x="280" y="280" font-size="14" font-weight="900" fill="#000">INFINITY TRAPPED IN RECTANGLES</text>
-                    </svg>
-                    <div class="diagram-label">NESTED METAPHORS</div>
+                    <img src="https://static.wixstatic.com/media/54a996_917c0c59916347c786dea3fdf87d6626~mv2.png" alt="DIAGRAM 2" style="width: 100%; height: auto; display: block;">
                 </div>
 
                 <div class="quote-block">
                     <p>"WHAT BECOMES POSSIBLE WHEN WE LET DIGITAL SPACE BE ITSELF?"</p>
                 </div>
 
-                <div class="video-trigger" onclick="openWindow('CHROME TOPOLOGY', 'https://video.wixstatic.com/video/54a996_ccdeba84c3054a7b93c1ffd59e4154c9/1080p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: CHROME TOPOLOGY
+                <div class="video-trigger" onclick="openWindow('STEVE JOBS EXPLAINING DFW', 'https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4', 'video')">
+                    ▶ WATCH: STEVE JOBS EXPLAINING DFW
+                </div>
+
+                <div class="video-trigger" onclick="openWindow('DFW PRESENTATION 2022', 'https://video.wixstatic.com/video/54a996_dcc34db653704ed9962289d9ed73dcd7/1080p/mp4/file.mp4', 'video')">
+                    ▶ WATCH: DFW PRESENTATION 2022
                 </div>
             </div>
         </section>
@@ -864,7 +843,7 @@
                 <div class="diagram">
                     <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
                         <!-- PHYSICAL SPACE (LEFT) -->
-                        <text x="50" y="30" font-size="14" font-weight="900" fill="#000">PHYSICAL SPACE</text>
+                        <text x="50" y="30" font-size="14" font-weight="900" fill="white">PHYSICAL SPACE</text>
 
                         <!-- CONSTRAINTS -->
                         <rect x="20" y="50" width="180" height="40" fill="#000" opacity="0.1"/>
@@ -885,25 +864,25 @@
                         <text x="260" y="140" font-size="12" font-weight="900" fill="#000">BREAK FREE</text>
 
                         <!-- DIGITAL SPACE (RIGHT) -->
-                        <text x="550" y="30" font-size="14" font-weight="900" fill="#000">DIGITAL SPACE</text>
+                        <text x="550" y="30" font-size="14" font-weight="900" fill="white">DIGITAL SPACE</text>
 
                         <!-- FREEDOMS -->
                         <circle cx="480" cy="70" r="15" fill="#000" opacity="0.2"/>
-                        <text x="505" y="75" font-size="10" font-weight="700" fill="#000">NO GRAVITY</text>
+                        <text x="505" y="75" font-size="10" font-weight="700" fill="white">NO GRAVITY</text>
 
                         <circle cx="480" cy="120" r="15" fill="#000" opacity="0.3"/>
-                        <text x="505" y="125" font-size="10" font-weight="700" fill="#000">ZERO MATERIAL COST</text>
+                        <text x="505" y="125" font-size="10" font-weight="700" fill="white">ZERO MATERIAL COST</text>
 
                         <circle cx="480" cy="170" r="15" fill="#000" opacity="0.4"/>
-                        <text x="505" y="175" font-size="10" font-weight="700" fill="#000">INFINITE POSITIONS</text>
+                        <text x="505" y="175" font-size="10" font-weight="700" fill="white">INFINITE POSITIONS</text>
 
                         <circle cx="480" cy="220" r="15" fill="#000" opacity="0.5"/>
-                        <text x="505" y="225" font-size="10" font-weight="700" fill="#000">TIME = MALLEABLE</text>
+                        <text x="505" y="225" font-size="10" font-weight="700" fill="white">TIME = MALLEABLE</text>
 
                         <!-- EXPLOSION LINES -->
-                        <line x1="680" y1="70" x2="750" y2="40" stroke="#000" stroke-width="2" opacity="0.3"/>
-                        <line x1="680" y1="120" x2="760" y2="120" stroke="#000" stroke-width="2" opacity="0.3"/>
-                        <line x1="680" y1="170" x2="750" y2="200" stroke="#000" stroke-width="2" opacity="0.3"/>
+                        <line x1="680" y1="70" x2="750" y2="40" stroke="white" stroke-width="2" opacity="0.3"/>
+                        <line x1="680" y1="120" x2="760" y2="120" stroke="white" stroke-width="2" opacity="0.3"/>
+                        <line x1="680" y1="170" x2="750" y2="200" stroke="white" stroke-width="2" opacity="0.3"/>
                     </svg>
                     <div class="diagram-label">RELIGIOUS ROBOTICS = EMBRACING DIGITAL PROPERTIES</div>
                 </div>
@@ -912,8 +891,12 @@
                     <p>"DIGITAL SPACE DOESN'T NEED GRAVITY. IT NEEDS ITS OWN GRAMMAR."</p>
                 </div>
 
-                <div class="video-trigger" onclick="openWindow('FLOATING FORMS', 'https://video.wixstatic.com/video/54a996_4f3ddef3afd043e8877a361c5eaf36c1/1080p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: FLOATING FORMS
+                <div class="video-trigger" onclick="openWindow('ZEN BUBBLE RIDER', 'https://video.wixstatic.com/video/54a996_8353aa79da9442b0a71e284a473fb230/1080p/mp4/file.mp4', 'video')">
+                    ▶ WATCH: ZEN BUBBLE RIDER
+                </div>
+
+                <div class="video-trigger" onclick="openWindow('DFINITY LIPS SOFA', 'https://video.wixstatic.com/video/54a996_92de7517321a4940a50bd7454cffcf22/1080p/mp4/file.mp4', 'video')">
+                    ▶ WATCH: DFINITY LIPS SOFA
                 </div>
             </div>
         </section>
@@ -970,12 +953,16 @@
                     <div class="diagram-label" style="color: #000;">CHOOSE YOUR PERSPECTIVE</div>
                 </div>
 
-                <div class="video-trigger" onclick="openWindow('VIRTUAL THEATER', 'https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: VIRTUAL THEATER
-                </div>
-
                 <div class="quote-block">
                     <p>"SAME MOMENT. INFINITE PERSPECTIVES. THAT'S THE POWER OF SPATIAL STORYTELLING."</p>
+                </div>
+
+                <div class="video-trigger" onclick="openWindow('VIRTUAL THEATER MULTI-PERSPECTIVE', 'https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4', 'video')">
+                    ▶ WATCH: VIRTUAL THEATER EXPERIENCE
+                </div>
+
+                <div class="video-trigger" onclick="openWindow('CAVE DESIGN STORE', 'https://video.wixstatic.com/video/54a996_ea70bd1806ff4aa7a469ef888b17d1f6/1080p/mp4/file.mp4', 'video')">
+                    ▶ WATCH: CAVE DESIGN STORE
                 </div>
 
                 <div class="grid-2">
@@ -1055,16 +1042,16 @@
                     <div class="diagram-label">FROM CONCEPT TO WEB</div>
                 </div>
 
-                <div class="video-trigger" onclick="openWindow('DAOTOWN M3 2024', 'https://video.wixstatic.com/video/54a996_fdd0f8d73d584186a2b6ad252aea65d8/1080p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: DAOTOWN
+                <div class="video-trigger" onclick="openWindow('DAOTOWN - MILAN 2024', 'https://video.wixstatic.com/video/54a996_fdd0f8d73d584186a2b6ad252aea65d8/1080p/mp4/file.mp4', 'video')">
+                    ▶ WATCH: DAOTOWN M3 2024
                 </div>
 
-                <div class="video-trigger" onclick="openWindow('CHROME GALLERY', 'https://video.wixstatic.com/video/54a996_26c6ded4e81a414bbdf5e4f08cd7faa8/720p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: CHROME GALLERY
+                <div class="video-trigger" onclick="openWindow('UMMUSE MUSEUM', 'https://video.wixstatic.com/video/54a996_81dcccae716947fb925a2365cccaf4a9/720p/mp4/file.mp4', 'video')">
+                    ▶ WATCH: UMMUSE MUSEUM
                 </div>
 
-                <div class="video-trigger" onclick="openWindow('FLOATING PAVILION', 'https://video.wixstatic.com/video/54a996_f2349b5b76c742c69f4f8d04ed5f04a5/1080p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: FLOATING PAVILION
+                <div class="video-trigger" onclick="openWindow('VERTICAL GALLERY #NP17658', 'https://video.wixstatic.com/video/54a996_15c2541f73fb4084aa3f7860dbf681b6/720p/mp4/file.mp4', 'video')">
+                    ▶ WATCH: VERTICAL GALLERY
                 </div>
 
                 <!-- HORIZONTAL SCROLL LOOP 2 -->
@@ -1087,10 +1074,6 @@
                         <div class="scroll-item">MILAN 2024</div>
                         <div class="scroll-item">◆</div>
                     </div>
-                </div>
-
-                <div class="video-trigger" onclick="openWindow('INTERACTIVE PERFORMANCE', 'https://video.wixstatic.com/video/54a996_57df8f2ad8f74dae91ae9b30f9bb9cc0/1080p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: INTERACTIVE PERFORMANCE
                 </div>
             </div>
         </section>
@@ -1160,8 +1143,8 @@
                     <div class="diagram-label">FROM BUILDING TO EXPLORING</div>
                 </div>
 
-                <div class="video-trigger" onclick="openWindow('EXPLORATION', 'https://video.wixstatic.com/video/54a996_08ad110d3f004cda82b9f61368e45cda/1080p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: EXPLORATION
+                <div class="video-trigger" onclick="openWindow('EAGLE NEST PAVILION', 'https://video.wixstatic.com/video/54a996_7c2e66da063e4e5ba73e009ba2d608a9/1080p/mp4/file.mp4', 'video')">
+                    ▶ WATCH: EAGLE NEST PAVILION
                 </div>
 
                 <div class="quote-block">
@@ -1225,7 +1208,7 @@
                 <div class="grid-2" style="margin-top: 3rem;">
                     <div class="info-card">
                         <h4>EMAIL</h4>
-                        <p><a href="mailto:main@d--f--w.com" style="color: inherit; text-decoration: underline;">MAIN@D--F--W.COM</a></p>
+                        <p><a href="mailto:community@de-centralize.com" style="color: inherit; text-decoration: underline;">community@de-centralize.com</a></p>
                     </div>
                     <div class="info-card">
                         <h4>BOOK A CALL</h4>
@@ -1238,6 +1221,30 @@
                         © 2026 DECENTRALIZE™ · MILAN / METAVERSE
                     </p>
                 </div>
+
+                <!-- HORIZONTAL SCROLL LOOP - BOTTOM -->
+                <div class="scroll-container">
+                    <div class="scroll-track">
+                        <div class="scroll-item"><a href="#project1"><img src="https://static.wixstatic.com/media/54a996_4e9f8ec5649349a5ac7b21ef80e8272f~mv2.png" alt="Project 1"></a></div>
+                        <div class="scroll-item"><a href="#project2"><img src="https://static.wixstatic.com/media/54a996_5c1696cfda2a41909b021894f7236293~mv2.png" alt="Project 2"></a></div>
+                        <div class="scroll-item"><a href="#project3"><img src="https://static.wixstatic.com/media/54a996_edfe743a8afb47c2a7c743b9ec288da3~mv2.png" alt="Project 3"></a></div>
+                        <div class="scroll-item"><a href="#project4"><img src="https://static.wixstatic.com/media/54a996_eb3a59a9d22f454186e28c3c5d24461f~mv2.png" alt="Project 4"></a></div>
+                        <div class="scroll-item"><a href="#project5"><img src="https://static.wixstatic.com/media/54a996_145e862db9034dd9b0249c171eb5a3fa~mv2.png" alt="Project 5"></a></div>
+                        <div class="scroll-item"><a href="#project6"><img src="https://static.wixstatic.com/media/54a996_0f5300ff7aac4ad7aced9e84ec9a543a~mv2.png" alt="Project 6"></a></div>
+                        <div class="scroll-item"><a href="#project7"><img src="https://static.wixstatic.com/media/54a996_5555b50437514963a389e43f199d5e0b~mv2.png" alt="Project 7"></a></div>
+                        <div class="scroll-item"><a href="#project8"><img src="https://static.wixstatic.com/media/54a996_653b957c76d8468cb4d41dc8e051434f~mv2.png" alt="Project 8"></a></div>
+                        <div class="scroll-item"><a href="#project9"><img src="https://static.wixstatic.com/media/54a996_20b0ff7ed58c40c0a5ed9506dea9aeef~mv2.png" alt="Project 9"></a></div>
+                        <div class="scroll-item"><a href="#project1"><img src="https://static.wixstatic.com/media/54a996_4e9f8ec5649349a5ac7b21ef80e8272f~mv2.png" alt="Project 1"></a></div>
+                        <div class="scroll-item"><a href="#project2"><img src="https://static.wixstatic.com/media/54a996_5c1696cfda2a41909b021894f7236293~mv2.png" alt="Project 2"></a></div>
+                        <div class="scroll-item"><a href="#project3"><img src="https://static.wixstatic.com/media/54a996_edfe743a8afb47c2a7c743b9ec288da3~mv2.png" alt="Project 3"></a></div>
+                        <div class="scroll-item"><a href="#project4"><img src="https://static.wixstatic.com/media/54a996_eb3a59a9d22f454186e28c3c5d24461f~mv2.png" alt="Project 4"></a></div>
+                        <div class="scroll-item"><a href="#project5"><img src="https://static.wixstatic.com/media/54a996_145e862db9034dd9b0249c171eb5a3fa~mv2.png" alt="Project 5"></a></div>
+                        <div class="scroll-item"><a href="#project6"><img src="https://static.wixstatic.com/media/54a996_0f5300ff7aac4ad7aced9e84ec9a543a~mv2.png" alt="Project 6"></a></div>
+                        <div class="scroll-item"><a href="#project7"><img src="https://static.wixstatic.com/media/54a996_5555b50437514963a389e43f199d5e0b~mv2.png" alt="Project 7"></a></div>
+                        <div class="scroll-item"><a href="#project8"><img src="https://static.wixstatic.com/media/54a996_653b957c76d8468cb4d41dc8e051434f~mv2.png" alt="Project 8"></a></div>
+                        <div class="scroll-item"><a href="#project9"><img src="https://static.wixstatic.com/media/54a996_20b0ff7ed58c40c0a5ed9506dea9aeef~mv2.png" alt="Project 9"></a></div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1246,7 +1253,7 @@
     <!-- DRAGGABLE WINDOWS CONTAINER -->
     <div id="windows-container"></div>
 
-    <script>
+   <script>
         // DRAGGABLE WINDOW SYSTEM
         let windowCounter = 0;
         let activeWindow = null;
@@ -1255,11 +1262,11 @@
             windowCounter++;
             const windowId = `window-${windowCounter}`;
 
-            // RANDOM POSITIONING - videos appear in random places
+            // RANDOM POSITIONING
             const randomLeft = Math.floor(Math.random() * (window.innerWidth - 700)) + 50;
             const randomTop = Math.floor(Math.random() * (window.innerHeight - 500)) + 100;
-            const randomWidth = Math.floor(Math.random() * 400) + 500; // 500-900px
-            const randomHeight = Math.floor(Math.random() * 300) + 350; // 350-650px
+            const randomWidth = Math.floor(Math.random() * 400) + 500; 
+            const randomHeight = Math.floor(Math.random() * 300) + 350; 
 
             const windowEl = document.createElement('div');
             windowEl.className = 'window active';
@@ -1393,25 +1400,6 @@
         const sections = document.querySelectorAll('section[id]');
         const navIcons = document.querySelectorAll('.nav-icon');
 
-        // SCROLL ANIMATIONS
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('h1, h2, h3, .media-embed, .video-card, .stat, .info-card, .large-text, .quote-block');
-
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementBottom = element.getBoundingClientRect().bottom;
-                const windowHeight = window.innerHeight;
-
-                if (elementTop < windowHeight - 100 && elementBottom > 0) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                } else {
-                    element.style.opacity = '0';
-                    element.style.transform = 'translateY(30px)';
-                }
-            });
-        };
-
         // ACTIVE SECTION HIGHLIGHTER
         const updateActiveSection = () => {
             let current = '';
@@ -1436,39 +1424,28 @@
             });
         };
 
-        // INIT ANIMATIONS
+        // INIT (ANIMASYON KODLARI TAMAMEN SİLİNDİ)
         document.addEventListener('DOMContentLoaded', () => {
-            // Set initial styles for animated elements
-            const elements = document.querySelectorAll('h1, h2, h3, .media-embed, .video-card, .stat, .info-card, .large-text, .quote-block');
-            elements.forEach(element => {
-                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(30px)';
-            });
-
-            // Initial check
-            animateOnScroll();
+            // Sadece menü highlight fonksiyonunu çalıştır
             updateActiveSection();
-        });
-
-        // SCROLL LISTENERS
-        window.addEventListener('scroll', () => {
-            animateOnScroll();
-            updateActiveSection();
-        });
-
-        // VIDEO HOVER EFFECTS
-        document.addEventListener('DOMContentLoaded', () => {
+            
+            // VIDEO HOVER EFFECTS (Hızlandırma/Yavaşlatma efekti kalıyor)
             const videoCards = document.querySelectorAll('.video-card');
             videoCards.forEach(card => {
                 const video = card.querySelector('video');
                 card.addEventListener('mouseenter', () => {
-                    video.playbackRate = 0.5; // Slow motion on hover
+                    video.playbackRate = 0.5; 
                 });
                 card.addEventListener('mouseleave', () => {
                     video.playbackRate = 1;
                 });
             });
+        });
+
+        // SCROLL LISTENERS
+        window.addEventListener('scroll', () => {
+            // Animasyon fonksiyonu silindi, sadece menü güncellemesi kaldı
+            updateActiveSection();
         });
     </script>
 
