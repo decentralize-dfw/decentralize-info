@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DECENTRALIZE™</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilex:wght@400;500;600;700&family=Italianno&display=swap" rel="stylesheet">
     <style>
         /* VIRGIL ABLOH AESTHETIC - RAW BUT EMOTIONAL */
 
@@ -37,10 +40,32 @@
             z-index: 1;
         }
 
+        /* INFO BANNER */
+        .info-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #FF0000;
+            color: #000;
+            padding: 0.75rem 2rem;
+            z-index: 1001;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            border-bottom: 3px solid #000;
+        }
+
+        .info-banner a {
+            color: #000;
+            text-decoration: underline;
+        }
+
         /* TOP NAVIGATION BAR */
         .top-nav {
             position: fixed;
-            top: 0;
+            top: 35px;
             left: 0;
             width: 100%;
             height: 60px;
@@ -119,7 +144,7 @@
 
         /* MAIN CONTENT */
         main {
-            margin-top: 60px;
+            margin-top: 95px;
             position: relative;
             z-index: 2;
         }
@@ -145,43 +170,68 @@
             margin: 0 auto;
         }
 
-        /* TYPOGRAPHY */
+        /* TYPOGRAPHY HIERARCHY */
         .section-label {
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.2em;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             text-transform: uppercase;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
+        /* MAIN HEADING - Helvetica Bold LARGE */
         h1 {
-            font-size: clamp(3rem, 8vw, 8rem);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: clamp(2.5rem, 6vw, 6rem);
             font-weight: 900;
-            line-height: 0.9;
-            letter-spacing: -0.02em;
-            margin-bottom: 3rem;
+            line-height: 1;
+            letter-spacing: -0.01em;
+            margin-bottom: 2rem;
             text-transform: uppercase;
         }
 
         h2 {
-            font-size: clamp(2rem, 5vw, 5rem);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: clamp(1.8rem, 4vw, 4rem);
             font-weight: 900;
-            line-height: 0.95;
-            letter-spacing: -0.02em;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-        }
-
-        h3 {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            font-weight: 700;
-            line-height: 1.1;
+            line-height: 1.05;
+            letter-spacing: -0.01em;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
         }
 
+        /* SUBTEXT - Lilex font */
+        .subtext {
+            font-family: 'Lilex', monospace;
+            font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+            font-weight: 600;
+            line-height: 1.5;
+            letter-spacing: 0.02em;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        /* PARAGRAPH - Italianno font */
+        .paragraph {
+            font-family: 'Italianno', cursive;
+            font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+            line-height: 1.4;
+            font-weight: 400;
+            margin-bottom: 3rem;
+        }
+
+        h3 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
         p {
-            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            font-size: clamp(0.95rem, 1.2vw, 1.1rem);
             line-height: 1.6;
             font-weight: 400;
             margin-bottom: 1.5rem;
@@ -261,47 +311,14 @@
             margin: 0;
         }
 
-        /* BOTTOM LINKS BAR */
-        .bottom-links {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50px;
-            background: #000;
-            display: flex;
-            overflow-x: auto;
-            z-index: 999;
-            border-top: 3px solid #fff;
-        }
-
-        .bottom-link {
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            white-space: nowrap;
-            border-right: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.2s;
-        }
-
-        .bottom-link:hover {
-            background: #fff;
-            color: #000;
-        }
-
         /* VIDEO/IMAGE EMBEDS */
         .media-embed {
-            width: 100%;
+            width: 70%;
+            max-width: 900px;
             aspect-ratio: 16/9;
             overflow: hidden;
             border: 4px solid currentColor;
-            margin: 3rem 0;
+            margin: 3rem auto;
             position: relative;
         }
 
@@ -650,6 +667,11 @@
 </head>
 <body>
 
+    <!-- INFO BANNER -->
+    <div class="info-banner">
+        VIRGIL ABLOH "POST-MODERN" SCHOLARSHIP FUND · 100+ STUDENTS SUPPORTED · $1 MILLION RAISED · <a href="mailto:main@d--f--w.com">EMAIL FOR MORE INFO</a>
+    </div>
+
     <!-- TOP NAVIGATION -->
     <nav class="top-nav">
         <div class="logo">DECENTRALIZE™</div>
@@ -685,17 +707,15 @@
         <section id="intro" class="bg-red">
             <div class="container">
                 <span class="section-label">DECENTRALIZE DESIGN / MILAN–METAVERSE / EST. 2021</span>
-                <h1>"THE INTERNET<br>IS STILL FLAT."</h1>
 
-                <div class="grid-2">
-                    <div>
-                        <p>WE ARE SPATIAL BEINGS LIVING IN A TWO-DIMENSIONAL DIGITAL WORLD.</p>
-                        <p>YOUR ENTIRE ONLINE EXISTENCE HAPPENS THROUGH RECTANGLES. YOU SCROLL, TAP, SWIPE—ALL FLAT.</p>
-                    </div>
-                    <div>
-                        <p>WE BELIEVE DIGITAL SPACE CAN BE SOMETHING MORE.</p>
-                        <p>NOT A SIMULATION OF REALITY, BUT A NEW REALM WITH ITS OWN LANGUAGE AND LOGIC.</p>
-                    </div>
+                <h1>THE INTERNET IS STILL FLAT</h1>
+
+                <div class="subtext">
+                    We are spatial beings, living in a two-dimensional digital world.
+                </div>
+
+                <div class="paragraph">
+                    Your entire online existence happens through rectangles. You scroll, tap, swipe—all flat. Websites are documents. Social media is a feed. Even our "3D" experiences are projected onto 2D screens. We've trapped infinity in a rectangle. We believe digital space can be something more. Not a simulation of reality, but a new realm with its own language and logic.
                 </div>
 
                 <!-- DIAGRAM: FLAT VS SPATIAL -->
@@ -746,17 +766,15 @@
         <section id="problem" class="bg-blue">
             <div class="container">
                 <span class="section-label">01 / THE PROBLEM</span>
-                <h2>WE TRAPPED<br>INFINITY IN A<br>RECTANGLE.</h2>
 
-                <div class="grid-2">
-                    <div>
-                        <p>THINK ABOUT YOUR DAY.</p>
-                        <p>PHONE: RECTANGLES. COMPUTER: RECTANGLES. EMAIL, SOCIAL MEDIA, DOCUMENTS—ALL RECTANGLES NESTED WITHIN RECTANGLES.</p>
-                    </div>
-                    <div class="info-card">
-                        <h4>WHY?</h4>
-                        <p>BECAUSE WE'RE AFRAID. AFRAID THAT IF WE LET GO OF FAMILIAR METAPHORS, PEOPLE WON'T UNDERSTAND.</p>
-                    </div>
+                <h1>WE TRAPPED INFINITY IN A RECTANGLE</h1>
+
+                <div class="subtext">
+                    Think about your day. Phone: rectangles. Computer: rectangles. All nested within rectangles.
+                </div>
+
+                <div class="paragraph">
+                    We've created a boundless virtual realm, yet we're still designing it like paper. Websites are documents. Apps are pages. Even our "immersive" experiences are just rectangles we strap to our faces. Why? Because we're afraid. Afraid that if we let go of familiar metaphors, people won't understand. Every revolutionary medium went through this. Early films were filmed plays. Early websites were digital brochures.
                 </div>
 
                 <!-- DIAGRAM: RECTANGLE PRISON -->
@@ -797,23 +815,15 @@
         <section id="philosophy" class="bg-yellow">
             <div class="container">
                 <span class="section-label">02 / OUR PHILOSOPHY</span>
-                <h2>RELIGIOUS<br>ROBOTICS.</h2>
 
-                <p>LETTING DIGITAL SPACE EXIST ON ITS OWN TERMS.</p>
+                <h1>RELIGIOUS ROBOTICS</h1>
 
-                <div class="grid-3">
-                    <div class="stat">
-                        <div class="stat-num">0g</div>
-                        <div class="stat-label">GRAVITY REQUIRED</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-num">100%</div>
-                        <div class="stat-label">CREATIVE FREEDOM</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-num">∞</div>
-                        <div class="stat-label">POSSIBILITIES</div>
-                    </div>
+                <div class="subtext">
+                    Letting digital space exist on its own terms.
+                </div>
+
+                <div class="paragraph">
+                    Physical space has rules. Gravity pulls you down. Materials cost money. Time moves forward. But digital space? It has none of these constraints. We can float. We can build without materials. We can freeze time or loop it infinitely. Yet we keep imposing physical metaphors onto the digital realm. Religious Robotics means embracing what makes digital space fundamentally different—its spiritual and technological essence merged into something new.
                 </div>
 
                 <!-- DIAGRAM: PHYSICAL VS DIGITAL SPACE -->
@@ -884,10 +894,15 @@
         <section id="vision" class="bg-white">
             <div class="container">
                 <span class="section-label">03 / THE VISION</span>
-                <h2 style="color: #000;">SPACES THAT<br>THINK.<br>BREATHE.<br>REMEMBER.</h2>
 
-                <div class="large-text" style="color: #000;">
-                    MUSEUMS THAT LEARN
+                <h1 style="color: #000;">SPACES THAT THINK, BREATHE, REMEMBER</h1>
+
+                <div class="subtext" style="color: #000;">
+                    Museums that learn. Galleries that adapt. Retail as exploration.
+                </div>
+
+                <div class="paragraph" style="color: #000;">
+                    Imagine walking into a museum where the art remembers you. Where the architecture shifts based on collective attention. Where fashion shows happen in crystalline caverns that don't follow earthly physics. You can view events from any angle—bird's eye, immersive, stage level, or through the performer's eyes. Each visitor experiences the same moment from their perfect perspective. This isn't simulation. This is spatial storytelling that only digital space can achieve.
                 </div>
 
                 <!-- DIAGRAM: MULTI-PERSPECTIVE EXPERIENCE -->
@@ -962,25 +977,15 @@
         <section id="work" class="bg-orange">
             <div class="container">
                 <span class="section-label">04 / WHAT WE CREATE</span>
-                <h2>DIGITAL<br>SPACES.</h2>
 
-                <div class="grid-3">
-                    <div class="stat">
-                        <div class="stat-num">52</div>
-                        <div class="stat-label">ARCHITECTURE MODELS</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-num">60+</div>
-                        <div class="stat-label">DESIGN OBJECTS</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-num">3</div>
-                        <div class="stat-label">THEATER PRODUCTIONS</div>
-                    </div>
+                <h1>DIGITAL SPACES</h1>
+
+                <div class="subtext">
+                    Galleries. Museums. Pavilions. Virtual Theater.
                 </div>
 
-                <div class="large-text">
-                    GALLERIES. MUSEUMS. PAVILIONS.
+                <div class="paragraph">
+                    We build spatial experiences for the browser. No downloads. No apps. Just pure WebGL architecture that anyone can access instantly. Our work spans 52 architecture models, 60+ design objects, and 3 theatrical productions—all running in real-time. From DAOTOWN at Milan Design Week to floating chrome galleries, from interactive performances with multi-perspective viewing to crystalline retail spaces. Every project is an experiment. Every space asks a question. What becomes possible when we stop imitating physical space and start exploring digital possibility?
                 </div>
 
                 <!-- DIAGRAM: CREATION PROCESS -->
@@ -1081,10 +1086,15 @@
         <section id="future" class="bg-black">
             <div class="container">
                 <span class="section-label">05 / THE FUTURE</span>
-                <h2>COLLECTIVE<br>IMAGINATION.</h2>
 
-                <div class="large-text">
-                    NOT BUILDING.<br>EXPLORING.
+                <h1>COLLECTIVE IMAGINATION</h1>
+
+                <div class="subtext">
+                    Not building. Exploring.
+                </div>
+
+                <div class="paragraph">
+                    We're not constructing a metaverse. We're exploring what digital space could become when freed from physical constraints. Every project is a question, not an answer. Every space invites remix, reinterpretation, collective dreaming. Founded in 2021, awarded in 5 countries, we believe the future isn't built by one studio—it emerges from collective imagination. Question why digital spaces look this way. Imagine what they could be. You're part of this exploration. Join us.
                 </div>
 
                 <!-- DIAGRAM: EXPLORATION MODEL -->
@@ -1176,13 +1186,18 @@
         <section id="contact" class="bg-red">
             <div class="container">
                 <span class="section-label">06 / CONTACT</span>
-                <h2>LET'S BUILD.</h2>
 
-                <div class="large-text">
-                    DEFINE IT TOGETHER.
+                <h1>LET'S BUILD TOGETHER</h1>
+
+                <div class="subtext">
+                    Define it together.
                 </div>
 
-                <div class="grid-2" style="margin-top: 4rem;">
+                <div class="paragraph">
+                    Have a vision for a spatial experience? Want to collaborate on pushing digital boundaries? Need a partner for your next exhibition, retail space, or virtual event? We're based between Milan and the Metaverse, working with clients worldwide. Reach out via email or book a call. Let's explore what's possible when we stop designing rectangles and start designing spatial experiences.
+                </div>
+
+                <div class="grid-2" style="margin-top: 3rem;">
                     <div class="info-card">
                         <h4>EMAIL</h4>
                         <p><a href="mailto:main@d--f--w.com" style="color: inherit; text-decoration: underline;">MAIN@D--F--W.COM</a></p>
@@ -1202,18 +1217,6 @@
         </section>
 
     </main>
-
-    <!-- BOTTOM LINKS BAR -->
-    <div class="bottom-links">
-        <a href="#" class="bottom-link">ARCHIVE</a>
-        <a href="#" class="bottom-link">BLOG</a>
-        <a href="#" class="bottom-link">SCHOLARSHIP FUND</a>
-        <a href="#" class="bottom-link">GALLERY</a>
-        <a href="#" class="bottom-link">THEATER</a>
-        <a href="#" class="bottom-link">DESIGN</a>
-        <a href="#" class="bottom-link">ARCHITECTURE</a>
-        <a href="mailto:main@d--f--w.com" class="bottom-link">CONTACT</a>
-    </div>
 
     <!-- DRAGGABLE WINDOWS CONTAINER -->
     <div id="windows-container"></div>
