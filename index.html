@@ -47,7 +47,7 @@
             left: 0;
             width: 100%;
             height: 60px;
-            background: #000;
+            background: transparent; //#000;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -132,8 +132,8 @@
             min-height: 100vh;
             padding: 5rem 4rem;
             position: relative;
-            background: red;
-            color: #fff;
+            background: #43ff26;//#deff26; 
+            color: #f549e9;
             text-align: center;
         }
 
@@ -165,7 +165,7 @@
             letter-spacing: -0.01em;
             margin-bottom: 2rem;
             text-transform: uppercase;
-            color: #fff;
+            color: white; //red;
         }
 
         h2 {
@@ -176,7 +176,7 @@
             letter-spacing: -0.01em;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
-            color: #fff;
+            color: #2680ff; //#fff;
         }
 
         /* SUBTEXT - Lilex font */
@@ -188,7 +188,7 @@
             letter-spacing: 0.02em;
             margin-bottom: 2rem;
             text-transform: uppercase;
-            color: #fff;
+            color: #2224b3; //#fff;
         }
 
         /* PARAGRAPH - Italianno font - 4 COLUMNS */
@@ -201,7 +201,7 @@
             column-count: 4;
             column-gap: 3rem;
             text-align: left;
-            color: #fff;
+            color: black; //#fff;
         }
 
         h3 {
@@ -232,6 +232,7 @@
             font-size: clamp(1.2rem, 2vw, 1.8rem);
             font-weight: 700;
             line-height: 1.4;
+            
             
         }
 
@@ -1234,8 +1235,11 @@
 
     /**
      * PENCERE AÇMA FONKSİYONU
+     * parentId: 'intro', 'work' vb.
+     * x: YATAY KONUM (YÜZDE OLARAK). 0 = En Sol, 50 = Tam Orta, 100 = En Sağ
+     * y: DİKEY KONUM (PİKSEL OLARAK). Bölümün başından aşağı mesafe.
      */
-    function openWindow(parentId, title, src, type = 'video', x = 50, y = 50, w = 500, h = 350) {
+    function openWindow(parentId, title, src, type = 'video', xPercent = 50, y = 50, w = 500, h = 350) {
         windowCounter++;
         const windowId = `window-${windowCounter}`;
         const parentSection = document.getElementById(parentId);
@@ -1245,18 +1249,26 @@
             return;
         }
 
-        // Mobil Kontrolü
+        // --- MOBİL KONTROLÜ ---
+        // Mobilde yüzdeyi yoksay, ekranı doldur ve ortala
         if (window.innerWidth < 768) {
             w = window.innerWidth * 0.90; 
             h = w * 0.65; 
-            x = (parentSection.offsetWidth - w) / 2; 
+            // Mobilde X konumu otomatik hesaplanır (ortalanır)
+            var leftPos = (parentSection.offsetWidth - w) / 2;
+        } 
+        else {
+            // --- MASAÜSTÜ YÜZDE HESABI ---
+            // Bölümün genişliği * Yüzde / 100
+            // Eksi (Pencere Genişliği / 2) -> Bu sayede pencerenin ORTASI o yüzdeye gelir.
+            var leftPos = (parentSection.offsetWidth * (xPercent / 100)) - (w / 2);
         }
 
         const windowEl = document.createElement('div');
         windowEl.className = 'window'; 
         windowEl.id = windowId;
         
-        windowEl.style.left = `${x}px`;
+        windowEl.style.left = `${leftPos}px`;
         windowEl.style.top = `${y}px`;
         windowEl.style.width = `${w}px`;
         windowEl.style.height = `${h}px`;
@@ -1267,7 +1279,6 @@
             contentHTML = `<video autoplay loop muted playsinline controls style="width:100%; height:100%; object-fit:cover;"><source src="${src}" type="video/mp4"></video>`;
         } 
         else if (type === 'glb') {
-            // '?model=' parametresi kullanılıyor
             const finalSrc = `${GLB_VIEWER_URL}?model=${encodeURIComponent(src)}`;
             contentHTML = `<iframe src="${finalSrc}" style="width:100%; height:100%; border:none;" allow="camera; microphone; fullscreen; accelerometer; gyroscope; magnetometer; xr-spatial-tracking"></iframe>`;
         }
@@ -1308,7 +1319,6 @@
     // --- SÜRÜKLEME (DELTA YÖNTEMİ) ---
     function makeDraggable(windowEl) {
         const header = windowEl.querySelector('.window-header');
-        
         header.style.touchAction = "none";
         header.style.cursor = "grab";
         header.addEventListener('pointerdown', startDrag);
@@ -1380,18 +1390,14 @@
         }
     }
 
-    // --- MENÜ SCROLL FONKSİYONU (GERİ EKLENDİ) ---
+    // --- MENÜ İŞLEMLERİ ---
     function scrollToSection(id) {
         const element = document.getElementById(id);
         if (element) {
-            element.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }
 
-    // --- MENÜ HIGHLIGHT ---
     const sections = document.querySelectorAll('section[id]');
     const navIcons = document.querySelectorAll('.nav-icon');
 
@@ -1416,20 +1422,41 @@
     };
     window.addEventListener('scroll', updateActiveSection);
 
-    // --- INIT ---
+    // --- BAŞLANGIÇ AYARLARI ---
     document.addEventListener('DOMContentLoaded', () => {
         updateActiveSection();
 
-        // PENCERE AÇILIŞLARI
-        openWindow('intro', 'DFW METAOFFICE', 'https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4', 'video', 100, 350, 400, 300);
-        openWindow('intro', 'DFW DESIGN', 'https://video.wixstatic.com/video/54a996_089c17f8355849d5a11f6115ab1025ba/1080p/mp4/file.mp4', 'video', 800, 400, 400, 300);
-        openWindow('problem', 'STEVE JOBS EXPLAINING', 'https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4', 'video', 200, 300, 450, 320);
+        // ARTIK 4. DEĞER (X) YÜZDE CİNSİNDEN! (0-100 ARASI)
+        
+        // 1. INTRO
+        // x=20 (Solda), x=80 (Sağda)
+        openWindow('intro', 'DFW METAOFFICE', 'https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4', 'video', 20, 650, 400, 300);
+        openWindow('intro', 'DFW DESIGN', 'https://video.wixstatic.com/video/54a996_089c17f8355849d5a11f6115ab1025ba/1080p/mp4/file.mp4', 'video', 80, 1100, 400, 300);
 
-        // GLB MODEL
-        const glbLink = 'https://raw.githubusercontent.com/decentralize-dfw/co/refs/heads/main/otto-10-opt-v2.glb';
-        openWindow('work', 'OTTO MODEL 3D', glbLink, 'glb', 300, 100, 500, 500);
+        // 2. PROBLEM
+        // x=50 (Tam Ortada)
+        openWindow('problem', 'STEVE JOBS EXPLAINING', 'https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4', 'video', 50, 840, 450, 320);
+
+openWindow('philosophy', 'ya-bish*opps', 'https://video.wixstatic.com/video/54a996_8aa90b1ff14142418242abf6726a45e2/1080p/mp4/file.mp4', 'video', 70, 300, 200, 200);
+        // 3. WORK (GLB MODELLER)
+        const glbLink1 = 'https://raw.githubusercontent.com/decentralize-dfw/co/refs/heads/main/warhol-basq-opt-v1.glb';
+        const glbLink2 = 'https://raw.githubusercontent.com/decentralize-dfw/c2w2-glb/main/papaz-900-opt-v89.glb';
+        const glbLink3 = 'https://raw.githubusercontent.com/decentralize-dfw/digitaltopographies/main/2-VEGANCELL+PARK-Digital_Topographies_02.glb';
+        
+        // x=25 (Sol Çeyrek), x=75 (Sağ Çeyrek)
+        openWindow('contact', 'warholbasq', glbLink1, 'glb', 45, 400, 500, 500);
+        openWindow('philosophy', 'ya bish opps', glbLink2, 'glb', 70, -250, 60, 400);
+        openWindow('vision', 'dt2_vegancell+park', glbLink3, 'glb', 15, 800, 200, 200);
     });
 </script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
