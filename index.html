@@ -199,12 +199,12 @@
         /* PARAGRAPH - Italianno font - 4 COLUMNS */
         .paragraph {
             font-family: 'Italianno', cursive;
-            font-size: clamp(0.9rem, 1.1vw, 1.2rem);
-            line-height: 2;
+            font-size: clamp(1.4rem, 1.8vw, 2rem);
+            line-height: 1.6;
             font-weight: 400;
             margin-bottom: 3rem;
             column-count: 4;
-            column-gap: 4rem;
+            column-gap: 3rem;
             text-align: left;
             color: #fff;
         }
@@ -299,30 +299,33 @@
             margin: 0;
         }
 
-        /* VIDEO TRIGGER BUTTONS - NO EMBED ON PAGE */
-        .video-trigger {
-            display: inline-block;
-            padding: 2rem 4rem;
-            background: rgba(0,0,0,0.2);
-            border: 4px solid #000;
-            margin: 3rem auto;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-            font-weight: 900;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+        /* FIXED VIDEO OVERLAYS */
+        .fixed-video {
+            position: fixed;
+            width: 280px;
+            height: 180px;
+            border: 3px solid #000;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.3);
+            z-index: 500;
+            overflow: hidden;
         }
 
-        .video-trigger:hover {
-            background: rgba(0,0,0,0.4);
-            transform: scale(1.05);
+        .fixed-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .video-trigger::before {
-            content: '▶ ';
-            margin-right: 1rem;
-        }
+        /* Random positions for videos */
+        .video-1 { top: 15%; left: 5%; }
+        .video-2 { top: 45%; right: 8%; }
+        .video-3 { bottom: 20%; left: 12%; }
+        .video-4 { top: 25%; right: 15%; }
+        .video-5 { bottom: 35%; right: 5%; }
+        .video-6 { top: 60%; left: 7%; }
+        .video-7 { top: 10%; left: 40%; }
+        .video-8 { bottom: 15%; right: 25%; }
+        .video-9 { top: 55%; left: 25%; }
 
         /* ANIMATIONS */
         @keyframes fadeInUp {
@@ -690,6 +693,61 @@
 </head>
 <body>
 
+    <!-- FIXED VIDEO OVERLAYS -->
+    <div class="fixed-video video-1">
+        <video autoplay loop muted playsinline>
+            <source src="https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="fixed-video video-2">
+        <video autoplay loop muted playsinline>
+            <source src="https://video.wixstatic.com/video/54a996_ccdeba84c3054a7b93c1ffd59e4154c9/1080p/mp4/file.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="fixed-video video-3">
+        <video autoplay loop muted playsinline>
+            <source src="https://video.wixstatic.com/video/54a996_4f3ddef3afd043e8877a361c5eaf36c1/1080p/mp4/file.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="fixed-video video-4">
+        <video autoplay loop muted playsinline>
+            <source src="https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="fixed-video video-5">
+        <video autoplay loop muted playsinline>
+            <source src="https://video.wixstatic.com/video/54a996_fdd0f8d73d584186a2b6ad252aea65d8/1080p/mp4/file.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="fixed-video video-6">
+        <video autoplay loop muted playsinline>
+            <source src="https://video.wixstatic.com/video/54a996_26c6ded4e81a414bbdf5e4f08cd7faa8/720p/mp4/file.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="fixed-video video-7">
+        <video autoplay loop muted playsinline>
+            <source src="https://video.wixstatic.com/video/54a996_f2349b5b76c742c69f4f8d04ed5f04a5/1080p/mp4/file.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="fixed-video video-8">
+        <video autoplay loop muted playsinline>
+            <source src="https://video.wixstatic.com/video/54a996_57df8f2ad8f74dae91ae9b30f9bb9cc0/1080p/mp4/file.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="fixed-video video-9">
+        <video autoplay loop muted playsinline>
+            <source src="https://video.wixstatic.com/video/54a996_08ad110d3f004cda82b9f61368e45cda/1080p/mp4/file.mp4" type="video/mp4">
+        </video>
+    </div>
+
     <!-- TOP NAVIGATION -->
     <nav class="top-nav">
         <div class="logo">DECENTRALIZE™</div>
@@ -771,10 +829,6 @@
                     <div class="diagram-label">THE SHIFT FROM FLAT TO SPATIAL</div>
                 </div>
 
-                <div class="video-trigger" onclick="openWindow('METAOFFICE', 'https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: METAOFFICE
-                </div>
-
                 <!-- HORIZONTAL SCROLL LOOP 1 -->
                 <div class="scroll-container">
                     <div class="scroll-track">
@@ -837,10 +891,6 @@
 
                 <div class="quote-block">
                     <p>"WHAT BECOMES POSSIBLE WHEN WE LET DIGITAL SPACE BE ITSELF?"</p>
-                </div>
-
-                <div class="video-trigger" onclick="openWindow('CHROME TOPOLOGY', 'https://video.wixstatic.com/video/54a996_ccdeba84c3054a7b93c1ffd59e4154c9/1080p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: CHROME TOPOLOGY
                 </div>
             </div>
         </section>
@@ -911,10 +961,6 @@
                 <div class="quote-block">
                     <p>"DIGITAL SPACE DOESN'T NEED GRAVITY. IT NEEDS ITS OWN GRAMMAR."</p>
                 </div>
-
-                <div class="video-trigger" onclick="openWindow('FLOATING FORMS', 'https://video.wixstatic.com/video/54a996_4f3ddef3afd043e8877a361c5eaf36c1/1080p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: FLOATING FORMS
-                </div>
             </div>
         </section>
 
@@ -968,10 +1014,6 @@
                         <text x="260" y="340" font-size="14" font-weight="900" fill="#000">SAME MOMENT · INFINITE VIEWPOINTS</text>
                     </svg>
                     <div class="diagram-label" style="color: #000;">CHOOSE YOUR PERSPECTIVE</div>
-                </div>
-
-                <div class="video-trigger" onclick="openWindow('VIRTUAL THEATER', 'https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: VIRTUAL THEATER
                 </div>
 
                 <div class="quote-block">
@@ -1055,18 +1097,6 @@
                     <div class="diagram-label">FROM CONCEPT TO WEB</div>
                 </div>
 
-                <div class="video-trigger" onclick="openWindow('DAOTOWN M3 2024', 'https://video.wixstatic.com/video/54a996_fdd0f8d73d584186a2b6ad252aea65d8/1080p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: DAOTOWN
-                </div>
-
-                <div class="video-trigger" onclick="openWindow('CHROME GALLERY', 'https://video.wixstatic.com/video/54a996_26c6ded4e81a414bbdf5e4f08cd7faa8/720p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: CHROME GALLERY
-                </div>
-
-                <div class="video-trigger" onclick="openWindow('FLOATING PAVILION', 'https://video.wixstatic.com/video/54a996_f2349b5b76c742c69f4f8d04ed5f04a5/1080p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: FLOATING PAVILION
-                </div>
-
                 <!-- HORIZONTAL SCROLL LOOP 2 -->
                 <div class="scroll-container">
                     <div class="scroll-track">
@@ -1087,10 +1117,6 @@
                         <div class="scroll-item">MILAN 2024</div>
                         <div class="scroll-item">◆</div>
                     </div>
-                </div>
-
-                <div class="video-trigger" onclick="openWindow('INTERACTIVE PERFORMANCE', 'https://video.wixstatic.com/video/54a996_57df8f2ad8f74dae91ae9b30f9bb9cc0/1080p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: INTERACTIVE PERFORMANCE
                 </div>
             </div>
         </section>
@@ -1158,10 +1184,6 @@
                         <text x="280" y="280" font-size="14" font-weight="900" fill="#fff">NEVER DONE · ALWAYS EVOLVING</text>
                     </svg>
                     <div class="diagram-label">FROM BUILDING TO EXPLORING</div>
-                </div>
-
-                <div class="video-trigger" onclick="openWindow('EXPLORATION', 'https://video.wixstatic.com/video/54a996_08ad110d3f004cda82b9f61368e45cda/1080p/mp4/file.mp4', 'video')">
-                    CLICK TO VIEW: EXPLORATION
                 </div>
 
                 <div class="quote-block">
