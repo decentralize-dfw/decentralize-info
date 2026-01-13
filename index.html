@@ -599,11 +599,17 @@
 
         /* HORIZONTAL SCROLLING LOOP */
         .scroll-container {
-            width: 100%;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
             overflow: hidden;
             background: rgba(0,0,0,0.05);
             padding: 2rem 0;
-            margin: 4rem 0;
+            margin-top: 4rem;
+            margin-bottom: 4rem;
             border-top: 3px solid #000;
             border-bottom: 3px solid #000;
         }
@@ -612,6 +618,7 @@
             display: flex;
             animation: scroll 30s linear infinite;
             width: fit-content;
+            gap: 2rem;
         }
 
         .scroll-item {
@@ -622,6 +629,22 @@
             letter-spacing: 0.1em;
             color: #000;
             text-transform: uppercase;
+        }
+
+        .scroll-item img {
+            height: 300px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .scroll-item a {
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .scroll-item a:hover {
+            transform: scale(1.05);
         }
 
         @keyframes scroll {
@@ -735,36 +758,7 @@
 
                 <!-- DIAGRAM: FLAT VS SPATIAL -->
                 <div class="diagram">
-                    <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
-                        <!-- FLAT INTERNET (LEFT) -->
-                        <text x="100" y="30" font-size="14" font-weight="900" fill="#000">FLAT INTERNET</text>
-                        <rect x="20" y="50" width="180" height="120" fill="none" stroke="#000" stroke-width="3"/>
-                        <rect x="30" y="65" width="40" height="30" fill="#000" opacity="0.3"/>
-                        <rect x="80" y="65" width="40" height="30" fill="#000" opacity="0.3"/>
-                        <rect x="130" y="65" width="40" height="30" fill="#000" opacity="0.3"/>
-                        <rect x="30" y="105" width="40" height="30" fill="#000" opacity="0.3"/>
-                        <rect x="80" y="105" width="40" height="30" fill="#000" opacity="0.3"/>
-                        <rect x="130" y="105" width="40" height="30" fill="#000" opacity="0.3"/>
-                        <text x="60" y="200" font-size="11" font-weight="700" fill="#000">RECTANGLES</text>
-                        <text x="75" y="220" font-size="11" font-weight="700" fill="#000">2D</text>
-                        <text x="55" y="240" font-size="11" font-weight="700" fill="#000">CONSTRAINED</text>
-
-                        <!-- VS ARROW -->
-                        <text x="375" y="115" font-size="24" font-weight="900" fill="#000">VS</text>
-
-                        <!-- SPATIAL INTERNET (RIGHT) -->
-                        <text x="560" y="30" font-size="14" font-weight="900" fill="#000">SPATIAL INTERNET</text>
-                        <circle cx="650" cy="110" r="60" fill="none" stroke="#000" stroke-width="3"/>
-                        <polygon points="620,80 650,90 680,80" fill="#000" opacity="0.3"/>
-                        <polygon points="610,110 630,125 650,110" fill="#000" opacity="0.5"/>
-                        <polygon points="650,110 670,125 690,110" fill="#000" opacity="0.7"/>
-                        <polygon points="625,140 650,155 675,140" fill="#000" opacity="0.4"/>
-                        <line x1="650" y1="70" x2="650" y2="50" stroke="#000" stroke-width="2" opacity="0.5"/>
-                        <line x1="650" y1="150" x2="650" y2="170" stroke="#000" stroke-width="2" opacity="0.5"/>
-                        <text x="610" y="200" font-size="11" font-weight="700" fill="#000">VOLUMETRIC</text>
-                        <text x="630" y="220" font-size="11" font-weight="700" fill="#000">3D</text>
-                        <text x="620" y="240" font-size="11" font-weight="700" fill="#000">LIMITLESS</text>
-                    </svg>
+                    <img src="https://static.wixstatic.com/media/54a996_54c73b3af02e4793941ebe4d7f6269f4~mv2.png" alt="DIAGRAM 1" style="width: 100%; height: auto; max-height: 500px; object-fit: contain;">
                     <div class="diagram-label">THE SHIFT FROM FLAT TO SPATIAL</div>
                 </div>
 
@@ -779,22 +773,24 @@
                 <!-- HORIZONTAL SCROLL LOOP 1 -->
                 <div class="scroll-container">
                     <div class="scroll-track">
-                        <div class="scroll-item">SPATIAL DESIGN</div>
-                        <div class="scroll-item">◆</div>
-                        <div class="scroll-item">WEBGL ARCHITECTURE</div>
-                        <div class="scroll-item">◆</div>
-                        <div class="scroll-item">BROWSER-BASED</div>
-                        <div class="scroll-item">◆</div>
-                        <div class="scroll-item">NO DOWNLOAD</div>
-                        <div class="scroll-item">◆</div>
-                        <div class="scroll-item">SPATIAL DESIGN</div>
-                        <div class="scroll-item">◆</div>
-                        <div class="scroll-item">WEBGL ARCHITECTURE</div>
-                        <div class="scroll-item">◆</div>
-                        <div class="scroll-item">BROWSER-BASED</div>
-                        <div class="scroll-item">◆</div>
-                        <div class="scroll-item">NO DOWNLOAD</div>
-                        <div class="scroll-item">◆</div>
+                        <div class="scroll-item"><a href="#project1"><img src="https://static.wixstatic.com/media/54a996_4e9f8ec5649349a5ac7b21ef80e8272f~mv2.png" alt="Project 1"></a></div>
+                        <div class="scroll-item"><a href="#project2"><img src="https://static.wixstatic.com/media/54a996_5c1696cfda2a41909b021894f7236293~mv2.png" alt="Project 2"></a></div>
+                        <div class="scroll-item"><a href="#project3"><img src="https://static.wixstatic.com/media/54a996_edfe743a8afb47c2a7c743b9ec288da3~mv2.png" alt="Project 3"></a></div>
+                        <div class="scroll-item"><a href="#project4"><img src="https://static.wixstatic.com/media/54a996_eb3a59a9d22f454186e28c3c5d24461f~mv2.png" alt="Project 4"></a></div>
+                        <div class="scroll-item"><a href="#project5"><img src="https://static.wixstatic.com/media/54a996_145e862db9034dd9b0249c171eb5a3fa~mv2.png" alt="Project 5"></a></div>
+                        <div class="scroll-item"><a href="#project6"><img src="https://static.wixstatic.com/media/54a996_0f5300ff7aac4ad7aced9e84ec9a543a~mv2.png" alt="Project 6"></a></div>
+                        <div class="scroll-item"><a href="#project7"><img src="https://static.wixstatic.com/media/54a996_5555b50437514963a389e43f199d5e0b~mv2.png" alt="Project 7"></a></div>
+                        <div class="scroll-item"><a href="#project8"><img src="https://static.wixstatic.com/media/54a996_653b957c76d8468cb4d41dc8e051434f~mv2.png" alt="Project 8"></a></div>
+                        <div class="scroll-item"><a href="#project9"><img src="https://static.wixstatic.com/media/54a996_20b0ff7ed58c40c0a5ed9506dea9aeef~mv2.png" alt="Project 9"></a></div>
+                        <div class="scroll-item"><a href="#project1"><img src="https://static.wixstatic.com/media/54a996_4e9f8ec5649349a5ac7b21ef80e8272f~mv2.png" alt="Project 1"></a></div>
+                        <div class="scroll-item"><a href="#project2"><img src="https://static.wixstatic.com/media/54a996_5c1696cfda2a41909b021894f7236293~mv2.png" alt="Project 2"></a></div>
+                        <div class="scroll-item"><a href="#project3"><img src="https://static.wixstatic.com/media/54a996_edfe743a8afb47c2a7c743b9ec288da3~mv2.png" alt="Project 3"></a></div>
+                        <div class="scroll-item"><a href="#project4"><img src="https://static.wixstatic.com/media/54a996_eb3a59a9d22f454186e28c3c5d24461f~mv2.png" alt="Project 4"></a></div>
+                        <div class="scroll-item"><a href="#project5"><img src="https://static.wixstatic.com/media/54a996_145e862db9034dd9b0249c171eb5a3fa~mv2.png" alt="Project 5"></a></div>
+                        <div class="scroll-item"><a href="#project6"><img src="https://static.wixstatic.com/media/54a996_0f5300ff7aac4ad7aced9e84ec9a543a~mv2.png" alt="Project 6"></a></div>
+                        <div class="scroll-item"><a href="#project7"><img src="https://static.wixstatic.com/media/54a996_5555b50437514963a389e43f199d5e0b~mv2.png" alt="Project 7"></a></div>
+                        <div class="scroll-item"><a href="#project8"><img src="https://static.wixstatic.com/media/54a996_653b957c76d8468cb4d41dc8e051434f~mv2.png" alt="Project 8"></a></div>
+                        <div class="scroll-item"><a href="#project9"><img src="https://static.wixstatic.com/media/54a996_20b0ff7ed58c40c0a5ed9506dea9aeef~mv2.png" alt="Project 9"></a></div>
                     </div>
                 </div>
             </div>
@@ -817,22 +813,7 @@
 
                 <!-- DIAGRAM: RECTANGLE PRISON -->
                 <div class="diagram">
-                    <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
-                        <!-- NESTED RECTANGLES -->
-                        <rect x="50" y="30" width="700" height="240" fill="none" stroke="#000" stroke-width="4"/>
-                        <text x="60" y="55" font-size="11" font-weight="700" fill="#000">BROWSER</text>
-                        <rect x="80" y="70" width="640" height="180" fill="none" stroke="#000" stroke-width="3"/>
-                        <text x="90" y="90" font-size="10" font-weight="700" fill="#000">WEBSITE</text>
-                        <rect x="110" y="105" width="200" height="120" fill="#000" opacity="0.1"/>
-                        <text x="120" y="120" font-size="9" font-weight="700" fill="#000">EMAIL</text>
-                        <rect x="330" y="105" width="180" height="120" fill="#000" opacity="0.1"/>
-                        <text x="340" y="120" font-size="9" font-weight="700" fill="#000">SOCIAL</text>
-                        <rect x="530" y="105" width="170" height="120" fill="#000" opacity="0.1"/>
-                        <text x="540" y="120" font-size="9" font-weight="700" fill="#000">DOCS</text>
-
-                        <!-- LABELS -->
-                        <text x="280" y="280" font-size="14" font-weight="900" fill="#000">INFINITY TRAPPED IN RECTANGLES</text>
-                    </svg>
+                    <img src="https://static.wixstatic.com/media/54a996_917c0c59916347c786dea3fdf87d6626~mv2.png" alt="DIAGRAM 2" style="width: 100%; height: auto; max-height: 500px; object-fit: contain;">
                     <div class="diagram-label">NESTED METAPHORS</div>
                 </div>
 
@@ -1246,6 +1227,30 @@
                     <p style="font-size: 11px; letter-spacing: 0.2em; opacity: 0.7;">
                         © 2026 DECENTRALIZE™ · MILAN / METAVERSE
                     </p>
+                </div>
+
+                <!-- HORIZONTAL SCROLL LOOP - BOTTOM -->
+                <div class="scroll-container">
+                    <div class="scroll-track">
+                        <div class="scroll-item"><a href="#project1"><img src="https://static.wixstatic.com/media/54a996_4e9f8ec5649349a5ac7b21ef80e8272f~mv2.png" alt="Project 1"></a></div>
+                        <div class="scroll-item"><a href="#project2"><img src="https://static.wixstatic.com/media/54a996_5c1696cfda2a41909b021894f7236293~mv2.png" alt="Project 2"></a></div>
+                        <div class="scroll-item"><a href="#project3"><img src="https://static.wixstatic.com/media/54a996_edfe743a8afb47c2a7c743b9ec288da3~mv2.png" alt="Project 3"></a></div>
+                        <div class="scroll-item"><a href="#project4"><img src="https://static.wixstatic.com/media/54a996_eb3a59a9d22f454186e28c3c5d24461f~mv2.png" alt="Project 4"></a></div>
+                        <div class="scroll-item"><a href="#project5"><img src="https://static.wixstatic.com/media/54a996_145e862db9034dd9b0249c171eb5a3fa~mv2.png" alt="Project 5"></a></div>
+                        <div class="scroll-item"><a href="#project6"><img src="https://static.wixstatic.com/media/54a996_0f5300ff7aac4ad7aced9e84ec9a543a~mv2.png" alt="Project 6"></a></div>
+                        <div class="scroll-item"><a href="#project7"><img src="https://static.wixstatic.com/media/54a996_5555b50437514963a389e43f199d5e0b~mv2.png" alt="Project 7"></a></div>
+                        <div class="scroll-item"><a href="#project8"><img src="https://static.wixstatic.com/media/54a996_653b957c76d8468cb4d41dc8e051434f~mv2.png" alt="Project 8"></a></div>
+                        <div class="scroll-item"><a href="#project9"><img src="https://static.wixstatic.com/media/54a996_20b0ff7ed58c40c0a5ed9506dea9aeef~mv2.png" alt="Project 9"></a></div>
+                        <div class="scroll-item"><a href="#project1"><img src="https://static.wixstatic.com/media/54a996_4e9f8ec5649349a5ac7b21ef80e8272f~mv2.png" alt="Project 1"></a></div>
+                        <div class="scroll-item"><a href="#project2"><img src="https://static.wixstatic.com/media/54a996_5c1696cfda2a41909b021894f7236293~mv2.png" alt="Project 2"></a></div>
+                        <div class="scroll-item"><a href="#project3"><img src="https://static.wixstatic.com/media/54a996_edfe743a8afb47c2a7c743b9ec288da3~mv2.png" alt="Project 3"></a></div>
+                        <div class="scroll-item"><a href="#project4"><img src="https://static.wixstatic.com/media/54a996_eb3a59a9d22f454186e28c3c5d24461f~mv2.png" alt="Project 4"></a></div>
+                        <div class="scroll-item"><a href="#project5"><img src="https://static.wixstatic.com/media/54a996_145e862db9034dd9b0249c171eb5a3fa~mv2.png" alt="Project 5"></a></div>
+                        <div class="scroll-item"><a href="#project6"><img src="https://static.wixstatic.com/media/54a996_0f5300ff7aac4ad7aced9e84ec9a543a~mv2.png" alt="Project 6"></a></div>
+                        <div class="scroll-item"><a href="#project7"><img src="https://static.wixstatic.com/media/54a996_5555b50437514963a389e43f199d5e0b~mv2.png" alt="Project 7"></a></div>
+                        <div class="scroll-item"><a href="#project8"><img src="https://static.wixstatic.com/media/54a996_653b957c76d8468cb4d41dc8e051434f~mv2.png" alt="Project 8"></a></div>
+                        <div class="scroll-item"><a href="#project9"><img src="https://static.wixstatic.com/media/54a996_20b0ff7ed58c40c0a5ed9506dea9aeef~mv2.png" alt="Project 9"></a></div>
+                    </div>
                 </div>
             </div>
         </section>
