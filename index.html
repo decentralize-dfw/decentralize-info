@@ -1227,23 +1227,31 @@
 
   <script>
     // --- GLB AYARLARI ---
-    const GLB_VIEWER_URL = "glb-viewer.html";
+    // glb-viewer.html dosyan index.html ile aynı klasörde olmalı
+    const GLB_VIEWER_URL = "glb-viewer.html"; 
     
     let windowCounter = 0;
     let activeWindow = null;
 
-    // PENCERE AÇMA FONKSİYONU (MOBİL UYUMLU GÜNCELLENDİ)
-    function openWindow(title, src, type = 'video', x = 100, y = 100, w = 500, h = 350) {
+    /**
+     * PENCERE AÇMA FONKSİYONU
+     * parentId: Hangi bölüme ekleneceği (intro, work vb.)
+     */
+    function openWindow(parentId, title, src, type = 'video', x = 50, y = 50, w = 500, h = 350) {
         windowCounter++;
         const windowId = `window-${windowCounter}`;
+        const parentSection = document.getElementById(parentId);
 
-        // --- RESPONSIVE (MOBİL) HESAPLAMASI ---
-        // Ekran genişliği 768px'den küçükse (Mobil/Tablet) ayarları ez:
+        if (!parentSection) {
+            console.error("HATA: Bölüm bulunamadı -> " + parentId);
+            return;
+        }
+
+        // --- MOBİL / RESPONSIVE AYARLARI ---
         if (window.innerWidth < 768) {
-            w = window.innerWidth * 0.90; // Genişlik ekranın %90'ı olsun
-            h = w * 0.65; // Yükseklik genişliğe göre orantılı olsun (Video oranı)
-            x = (window.innerWidth - w) / 2; // Tam ortala
-            // Y konumu (y) aynı kalır, böylece doğru section'da durur.
+            w = window.innerWidth * 0.90; 
+            h = w * 0.65; 
+            x = (parentSection.offsetWidth - w) / 2; 
         }
 
         const windowEl = document.createElement('div');
@@ -1261,8 +1269,12 @@
             contentHTML = `<video autoplay loop muted playsinline controls style="width:100%; height:100%; object-fit:cover;"><source src="${src}" type="video/mp4"></video>`;
         } 
         else if (type === 'glb') {
-            const finalSrc = `${GLB_VIEWER_URL}?url=${encodeURIComponent(src)}`;
-            contentHTML = `<iframe src="${finalSrc}" style="width:100%; height:100%; border:none;"></iframe>`;
+            // DÜZELTME BURADA YAPILDI: '?url=' YERİNE '?model=' KULLANILDI
+            // Senin viewer kodun 'model' parametresini bekliyor.
+            const finalSrc = `${GLB_VIEWER_URL}?model=${encodeURIComponent(src)}`;
+            
+            // Allow parametreleri VR/AR ve fullscreen için gerekli
+            contentHTML = `<iframe src="${finalSrc}" style="width:100%; height:100%; border:none;" allow="camera; microphone; fullscreen; accelerometer; gyroscope; magnetometer; xr-spatial-tracking"></iframe>`;
         }
         else if (type === 'iframe') {
             contentHTML = `<iframe src="${src}" style="width:100%; height:100%; border:none;"></iframe>`;
@@ -1277,64 +1289,54 @@
             <div class="window-resize"></div>
         `;
 
-        document.body.appendChild(windowEl);
+        parentSection.appendChild(windowEl);
         
+        // Absolute pozisyonun çalışması için parent relative olmalı
+        if (getComputedStyle(parentSection).position === 'static') {
+            parentSection.style.position = 'relative';
+        }
+
         makeDraggable(windowEl);
         makeResizable(windowEl);
         bringToFront(windowEl);
     }
 
     function closeWindow(windowId) {
-        const windowEl = document.getElementById(windowId);
-        if (windowEl) {
-            windowEl.remove();
-        }
+        const el = document.getElementById(windowId);
+        if (el) el.remove();
     }
 
     function bringToFront(windowEl) {
-        document.querySelectorAll('.window').forEach(w => {
-            w.style.zIndex = 900;
-        });
+        document.querySelectorAll('.window').forEach(w => w.style.zIndex = 900);
         windowEl.style.zIndex = 950;
     }
 
-  function makeDraggable(windowEl) {
+    // SÜRÜKLEME (DELTA YÖNTEMİ - KAYMA YAPMAZ)
+    function makeDraggable(windowEl) {
         const header = windowEl.querySelector('.window-header');
         
-        // CSS önlemleri
         header.style.touchAction = "none";
         header.style.cursor = "grab";
-
         header.addEventListener('pointerdown', startDrag);
 
         function startDrag(e) {
-            // X butonuna basıldıysa dur
             if (e.target.closest('.window-close')) return;
-
             e.preventDefault();
             bringToFront(windowEl);
 
-            // 1. MEVCUT KONUMLARI AL (getBoundingClientRect KULLANMIYORUZ)
-            // Pencerenin şu anki "gerçek" CSS sol ve üst değerleri
-            const initialWindowLeft = windowEl.offsetLeft;
-            const initialWindowTop = windowEl.offsetTop;
-
-            // Mouse'un ilk tıkladığı yer
-            const startMouseX = e.clientX;
-            const startMouseY = e.clientY;
+            const initialLeft = windowEl.offsetLeft;
+            const initialTop = windowEl.offsetTop;
+            const startX = e.clientX;
+            const startY = e.clientY;
 
             header.style.cursor = "grabbing";
             header.setPointerCapture(e.pointerId);
 
             function onMove(e) {
-                // 2. SADECE DEĞİŞİMİ (DELTA) HESAPLA
-                // Mouse sağa 5px gittiyse, dx = 5 olur.
-                const dx = e.clientX - startMouseX;
-                const dy = e.clientY - startMouseY;
-
-                // 3. ESKİ KONUMA DEĞİŞİMİ EKLE
-                windowEl.style.left = `${initialWindowLeft + dx}px`;
-                windowEl.style.top = `${initialWindowTop + dy}px`;
+                const dx = e.clientX - startX;
+                const dy = e.clientY - startY;
+                windowEl.style.left = `${initialLeft + dx}px`;
+                windowEl.style.top = `${initialTop + dy}px`;
             }
 
             function onUp(e) {
@@ -1343,81 +1345,55 @@
                 header.style.cursor = "grab";
                 header.releasePointerCapture(e.pointerId);
             }
-
             document.addEventListener('pointermove', onMove);
             document.addEventListener('pointerup', onUp);
         }
     }
 
+    // YENİDEN BOYUTLANDIRMA
     function makeResizable(windowEl) {
         const resizer = windowEl.querySelector('.window-resize');
         let isResizing = false;
-        let initialWidth, initialHeight, initialX, initialY;
+        let startX, startY, startW, startH;
 
-        resizer.addEventListener('mousedown', resizeStart);
-        resizer.addEventListener('touchstart', resizeStart, {passive: false});
-
-        function resizeStart(e) {
-            isResizing = true;
-            
-            if (e.type === 'touchstart') {
-                initialX = e.touches[0].clientX;
-                initialY = e.touches[0].clientY;
-            } else {
-                initialX = e.clientX;
-                initialY = e.clientY;
-            }
-
-            initialWidth = windowEl.offsetWidth;
-            initialHeight = windowEl.offsetHeight;
-
-            bringToFront(windowEl);
-
-            if (e.type === 'touchstart') {
-                document.addEventListener('touchmove', resize, {passive: false});
-                document.addEventListener('touchend', resizeEnd);
-            } else {
-                document.addEventListener('mousemove', resize);
-                document.addEventListener('mouseup', resizeEnd);
-            }
-        }
-
-        function resize(e) {
-            if (!isResizing) return;
+        resizer.addEventListener('pointerdown', (e) => {
             e.preventDefault();
+            isResizing = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            startW = windowEl.offsetWidth;
+            startH = windowEl.offsetHeight;
+            bringToFront(windowEl);
+            resizer.setPointerCapture(e.pointerId);
+            
+            document.addEventListener('pointermove', onResize);
+            document.addEventListener('pointerup', stopResize);
+        });
 
-            let clientX, clientY;
-            if (e.type === 'touchmove') {
-                clientX = e.touches[0].clientX;
-                clientY = e.touches[0].clientY;
-            } else {
-                clientX = e.clientX;
-                clientY = e.clientY;
-            }
-
-            const width = initialWidth + (clientX - initialX);
-            const height = initialHeight + (clientY - initialY);
+        function onResize(e) {
+            if (!isResizing) return;
+            const width = startW + (e.clientX - startX);
+            const height = startH + (e.clientY - startY);
             if (width > 200) windowEl.style.width = `${width}px`;
             if (height > 150) windowEl.style.height = `${height}px`;
         }
 
-        function resizeEnd() {
+        function stopResize(e) {
             isResizing = false;
-            document.removeEventListener('mousemove', resize);
-            document.removeEventListener('mouseup', resizeEnd);
-            document.removeEventListener('touchmove', resize);
-            document.removeEventListener('touchend', resizeEnd);
+            document.removeEventListener('pointermove', onResize);
+            document.removeEventListener('pointerup', stopResize);
+            resizer.releasePointerCapture(e.pointerId);
         }
     }
 
+    // MENU HIGHLIGHT
     const sections = document.querySelectorAll('section[id]');
     const navIcons = document.querySelectorAll('.nav-icon');
 
     const updateActiveSection = () => {
         let current = '';
         sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (window.pageYOffset >= sectionTop - 100) {
+            if (window.pageYOffset >= section.offsetTop - 100) {
                 current = section.getAttribute('id');
             }
         });
@@ -1433,23 +1409,23 @@
             }
         });
     };
-
     window.addEventListener('scroll', updateActiveSection);
 
+    // --- INIT ---
     document.addEventListener('DOMContentLoaded', () => {
         updateActiveSection();
 
-        // PENCERELER (Masaüstü için manuel ayarlar, mobil için otomatik ayarlanır)
-        
         // 1. INTRO
-        openWindow('DFW METAOFFICE', 'https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4', 'video', 100, 450, 400, 300);
-        openWindow('DFW DESIGN', 'https://video.wixstatic.com/video/54a996_089c17f8355849d5a11f6115ab1025ba/1080p/mp4/file.mp4', 'video', 800, 500, 400, 300);
+        openWindow('intro', 'DFW METAOFFICE', 'https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4', 'video', 100, 350, 400, 300);
+        openWindow('intro', 'DFW DESIGN', 'https://video.wixstatic.com/video/54a996_089c17f8355849d5a11f6115ab1025ba/1080p/mp4/file.mp4', 'video', 800, 400, 400, 300);
 
         // 2. PROBLEM 
-        openWindow('STEVE JOBS EXPLAINING', 'https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4', 'video', 200, 1200, 450, 320);
+        openWindow('problem', 'STEVE JOBS EXPLAINING', 'https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4', 'video', 200, 300, 450, 320);
 
-        // 3. WORK (GLB)
-        openWindow('OTTO MODEL 3D', 'raw.githubusercontent.com/decentralize-dfw/co/main/otto-10-opt-v2.glb', 'glb', 300, 3500, 500, 500);
+        // 3. WORK (GLB MODEL)
+        // Raw link kullanıyoruz
+        const glbLink = 'https://raw.githubusercontent.com/decentralize-dfw/co/refs/heads/main/otto-10-opt-v2.glb';
+        openWindow('work', 'OTTO MODEL 3D', glbLink, 'glb', 300, 100, 500, 500);
     });
 </script>
 
