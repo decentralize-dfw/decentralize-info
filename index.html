@@ -477,17 +477,27 @@
 
         
 
-        .window-header {
-    background: #000;
-    color: #fff;
-    padding: 0.75rem 1rem;
-    cursor: move;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+       .window-header {
+            background: #000;
+            color: #fff;
+            padding: 0.75rem 1rem;
+            
+            /* YENİ EKLENENLER */
+            cursor: grab; /* Tutulabilir el işareti */
+            touch-action: none; /* Mobilde sayfa kaymasını engeller, sadece pencereyi tutar */
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            user-select: none;
+        }
+        
+        /* Tutarken elin sıkılmış hali (grabbing) */
+        .window-header:active {
+            cursor: grabbing;
         }
 
         .window-close {
@@ -1217,23 +1227,29 @@
 
   <script>
     // --- GLB AYARLARI ---
-    // Dosyanın senin bilgisayarında, index.html ile aynı klasörde olduğunu varsayıyoruz:
     const GLB_VIEWER_URL = "glb-viewer.html";
     
     let windowCounter = 0;
     let activeWindow = null;
 
-    // PENCERE AÇMA FONKSİYONU
-    // x ve y: Sayfanın solundan ve üstünden piksel konumu (position: absolute için)
+    // PENCERE AÇMA FONKSİYONU (MOBİL UYUMLU GÜNCELLENDİ)
     function openWindow(title, src, type = 'video', x = 100, y = 100, w = 500, h = 350) {
         windowCounter++;
         const windowId = `window-${windowCounter}`;
 
+        // --- RESPONSIVE (MOBİL) HESAPLAMASI ---
+        // Ekran genişliği 768px'den küçükse (Mobil/Tablet) ayarları ez:
+        if (window.innerWidth < 768) {
+            w = window.innerWidth * 0.90; // Genişlik ekranın %90'ı olsun
+            h = w * 0.65; // Yükseklik genişliğe göre orantılı olsun (Video oranı)
+            x = (window.innerWidth - w) / 2; // Tam ortala
+            // Y konumu (y) aynı kalır, böylece doğru section'da durur.
+        }
+
         const windowEl = document.createElement('div');
-        windowEl.className = 'window'; // CSS'te zaten display: block yaptık
+        windowEl.className = 'window'; 
         windowEl.id = windowId;
         
-        // Konumlandırma
         windowEl.style.left = `${x}px`;
         windowEl.style.top = `${y}px`;
         windowEl.style.width = `${w}px`;
@@ -1245,7 +1261,6 @@
             contentHTML = `<video autoplay loop muted playsinline controls style="width:100%; height:100%; object-fit:cover;"><source src="${src}" type="video/mp4"></video>`;
         } 
         else if (type === 'glb') {
-            // GLB Viewer URL Yapısı
             const finalSrc = `${GLB_VIEWER_URL}?url=${encodeURIComponent(src)}`;
             contentHTML = `<iframe src="${finalSrc}" style="width:100%; height:100%; border:none;"></iframe>`;
         }
@@ -1262,7 +1277,6 @@
             <div class="window-resize"></div>
         `;
 
-        // Pencereleri windows-container yerine direk body'ye ekleyelim ki absolute positioning sayfa genelinde çalışsın
         document.body.appendChild(windowEl);
         
         makeDraggable(windowEl);
@@ -1284,88 +1298,118 @@
         windowEl.style.zIndex = 950;
     }
 
-    // SÜRÜKLEME SİSTEMİ (Absolute pozisyona göre uyarlandı)
-    function makeDraggable(windowEl) {
+  function makeDraggable(windowEl) {
         const header = windowEl.querySelector('.window-header');
-        let isDragging = false;
-        let startX, startY, initialLeft, initialTop;
+        
+        // CSS önlemleri
+        header.style.touchAction = "none";
+        header.style.cursor = "grab";
 
-        header.addEventListener('mousedown', dragStart);
+        header.addEventListener('pointerdown', startDrag);
 
-        function dragStart(e) {
-            if (e.target.classList.contains('window-close')) return;
-            
-            isDragging = true;
-            startX = e.clientX;
-            startY = e.clientY;
-            
-            // Mevcut left/top değerlerini al
-            const rect = windowEl.getBoundingClientRect();
-            // Absolute olduğu için scroll miktarını hesaba katmalıyız
-            initialLeft = rect.left + window.scrollX;
-            initialTop = rect.top + window.scrollY;
+        function startDrag(e) {
+            // X butonuna basıldıysa dur
+            if (e.target.closest('.window-close')) return;
 
+            e.preventDefault();
             bringToFront(windowEl);
 
-            document.addEventListener('mousemove', drag);
-            document.addEventListener('mouseup', dragEnd);
-        }
+            // 1. MEVCUT KONUMLARI AL (getBoundingClientRect KULLANMIYORUZ)
+            // Pencerenin şu anki "gerçek" CSS sol ve üst değerleri
+            const initialWindowLeft = windowEl.offsetLeft;
+            const initialWindowTop = windowEl.offsetTop;
 
-        function drag(e) {
-            if (!isDragging) return;
-            e.preventDefault();
-            
-            const dx = e.clientX - startX;
-            const dy = e.clientY - startY;
+            // Mouse'un ilk tıkladığı yer
+            const startMouseX = e.clientX;
+            const startMouseY = e.clientY;
 
-            windowEl.style.left = `${initialLeft + dx}px`;
-            windowEl.style.top = `${initialTop + dy}px`;
-        }
+            header.style.cursor = "grabbing";
+            header.setPointerCapture(e.pointerId);
 
-        function dragEnd() {
-            isDragging = false;
-            document.removeEventListener('mousemove', drag);
-            document.removeEventListener('mouseup', dragEnd);
+            function onMove(e) {
+                // 2. SADECE DEĞİŞİMİ (DELTA) HESAPLA
+                // Mouse sağa 5px gittiyse, dx = 5 olur.
+                const dx = e.clientX - startMouseX;
+                const dy = e.clientY - startMouseY;
+
+                // 3. ESKİ KONUMA DEĞİŞİMİ EKLE
+                windowEl.style.left = `${initialWindowLeft + dx}px`;
+                windowEl.style.top = `${initialWindowTop + dy}px`;
+            }
+
+            function onUp(e) {
+                document.removeEventListener('pointermove', onMove);
+                document.removeEventListener('pointerup', onUp);
+                header.style.cursor = "grab";
+                header.releasePointerCapture(e.pointerId);
+            }
+
+            document.addEventListener('pointermove', onMove);
+            document.addEventListener('pointerup', onUp);
         }
     }
 
-    // YENİDEN BOYUTLANDIRMA
     function makeResizable(windowEl) {
         const resizer = windowEl.querySelector('.window-resize');
         let isResizing = false;
         let initialWidth, initialHeight, initialX, initialY;
 
         resizer.addEventListener('mousedown', resizeStart);
+        resizer.addEventListener('touchstart', resizeStart, {passive: false});
 
         function resizeStart(e) {
             isResizing = true;
-            initialX = e.clientX;
-            initialY = e.clientY;
+            
+            if (e.type === 'touchstart') {
+                initialX = e.touches[0].clientX;
+                initialY = e.touches[0].clientY;
+            } else {
+                initialX = e.clientX;
+                initialY = e.clientY;
+            }
+
             initialWidth = windowEl.offsetWidth;
             initialHeight = windowEl.offsetHeight;
 
             bringToFront(windowEl);
-            document.addEventListener('mousemove', resize);
-            document.addEventListener('mouseup', resizeEnd);
+
+            if (e.type === 'touchstart') {
+                document.addEventListener('touchmove', resize, {passive: false});
+                document.addEventListener('touchend', resizeEnd);
+            } else {
+                document.addEventListener('mousemove', resize);
+                document.addEventListener('mouseup', resizeEnd);
+            }
         }
 
         function resize(e) {
             if (!isResizing) return;
             e.preventDefault();
-            const width = initialWidth + (e.clientX - initialX);
-            const height = initialHeight + (e.clientY - initialY);
-            if (width > 300) windowEl.style.width = `${width}px`;
-            if (height > 200) windowEl.style.height = `${height}px`;
+
+            let clientX, clientY;
+            if (e.type === 'touchmove') {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+
+            const width = initialWidth + (clientX - initialX);
+            const height = initialHeight + (clientY - initialY);
+            if (width > 200) windowEl.style.width = `${width}px`;
+            if (height > 150) windowEl.style.height = `${height}px`;
         }
 
         function resizeEnd() {
             isResizing = false;
             document.removeEventListener('mousemove', resize);
             document.removeEventListener('mouseup', resizeEnd);
+            document.removeEventListener('touchmove', resize);
+            document.removeEventListener('touchend', resizeEnd);
         }
     }
 
-    // MENU HIGHLIGHT (Animasyonlar kaldırılmış hali)
     const sections = document.querySelectorAll('section[id]');
     const navIcons = document.querySelectorAll('.nav-icon');
 
@@ -1392,23 +1436,20 @@
 
     window.addEventListener('scroll', updateActiveSection);
 
-    // --- SAYFA YÜKLENDİĞİNDE PENCERELERİ AÇ ---
     document.addEventListener('DOMContentLoaded', () => {
         updateActiveSection();
 
-        // INTRO BÖLÜMÜNDEKİLER
+        // PENCERELER (Masaüstü için manuel ayarlar, mobil için otomatik ayarlanır)
+        
+        // 1. INTRO
         openWindow('DFW METAOFFICE', 'https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4', 'video', 100, 450, 400, 300);
         openWindow('DFW DESIGN', 'https://video.wixstatic.com/video/54a996_089c17f8355849d5a11f6115ab1025ba/1080p/mp4/file.mp4', 'video', 800, 500, 400, 300);
 
-        // PROBLEM BÖLÜMÜNDEKİLER (Y konumlarını arttırıyorum ki aşağıda çıksınlar)
+        // 2. PROBLEM 
         openWindow('STEVE JOBS EXPLAINING', 'https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4', 'video', 200, 1200, 450, 320);
 
-        // WORK BÖLÜMÜNDEKİ GLB MODELİ (BURASI ÖNEMLİ)
-        // İstediğin GLB dosyasını burada 'glb' tipiyle açıyoruz
+        // 3. WORK (GLB)
         openWindow('OTTO MODEL 3D', 'raw.githubusercontent.com/decentralize-dfw/co/main/otto-10-opt-v2.glb', 'glb', 300, 3500, 500, 500);
-        
-        // İstersen diğer videoları da buraya ekleyebilirsin:
-        // openWindow('TITLE', 'URL', 'video', X, Y, W, H);
     });
 </script>
 
