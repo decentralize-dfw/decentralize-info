@@ -250,6 +250,46 @@
         .spacer { height: 4rem; }
         .spacer-sm { height: 2rem; }
         .spacer-xs { height: 1rem; }
+
+        /* HOVER EFFECTS */
+        .card {
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .stat {
+            transition: all 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        /* FADE IN ANIMATION */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content > * {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        /* SMOOTH TRANSITIONS */
+        * {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -506,16 +546,97 @@
 
                 <div class="spacer"></div>
 
+                <!-- FULL WIDTH VIDEO -->
+                <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; border: 1px solid var(--border); margin-bottom: 3rem;">
+                    <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                        <source src="https://video.wixstatic.com/video/54a996_fdd0f8d73d584186a2b6ad252aea65d8/1080p/mp4/file.mp4" type="video/mp4">
+                    </video>
+                    <div style="position: absolute; bottom: 1rem; left: 1rem; background: rgba(255,255,255,0.9); padding: 0.5rem 1rem; font-size: 0.8rem; font-weight: 600;">
+                        DAOTOWN · M3 2024
+                    </div>
+                </div>
+
                 <!-- IMAGES -->
                 <div class="img-grid">
                     <div class="img-card">
                         <img src="https://static.wixstatic.com/media/54a996_ba80e31fd25540a5b648f40640b7eaae~mv2.jpg" alt="Virtual Theater">
+                        <div style="position: absolute; bottom: 1rem; left: 1rem; background: rgba(255,255,255,0.9); padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: 600;">
+                            WHY WE EXIST?
+                        </div>
                     </div>
                     <div class="img-card">
                         <img src="https://static.wixstatic.com/media/54a996_2598bd0a3bab4c419b1939d8cee8b485~mv2.png" alt="Retail">
+                        <div style="position: absolute; bottom: 1rem; left: 1rem; background: rgba(255,255,255,0.9); padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: 600;">
+                            C2W RETAIL
+                        </div>
                     </div>
                     <div class="img-card">
                         <img src="https://static.wixstatic.com/media/54a996_a4275b8206ae43d3ae134f283411acf2~mv2.jpg" alt="Architecture">
+                        <div style="position: absolute; bottom: 1rem; left: 1rem; background: rgba(255,255,255,0.9); padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: 600;">
+                            SCAFFOLD
+                        </div>
+                    </div>
+                    <div class="img-card">
+                        <img src="https://static.wixstatic.com/media/54a996_47b0c01fb7404427ade7405c73862623~mv2.jpg" alt="C2W Runway">
+                        <div style="position: absolute; bottom: 1rem; left: 1rem; background: rgba(255,255,255,0.9); padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: 600;">
+                            C2W RUNWAY
+                        </div>
+                    </div>
+                    <div class="img-card">
+                        <img src="https://static.wixstatic.com/media/54a996_26886a672f784198b9f8af4c4c93a5b9~mv2.jpg" alt="Hatch">
+                        <div style="position: absolute; bottom: 1rem; left: 1rem; background: rgba(255,255,255,0.9); padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: 600;">
+                            HATCH
+                        </div>
+                    </div>
+                    <div class="img-card">
+                        <img src="https://static.wixstatic.com/media/54a996_d7c0f7edddad4724bf78fa801b49da3a~mv2.jpg" alt="Architecture Model">
+                        <div style="position: absolute; bottom: 1rem; left: 1rem; background: rgba(255,255,255,0.9); padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: 600;">
+                            SPATIAL DESIGN
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIRTUAL FURNITURE -->
+        <section style="background: white;">
+            <div class="content">
+                <span class="label">05A / VIRTUAL FURNITURE</span>
+                <h2>WHEN FUNCTION<br>BECOMES SYMBOL.</h2>
+                <div class="spacer"></div>
+
+                <div class="grid-2">
+                    <div>
+                        <p style="font-size: 1.1rem; color: var(--dark);">
+                            60+ Design Objects
+                        </p>
+                        <div class="spacer-sm"></div>
+                        <p>Chairs that float. Sofas that pulse. Sculptures that respond to music.</p>
+                        <div class="spacer-sm"></div>
+                        <p style="font-size: 0.95rem;">Furniture doesn't need to support weight—it only needs to suggest the idea of support.</p>
+                    </div>
+
+                    <div class="card">
+                        <p style="font-weight: 600; color: var(--dark); margin-bottom: 1rem;">
+                            Design Categories
+                        </p>
+                        <p style="font-size: 0.95rem;">Chairs · Sofas · Tables · Sculptures · Musical Instruments · Automobiles</p>
+                        <div class="spacer-sm"></div>
+                        <p style="font-size: 0.9rem; color: var(--light);">
+                            Form freed from material constraints. Function transformed into symbol.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="spacer"></div>
+
+                <!-- FURNITURE VIDEO -->
+                <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; border: 1px solid var(--border);">
+                    <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                        <source src="https://video.wixstatic.com/video/54a996_089c17f8355849d5a11f6115ab1025ba/1080p/mp4/file.mp4" type="video/mp4">
+                    </video>
+                    <div style="position: absolute; bottom: 1rem; left: 1rem; background: rgba(255,255,255,0.9); padding: 0.5rem 1rem; font-size: 0.8rem; font-weight: 600;">
+                        DESIGN OBJECTS COLLECTION
                     </div>
                 </div>
             </div>
@@ -568,11 +689,82 @@
 
                 <div class="spacer"></div>
 
-                <!-- PROCESS VIDEO -->
+                <!-- C2W VIDEO -->
                 <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; border: 1px solid var(--border);">
                     <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
-                        <source src="https://video.wixstatic.com/video/54a996_089c17f8355849d5a11f6115ab1025ba/1080p/mp4/file.mp4" type="video/mp4">
+                        <source src="https://video.wixstatic.com/video/54a996_60a4ecec7fac4274b2dcd86d11424922/720p/mp4/file.mp4" type="video/mp4">
                     </video>
+                    <div style="position: absolute; bottom: 1rem; left: 1rem; background: rgba(255,255,255,0.9); padding: 0.5rem 1rem; font-size: 0.8rem; font-weight: 600;">
+                        C2W FASHION EXPERIENCE
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RECOGNITION -->
+        <section style="background: #fafafa;">
+            <div class="content">
+                <span class="label">06 / RECOGNITION</span>
+                <h2>AWARDS &<br>EXHIBITIONS.</h2>
+                <div class="spacer"></div>
+
+                <div class="grid-2">
+                    <div>
+                        <p style="font-size: 0.9rem; font-weight: 600; color: var(--light); margin-bottom: 1.5rem; letter-spacing: 0.1em;">
+                            AWARDS & HONORS
+                        </p>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div class="card" style="background: white; padding: 1.5rem;">
+                                <p style="font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">VCA x Draup Virtual Fashion Residency</p>
+                                <p style="font-size: 0.9rem; color: var(--light);">1st Prize Winner</p>
+                            </div>
+                            <div class="card" style="background: white; padding: 1.5rem;">
+                                <p style="font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">Metamundo</p>
+                                <p style="font-size: 0.9rem; color: var(--light);">Top 50 Creators of Metaverse</p>
+                            </div>
+                            <div class="card" style="background: white; padding: 1.5rem;">
+                                <p style="font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">Creatorverse Buildathon</p>
+                                <p style="font-size: 0.9rem; color: var(--light);">Winner</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p style="font-size: 0.9rem; font-weight: 600; color: var(--light); margin-bottom: 1.5rem; letter-spacing: 0.1em;">
+                            EXHIBITIONS
+                        </p>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div class="card" style="background: white; padding: 1.5rem;">
+                                <p style="font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">🇮🇹 Fabbrica Del Vapore</p>
+                                <p style="font-size: 0.9rem; color: var(--light);">Milan, Italy</p>
+                            </div>
+                            <div class="card" style="background: white; padding: 1.5rem;">
+                                <p style="font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">🇬🇧 Royal Institution</p>
+                                <p style="font-size: 0.9rem; color: var(--light);">London, United Kingdom</p>
+                            </div>
+                            <div class="card" style="background: white; padding: 1.5rem;">
+                                <p style="font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">🇺🇸 Art Basel</p>
+                                <p style="font-size: 0.9rem; color: var(--light);">Miami, USA</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="spacer"></div>
+
+                <div class="grid-3">
+                    <div class="stat">
+                        <div class="stat-num">5</div>
+                        <div class="stat-label">Awards Won</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num">5</div>
+                        <div class="stat-label">Countries</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num">2021</div>
+                        <div class="stat-label">Founded</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -580,11 +772,13 @@
         <!-- FUTURE -->
         <section id="future">
             <div class="video-bg">
-                <img src="https://static.wixstatic.com/media/54a996_ba80e31fd25540a5b648f40640b7eaae~mv2.jpg" alt="">
+                <video autoplay loop muted playsinline>
+                    <source src="https://video.wixstatic.com/video/54a996_15c2541f73fb4084aa3f7860dbf681b6/720p/mp4/file.mp4" type="video/mp4">
+                </video>
             </div>
             <div class="overlay"></div>
             <div class="content">
-                <span class="label">06 / THE FUTURE</span>
+                <span class="label">07 / THE FUTURE</span>
                 <h2>COLLECTIVE<br>IMAGINATION.</h2>
                 <div class="spacer"></div>
 
@@ -608,15 +802,11 @@
 
                 <div class="spacer"></div>
 
-                <div class="grid-2">
-                    <div class="stat" style="background: rgba(250,250,250,0.8);">
-                        <div class="stat-num">5</div>
-                        <div class="stat-label">Awards Won</div>
-                    </div>
-                    <div class="stat" style="background: rgba(250,250,250,0.8);">
-                        <div class="stat-num">5</div>
-                        <div class="stat-label">Countries Exhibited</div>
-                    </div>
+                <!-- QUOTE -->
+                <div style="padding: 3rem; background: rgba(26,26,26,0.05); text-align: center; max-width: 900px; margin: 0 auto;">
+                    <p style="font-size: 1.1rem; line-height: 1.7; font-style: italic;">
+                        "Every time you question why digital spaces look the way they do, you're part of this. Every time you imagine what they could be instead, you're contributing."
+                    </p>
                 </div>
             </div>
         </section>
