@@ -67,22 +67,31 @@
         }
 
         .nav-icon {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             background: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             position: relative;
-            font-weight: 700;
-            font-size: 14px;
+            padding: 6px;
             transition: all 0.2s;
+        }
+
+        .nav-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: #000;
+            transition: fill 0.2s;
         }
 
         .nav-icon:hover {
             background: #0064FF;
-            color: #fff;
+        }
+
+        .nav-icon:hover svg {
+            fill: #fff;
         }
 
         /* TOOLTIP */
@@ -460,6 +469,137 @@
             text-align: center;
         }
 
+        /* DRAGGABLE WINDOWS */
+        .window {
+            position: fixed;
+            background: #fff;
+            border: 4px solid #000;
+            box-shadow: 10px 10px 0 rgba(0,0,0,0.3);
+            z-index: 900;
+            min-width: 300px;
+            min-height: 200px;
+            display: none;
+        }
+
+        .window.active {
+            display: block;
+        }
+
+        .window-header {
+            background: #000;
+            color: #fff;
+            padding: 0.75rem 1rem;
+            cursor: move;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            user-select: none;
+        }
+
+        .window-close {
+            background: #FF0000;
+            color: #fff;
+            border: none;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            font-weight: 900;
+            font-size: 14px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .window-close:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .window-content {
+            padding: 0;
+            overflow: hidden;
+            height: calc(100% - 35px);
+        }
+
+        .window-content img,
+        .window-content video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .window-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .window-resize {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            background: #0064FF;
+            cursor: nwse-resize;
+        }
+
+        /* CLICKABLE MEDIA TRIGGERS */
+        .media-trigger {
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .media-trigger::after {
+            content: '⊞';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.8);
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .media-trigger:hover::after {
+            opacity: 1;
+        }
+
+        /* SVG DIAGRAMS */
+        .diagram {
+            margin: 4rem 0;
+            padding: 3rem;
+            background: rgba(0,0,0,0.03);
+            border: 3px solid currentColor;
+        }
+
+        .diagram svg {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+        }
+
+        .diagram-label {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            margin-top: 1.5rem;
+            text-transform: uppercase;
+        }
+
         /* MOBILE */
         @media (max-width: 768px) {
             section {
@@ -514,13 +654,27 @@
     <nav class="top-nav">
         <div class="logo">DECENTRALIZE™</div>
         <div class="nav-icons">
-            <div class="nav-icon" data-tooltip="INTRO" onclick="scrollToSection('intro')">01</div>
-            <div class="nav-icon" data-tooltip="PROBLEM" onclick="scrollToSection('problem')">02</div>
-            <div class="nav-icon" data-tooltip="PHILOSOPHY" onclick="scrollToSection('philosophy')">03</div>
-            <div class="nav-icon" data-tooltip="VISION" onclick="scrollToSection('vision')">04</div>
-            <div class="nav-icon" data-tooltip="WORK" onclick="scrollToSection('work')">05</div>
-            <div class="nav-icon" data-tooltip="FUTURE" onclick="scrollToSection('future')">06</div>
-            <div class="nav-icon" data-tooltip="CONTACT" onclick="scrollToSection('contact')">07</div>
+            <div class="nav-icon" data-tooltip="INTRO" onclick="scrollToSection('intro')">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/></svg>
+            </div>
+            <div class="nav-icon" data-tooltip="PROBLEM" onclick="scrollToSection('problem')">
+                <svg viewBox="0 0 24 24"><path d="M13 13h-2V7h2m0 10h-2v-2h2M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+            </div>
+            <div class="nav-icon" data-tooltip="PHILOSOPHY" onclick="scrollToSection('philosophy')">
+                <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+            </div>
+            <div class="nav-icon" data-tooltip="VISION" onclick="scrollToSection('vision')">
+                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </div>
+            <div class="nav-icon" data-tooltip="WORK" onclick="scrollToSection('work')">
+                <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+            </div>
+            <div class="nav-icon" data-tooltip="FUTURE" onclick="scrollToSection('future')">
+                <svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+            </div>
+            <div class="nav-icon" data-tooltip="CONTACT" onclick="scrollToSection('contact')">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
         </div>
     </nav>
 
@@ -544,11 +698,46 @@
                     </div>
                 </div>
 
-                <div class="media-embed">
+                <!-- DIAGRAM: FLAT VS SPATIAL -->
+                <div class="diagram">
+                    <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- FLAT INTERNET (LEFT) -->
+                        <text x="100" y="30" font-size="14" font-weight="900" fill="#FF0000">FLAT INTERNET</text>
+                        <rect x="20" y="50" width="180" height="120" fill="none" stroke="#FF0000" stroke-width="3"/>
+                        <rect x="30" y="65" width="40" height="30" fill="#FF0000" opacity="0.3"/>
+                        <rect x="80" y="65" width="40" height="30" fill="#FF0000" opacity="0.3"/>
+                        <rect x="130" y="65" width="40" height="30" fill="#FF0000" opacity="0.3"/>
+                        <rect x="30" y="105" width="40" height="30" fill="#FF0000" opacity="0.3"/>
+                        <rect x="80" y="105" width="40" height="30" fill="#FF0000" opacity="0.3"/>
+                        <rect x="130" y="105" width="40" height="30" fill="#FF0000" opacity="0.3"/>
+                        <text x="60" y="200" font-size="11" font-weight="700" fill="#000">RECTANGLES</text>
+                        <text x="75" y="220" font-size="11" font-weight="700" fill="#000">2D</text>
+                        <text x="55" y="240" font-size="11" font-weight="700" fill="#000">CONSTRAINED</text>
+
+                        <!-- VS ARROW -->
+                        <text x="375" y="115" font-size="24" font-weight="900" fill="#0064FF">VS</text>
+
+                        <!-- SPATIAL INTERNET (RIGHT) -->
+                        <text x="560" y="30" font-size="14" font-weight="900" fill="#0064FF">SPATIAL INTERNET</text>
+                        <circle cx="650" cy="110" r="60" fill="none" stroke="#0064FF" stroke-width="3"/>
+                        <polygon points="620,80 650,90 680,80" fill="#0064FF" opacity="0.3"/>
+                        <polygon points="610,110 630,125 650,110" fill="#0064FF" opacity="0.5"/>
+                        <polygon points="650,110 670,125 690,110" fill="#0064FF" opacity="0.7"/>
+                        <polygon points="625,140 650,155 675,140" fill="#0064FF" opacity="0.4"/>
+                        <line x1="650" y1="70" x2="650" y2="50" stroke="#0064FF" stroke-width="2" opacity="0.5"/>
+                        <line x1="650" y1="150" x2="650" y2="170" stroke="#0064FF" stroke-width="2" opacity="0.5"/>
+                        <text x="610" y="200" font-size="11" font-weight="700" fill="#000">VOLUMETRIC</text>
+                        <text x="630" y="220" font-size="11" font-weight="700" fill="#000">3D</text>
+                        <text x="620" y="240" font-size="11" font-weight="700" fill="#000">LIMITLESS</text>
+                    </svg>
+                    <div class="diagram-label">THE SHIFT FROM FLAT TO SPATIAL</div>
+                </div>
+
+                <div class="media-embed media-trigger" onclick="openWindow('metaoffice', 'https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4', 'video')">
                     <video autoplay loop muted playsinline>
                         <source src="https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4" type="video/mp4">
                     </video>
-                    <div class="media-label">METAOFFICE</div>
+                    <div class="media-label">METAOFFICE · CLICK TO OPEN WINDOW</div>
                 </div>
             </div>
         </section>
@@ -570,15 +759,36 @@
                     </div>
                 </div>
 
+                <!-- DIAGRAM: RECTANGLE PRISON -->
+                <div class="diagram" style="border-color: #fff;">
+                    <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- NESTED RECTANGLES -->
+                        <rect x="50" y="30" width="700" height="240" fill="none" stroke="#fff" stroke-width="4"/>
+                        <text x="60" y="55" font-size="11" font-weight="700" fill="#fff">BROWSER</text>
+                        <rect x="80" y="70" width="640" height="180" fill="none" stroke="#fff" stroke-width="3"/>
+                        <text x="90" y="90" font-size="10" font-weight="700" fill="#fff">WEBSITE</text>
+                        <rect x="110" y="105" width="200" height="120" fill="#fff" opacity="0.1"/>
+                        <text x="120" y="120" font-size="9" font-weight="700" fill="#fff">EMAIL</text>
+                        <rect x="330" y="105" width="180" height="120" fill="#fff" opacity="0.1"/>
+                        <text x="340" y="120" font-size="9" font-weight="700" fill="#fff">SOCIAL</text>
+                        <rect x="530" y="105" width="170" height="120" fill="#fff" opacity="0.1"/>
+                        <text x="540" y="120" font-size="9" font-weight="700" fill="#fff">DOCS</text>
+
+                        <!-- LABELS -->
+                        <text x="280" y="280" font-size="14" font-weight="900" fill="#fff">INFINITY TRAPPED IN RECTANGLES</text>
+                    </svg>
+                    <div class="diagram-label" style="color: #fff;">NESTED METAPHORS</div>
+                </div>
+
                 <div class="quote-block">
                     <p>"WHAT BECOMES POSSIBLE WHEN WE LET DIGITAL SPACE BE ITSELF?"</p>
                 </div>
 
-                <div class="media-embed">
+                <div class="media-embed media-trigger" onclick="openWindow('chrome-topology', 'https://video.wixstatic.com/video/54a996_ccdeba84c3054a7b93c1ffd59e4154c9/1080p/mp4/file.mp4', 'video')">
                     <video autoplay loop muted playsinline>
                         <source src="https://video.wixstatic.com/video/54a996_ccdeba84c3054a7b93c1ffd59e4154c9/1080p/mp4/file.mp4" type="video/mp4">
                     </video>
-                    <div class="media-label">CHROME TOPOLOGY</div>
+                    <div class="media-label">CHROME TOPOLOGY · CLICK TO OPEN</div>
                 </div>
             </div>
         </section>
@@ -821,7 +1031,135 @@
         <a href="mailto:main@d--f--w.com" class="bottom-link">CONTACT</a>
     </div>
 
+    <!-- DRAGGABLE WINDOWS CONTAINER -->
+    <div id="windows-container"></div>
+
     <script>
+        // DRAGGABLE WINDOW SYSTEM
+        let windowCounter = 0;
+        let activeWindow = null;
+
+        function openWindow(title, src, type = 'video') {
+            windowCounter++;
+            const windowId = `window-${windowCounter}`;
+
+            const windowEl = document.createElement('div');
+            windowEl.className = 'window active';
+            windowEl.id = windowId;
+            windowEl.style.left = `${100 + windowCounter * 30}px`;
+            windowEl.style.top = `${100 + windowCounter * 30}px`;
+            windowEl.style.width = '600px';
+            windowEl.style.height = '400px';
+
+            let contentHTML = '';
+            if (type === 'video') {
+                contentHTML = `<video autoplay loop muted playsinline controls><source src="${src}" type="video/mp4"></video>`;
+            } else if (type === 'image') {
+                contentHTML = `<img src="${src}" alt="${title}">`;
+            } else if (type === 'iframe') {
+                contentHTML = `<iframe src="${src}"></iframe>`;
+            }
+
+            windowEl.innerHTML = `
+                <div class="window-header">
+                    <span>${title.toUpperCase()}</span>
+                    <button class="window-close" onclick="closeWindow('${windowId}')">×</button>
+                </div>
+                <div class="window-content">${contentHTML}</div>
+                <div class="window-resize"></div>
+            `;
+
+            document.getElementById('windows-container').appendChild(windowEl);
+            makeDraggable(windowEl);
+            makeResizable(windowEl);
+            bringToFront(windowEl);
+        }
+
+        function closeWindow(windowId) {
+            const windowEl = document.getElementById(windowId);
+            if (windowEl) {
+                windowEl.remove();
+            }
+        }
+
+        function bringToFront(windowEl) {
+            document.querySelectorAll('.window').forEach(w => {
+                w.style.zIndex = 900;
+            });
+            windowEl.style.zIndex = 950;
+            activeWindow = windowEl;
+        }
+
+        function makeDraggable(windowEl) {
+            const header = windowEl.querySelector('.window-header');
+            let isDragging = false;
+            let currentX, currentY, initialX, initialY;
+
+            header.addEventListener('mousedown', dragStart);
+
+            function dragStart(e) {
+                if (e.target.classList.contains('window-close')) return;
+
+                initialX = e.clientX - windowEl.offsetLeft;
+                initialY = e.clientY - windowEl.offsetTop;
+                isDragging = true;
+                bringToFront(windowEl);
+
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('mouseup', dragEnd);
+            }
+
+            function drag(e) {
+                if (!isDragging) return;
+                e.preventDefault();
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+                windowEl.style.left = `${currentX}px`;
+                windowEl.style.top = `${currentY}px`;
+            }
+
+            function dragEnd() {
+                isDragging = false;
+                document.removeEventListener('mousemove', drag);
+                document.removeEventListener('mouseup', dragEnd);
+            }
+        }
+
+        function makeResizable(windowEl) {
+            const resizer = windowEl.querySelector('.window-resize');
+            let isResizing = false;
+            let initialWidth, initialHeight, initialX, initialY;
+
+            resizer.addEventListener('mousedown', resizeStart);
+
+            function resizeStart(e) {
+                isResizing = true;
+                initialX = e.clientX;
+                initialY = e.clientY;
+                initialWidth = windowEl.offsetWidth;
+                initialHeight = windowEl.offsetHeight;
+
+                bringToFront(windowEl);
+                document.addEventListener('mousemove', resize);
+                document.addEventListener('mouseup', resizeEnd);
+            }
+
+            function resize(e) {
+                if (!isResizing) return;
+                e.preventDefault();
+                const width = initialWidth + (e.clientX - initialX);
+                const height = initialHeight + (e.clientY - initialY);
+                if (width > 300) windowEl.style.width = `${width}px`;
+                if (height > 200) windowEl.style.height = `${height}px`;
+            }
+
+            function resizeEnd() {
+                isResizing = false;
+                document.removeEventListener('mousemove', resize);
+                document.removeEventListener('mouseup', resizeEnd);
+            }
+        }
+
         // SMOOTH SCROLL TO SECTION
         function scrollToSection(id) {
             const element = document.getElementById(id);
