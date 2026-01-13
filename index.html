@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DFW | Digital Forgery Workshop</title>
+    <title>Decentralize Design | Spatial Design for Virtual Spaces</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
-            --bg-color: #000000;
-            --text-primary: #e5e5e5;
-            --text-secondary: #737373;
+            --bg-white: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-medium: #4a4a4a;
+            --text-light: #6a6a6a;
+            --text-lighter: #9a9a9a;
+            --border-light: rgba(0, 0, 0, 0.1);
+            --border-medium: rgba(0, 0, 0, 0.15);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
+            background-color: var(--bg-white);
+            color: var(--text-dark);
             margin: 0;
-            overflow: hidden; /* Scroll-snap wrapper handles scrolling */
+            overflow: hidden;
         }
 
         .font-grotesk { font-family: 'Space Grotesk', sans-serif; }
@@ -44,7 +48,7 @@
             justify-content: center;
             padding: 2rem;
             overflow: hidden;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid var(--border-light);
         }
 
         .slide-content {
@@ -60,7 +64,7 @@
         .bg-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.85);
+            background: rgba(255,255,255,0.92);
             z-index: 1;
         }
 
@@ -69,11 +73,11 @@
             inset: 0;
             background-size: cover;
             background-position: center;
-            opacity: 0.4;
-            filter: grayscale(100%) contrast(1.2);
+            opacity: 0.15;
+            filter: grayscale(100%) contrast(1.1);
             transition: transform 10s ease;
         }
-        
+
         .section-slide:hover .bg-image {
             transform: scale(1.02);
         }
@@ -83,11 +87,11 @@
         .bg-2 { background-image: url('https://static.wixstatic.com/media/54a996_456c0c5326d64fce8dc04b0abc005c9d~mv2.jpg'); }
         .bg-3 { background-image: url('https://static.wixstatic.com/media/54a996_ba80e31fd25540a5b648f40640b7eaae~mv2.jpg'); }
         .bg-4 { background-image: url('https://static.wixstatic.com/media/54a996_f6adc1252e084f9898321217b86cbd4d~mv2.jpg'); }
-        .bg-5 { background-color: #0a0a0a; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-5 { background-color: #fafafa; background-image: linear-gradient(var(--border-light) 1px, transparent 1px), linear-gradient(90deg, var(--border-light) 1px, transparent 1px); background-size: 40px 40px; }
         .bg-6 { background-image: url('https://static.wixstatic.com/media/54a996_2598bd0a3bab4c419b1939d8cee8b485~mv2.png'); }
         .bg-7 { background-image: url('https://static.wixstatic.com/media/54a996_d7c0f7edddad4724bf78fa801b49da3a~mv2.jpg'); }
-        .bg-8 { background-color: #050505; } /* Text/List Slide */
-        .bg-9 { background-color: #000; } /* Works Grid */
+        .bg-8 { background-color: #f5f5f5; }
+        .bg-9 { background-color: #ffffff; }
 
         /* TYPOGRAPHY */
         .mega-title {
@@ -96,7 +100,7 @@
             line-height: 0.9;
             letter-spacing: -0.04em;
             margin-bottom: 2rem;
-            color: #fff;
+            color: var(--text-dark);
         }
 
         .slide-label {
@@ -104,18 +108,18 @@
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            color: #555;
+            color: var(--text-lighter);
             margin-bottom: 1.5rem;
             display: block;
-            border-left: 2px solid #333;
+            border-left: 2px solid var(--text-light);
             padding-left: 1rem;
         }
 
         .body-text {
             font-size: clamp(1rem, 1.5vw, 1.5rem);
-            line-height: 1.5;
+            line-height: 1.6;
             font-weight: 300;
-            color: #ccc;
+            color: var(--text-medium);
             max-width: 800px;
         }
 
@@ -124,9 +128,9 @@
             align-items: baseline;
             gap: 1rem;
             padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid var(--border-light);
         }
-        .list-item span:first-child { color: #555; font-family: monospace; min-width: 20px; }
+        .list-item span:first-child { color: var(--text-lighter); font-family: monospace; min-width: 20px; }
 
         /* NAV */
         .nav-fixed {
@@ -139,44 +143,132 @@
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            mix-blend-mode: difference;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
         }
 
         /* PROJECT CARD */
         .work-card {
             position: relative;
-            background: #111;
+            background: #fafafa;
             aspect-ratio: 16/9;
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid var(--border-medium);
             transition: border-color 0.3s ease;
             cursor: pointer;
         }
-        .work-card:hover { border-color: #fff; }
+        .work-card:hover { border-color: var(--text-dark); }
         .work-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             filter: grayscale(100%);
             transition: all 0.5s ease;
-            opacity: 0.6;
+            opacity: 0.7;
         }
         .work-card:hover img {
             filter: grayscale(0%);
             opacity: 1;
             transform: scale(1.05);
         }
+
+        /* QUOTE BOXES */
+        .quote-box {
+            margin-top: 3rem;
+            padding: 2rem;
+            border-left: 4px solid var(--text-dark);
+            background: rgba(250,250,250,0.8);
+        }
+
+        .quote-box p {
+            font-size: 1.25rem;
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--text-medium);
+            margin: 0;
+        }
+
+        /* STAT BOXES */
+        .stat-box {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: rgba(250,250,250,0.8);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-medium);
+        }
+
+        /* CARDS */
+        .info-card {
+            padding: 1.5rem;
+            background: rgba(250,250,250,0.8);
+            border: 1px solid var(--border-medium);
+        }
+
+        .info-card h4 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .info-card p {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: var(--text-medium);
+            margin: 0;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .mega-title {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+            }
+
+            .body-text {
+                font-size: 1rem;
+            }
+
+            .slide-content {
+                padding: 0 0.5rem;
+            }
+
+            .section-slide {
+                padding: 1rem;
+            }
+
+            .quote-box {
+                padding: 1.5rem 1rem;
+            }
+
+            .quote-box p {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="nav-fixed">
-        <div class="font-grotesk font-bold text-2xl tracking-tighter">DFW.</div>
-        <div class="hidden md:flex gap-8 text-[10px] font-mono uppercase tracking-widest text-gray-400">
+        <div class="font-grotesk font-bold text-2xl tracking-tighter" style="color: var(--text-dark);">Decentralize.</div>
+        <div class="hidden md:flex gap-8 text-[10px] font-mono uppercase tracking-widest" style="color: var(--text-light);">
             <span>Milan / Metaverse</span>
             <span>Est. 2021</span>
         </div>
-        <a href="#contact" class="hidden md:block border border-white px-6 py-2 rounded-full text-[10px] font-bold uppercase hover:bg-white hover:text-black transition-colors">Start Project</a>
+        <a href="#contact" class="hidden md:block border px-6 py-2 rounded-full text-[10px] font-bold uppercase transition-colors" style="border-color: var(--text-dark); color: var(--text-dark);" onmouseover="this.style.backgroundColor='var(--text-dark)'; this.style.color='white';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--text-dark)';">Start Project</a>
     </div>
 
     <div class="snap-container">
@@ -186,132 +278,335 @@
             <div class="bg-image bg-1"></div>
             <div class="bg-overlay"></div>
             <div class="slide-content">
-                <span class="font-mono text-gray-500 text-xs mb-4 block">DIGITAL FORGERY WORKSHOP</span>
-                <h1 class="mega-title">CREATIVE DESIGN STUDIO<br>FOR SPATIAL WEB.</h1>
-                <p class="body-text text-white">
-                    We are not just building 3D websites. We are liberating digital experiences from the tyranny of the flat screen. Breaking down the wall between the digital and the physical.
+                <span class="font-mono text-xs mb-4 block" style="color: var(--text-lighter);">DECENTRALIZE DESIGN</span>
+                <h1 class="mega-title">THE INTERNET<br>IS STILL FLAT.</h1>
+                <p class="body-text" style="color: var(--text-dark);">
+                    We are spatial beings living in a two-dimensional digital world. Our screens are windows, but what lies beyond is still mostly flat—pages, feeds, grids. We believe digital space can be something more. Not a simulation of the physical world, but an entirely new realm with its own language, logic, and possibilities.
                 </p>
-                <div class="mt-8 text-sm font-mono text-gray-500">SCROLL TO EXPLORE</div>
+                <div class="mt-8 text-sm font-mono" style="color: var(--text-lighter);">SCROLL TO EXPLORE</div>
             </div>
         </section>
 
         <!-- ============================================= -->
-        <!-- PART 1: PHILOSOPHY (WHY) -->
+        <!-- PART 1: THE PROBLEM -->
         <!-- ============================================= -->
 
-        <!-- SLIDE 2: TRUTH -->
+        <!-- SLIDE 2: THE PROBLEM -->
         <section class="section-slide">
             <div class="bg-image bg-2"></div>
             <div class="bg-overlay"></div>
             <div class="slide-content">
-                <span class="slide-label">01 / TRUTH</span>
-                <h2 class="mega-title text-5xl md:text-7xl">SPACE IS THE SILENT<br>FRAMEWORK.</h2>
+                <span class="slide-label">01 / THE PROBLEM</span>
+                <h2 class="mega-title text-5xl md:text-7xl">WE TRAPPED INFINITY<br>IN A RECTANGLE.</h2>
                 <p class="body-text">
-                    From ancient stone to intangible pixels, space shapes how humanity connects to itself. The future isn’t about mimicking the familiar—it’s about unearthing the unseen potential within the virtual.
+                    Think about how you experience the digital world: scrolling through rectangles on a rectangle, tapping icons arranged in grids. We've created a boundless virtual realm, yet we're still designing it like paper. We have the freedom to build spaces that defy gravity, transcend time zones, and exist in impossible geometries—but instead, we keep making digital versions of physical things.
                 </p>
             </div>
         </section>
 
-        <!-- SLIDE 3: POWER -->
+        <!-- SLIDE 3: THE INSIGHT -->
         <section class="section-slide">
             <div class="bg-image bg-3"></div>
             <div class="bg-overlay"></div>
             <div class="slide-content">
-                <span class="slide-label">02 / POWER</span>
-                <h2 class="mega-title text-5xl md:text-7xl">TRANSCEND THE<br>PHYSICAL.</h2>
+                <span class="slide-label">02 / THE INSIGHT</span>
+                <h2 class="mega-title text-5xl md:text-7xl">DIGITAL SPACE<br>SPEAKS ITS OWN<br>LANGUAGE.</h2>
                 <p class="body-text">
-                    Virtual spaces create environments that respond, adapt, and transform. In these realms, structure is no longer bound by gravity, and experience extends beyond the tangible. This is where digital matter becomes meaningful.
+                    Imagine designing a building without gravity. Without walls that need to support ceilings. Without materials that decay. This isn't science fiction—it's the everyday reality of digital space. Yet most virtual environments still pretend to follow physical rules. A virtual gallery with walls. A digital office with cubicles. A metaverse cafe with chairs bolted to the floor.
                 </p>
+                <p class="body-text mt-6">
+                    What if we stopped pretending? What if we let digital space be what it actually is?
+                </p>
+                <div class="mt-12 p-8 border-l-4" style="border-color: var(--text-dark); background: rgba(250,250,250,0.8);">
+                    <p class="text-xl italic" style="color: var(--text-medium);">
+                        "A digital chair doesn't need to support weight—it only needs to suggest the idea of support. The function becomes purely symbolic, at least for now."
+                    </p>
+                </div>
             </div>
         </section>
 
-        <!-- SLIDE 4: DEFINITION -->
+        <!-- ============================================= -->
+        <!-- PART 2: OUR PHILOSOPHY -->
+        <!-- ============================================= -->
+
+        <!-- SLIDE 4: RELIGIOUS ROBOTICS -->
         <section class="section-slide">
             <div class="bg-image bg-4"></div>
             <div class="bg-overlay"></div>
             <div class="slide-content">
-                <span class="slide-label">03 / DEFINITION</span>
-                <h2 class="mega-title text-5xl md:text-7xl">REDEFINING SPATIAL<br>NARRATIVES.</h2>
+                <span class="slide-label">03 / OUR PHILOSOPHY</span>
+                <h2 class="mega-title text-5xl md:text-7xl">RELIGIOUS<br>ROBOTICS.</h2>
                 <p class="body-text">
-                    Theater-like performance arenas, boundless galleries, adaptive retail spaces. Accessible to all without downloads or delay. These spaces provide the foundation for cultural evolution.
+                    This is what we call our approach: <strong>Religious Robotics</strong>. Not making things look cool or futuristic, but letting digital space exist on its own terms. No gravity unless we want it. No solid masses unless they serve a purpose. Chrome surfaces, floating forms, impossible structures—these aren't just aesthetic choices. They're acts of honesty.
+                </p>
+                <p class="body-text mt-6">
+                    Think of it like teaching a new language. You can't just translate word-for-word from English to Japanese and expect it to make sense. Each language has its own grammar, its own logic. Digital space is the same. It needs its own vocabulary, its own rules—or rather, its own freedom from rules.
+                </p>
+                <p class="body-text mt-6">
+                    Like Lebbeus Woods' drawings that were never meant to be built—they were attempts to free architecture from its own limitations. That's what we're doing in code instead of paper. Letting digital space be what it actually is: minimal, spiritual, technically impossible in real life. When your chair doesn't need to support weight, suddenly you can focus on making it support the soul.
                 </p>
             </div>
         </section>
 
-        <!-- ============================================= -->
-        <!-- PART 2: METHODOLOGY (HOW) -->
-        <!-- ============================================= -->
-
-        <!-- SLIDE 5: APPROACH -->
+        <!-- SLIDE 5: THE VISION -->
         <section class="section-slide bg-5">
             <div class="slide-content">
-                <span class="slide-label">04 / APPROACH</span>
-                <h2 class="mega-title text-5xl md:text-7xl">THREE PRINCIPLES.</h2>
+                <span class="slide-label">04 / THE VISION</span>
+                <h2 class="mega-title text-5xl md:text-7xl">SPACES THAT<br>THINK, BREATHE,<br>REMEMBER.</h2>
                 <div class="space-y-8 mt-12 max-w-2xl">
                     <div>
-                        <h3 class="text-xl font-bold text-white mb-2">1. Spatial Innovation</h3>
-                        <p class="text-gray-400">Rethinking how digital spaces can be experienced. Not a page, a place.</p>
+                        <h3 class="text-xl font-bold mb-2" style="color: var(--text-dark);">Imagine a museum that remembers your footsteps.</h3>
+                        <p style="color: var(--text-medium); line-height: 1.7;">As you walk through, it learns which artworks captivate you, which corners invite contemplation. The next visitor experiences the space differently, shaped by the collective memory of everyone who came before. Like a city that grows wiser with every footstep.</p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white mb-2">2. Technical Efficiency</h3>
-                        <p class="text-gray-400">Optimizing performance without compromising quality. Under 15MB. Instant load.</p>
+                        <h3 class="text-xl font-bold mb-2" style="color: var(--text-dark);">Imagine a theater where you choose your perspective.</h3>
+                        <p style="color: var(--text-medium); line-height: 1.7;">Not just from a fixed seat, but from inside the scene, floating above the stage, or walking alongside the performers. The story unfolds differently for each viewer, yet everyone shares the same moment. Time becomes fluid—replay a dancer's leap from inside the arc of motion.</p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white mb-2">3. Interactive Narrative</h3>
-                        <p class="text-gray-400">Creating engaging stories through spatial design. The user is the protagonist.</p>
+                        <h3 class="text-xl font-bold mb-2" style="color: var(--text-dark);">Imagine a retail space that tells stories.</h3>
+                        <p style="color: var(--text-medium); line-height: 1.7;">Where every product sits within a narrative environment. A fashion collection displayed in a crystalline cavern. Digital artifacts arranged in an impossible forest. Shopping becomes exploration, commerce becomes culture, browsing becomes discovery.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2" style="color: var(--text-dark);">Imagine events that transcend time zones.</h3>
+                        <p style="color: var(--text-medium); line-height: 1.7;">A fashion show at midnight in New York, noon in Tokyo, yet somehow the perfect hour for everyone. Thousands attend, each from their own perfect viewpoint. The collective gasp when something beautiful happens—deeply personal yet undeniably shared.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 6: SERVICES -->
+        <!-- ============================================= -->
+        <!-- PART 3: HOW WE WORK -->
+        <!-- ============================================= -->
+
+        <!-- SLIDE 6: VIRTUAL THEATER -->
         <section class="section-slide">
             <div class="bg-image bg-6"></div>
             <div class="bg-overlay"></div>
             <div class="slide-content">
-                <span class="slide-label">05 / SERVICES</span>
-                <h2 class="mega-title text-5xl md:text-7xl">WHAT WE BUILD.</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-lg font-light text-gray-300">
-                    <div class="border-b border-white/20 pb-4">3D Design Browser</div>
-                    <div class="border-b border-white/20 pb-4">Virtual Theater Productions</div>
-                    <div class="border-b border-white/20 pb-4">Museum & Gallery Spaces</div>
-                    <div class="border-b border-white/20 pb-4">On-Chain Experiences</div>
-                    <div class="border-b border-white/20 pb-4">Digital Architecture Consulting</div>
-                    <div class="border-b border-white/20 pb-4">Spatial Retail Systems</div>
+                <span class="slide-label">05 / THE MEDIUM</span>
+                <h2 class="mega-title text-5xl md:text-7xl">VIRTUAL THEATER:<br>A NEW MEDIUM.</h2>
+                <p class="body-text">
+                    We pioneered something we call <strong>Virtual Theater</strong>. It's not cinema—there's no fixed camera, no edited sequence. It's not traditional theater—there's no physical stage, no limitation of seats. It's something entirely new: a performance that happens in real-time, in virtual space, where you can watch from designated angles, wander freely through the scene, or even become an actor yourself.
+                </p>
+                <p class="body-text mt-6">
+                    Think of it as the synthesis of cinema's visual language and theater's liveness, but freed from the constraints of both. The performance unfolds around you. Time can bend. Perspectives can shift. Reality becomes fluid.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                    <div class="p-6" style="background: rgba(250,250,250,0.8); border: 1px solid var(--border-medium);">
+                        <h4 class="font-bold text-sm mb-3 tracking-wider" style="color: var(--text-dark);">CINEMATIC MODE</h4>
+                        <p class="text-sm" style="color: var(--text-medium); line-height: 1.6;">Watch from designated camera angles. Like Hitchcock directing your gaze, but you choose when to cut.</p>
+                    </div>
+                    <div class="p-6" style="background: rgba(250,250,250,0.8); border: 1px solid var(--border-medium);">
+                        <h4 class="font-bold text-sm mb-3 tracking-wider" style="color: var(--text-dark);">IMMERSIVE MODE</h4>
+                        <p class="text-sm" style="color: var(--text-medium); line-height: 1.6;">Wander through the performance like a ghost. Experience moments from impossible angles.</p>
+                    </div>
+                    <div class="p-6" style="background: rgba(250,250,250,0.8); border: 1px solid var(--border-medium);">
+                        <h4 class="font-bold text-sm mb-3 tracking-wider" style="color: var(--text-dark);">ACTOR MODE</h4>
+                        <p class="text-sm" style="color: var(--text-medium); line-height: 1.6;">Step into the story. Walk Hamlet's castle and become the prince yourself.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 7: COLLECTORS -->
-        <section class="section-slide">
-            <div class="bg-image bg-7"></div>
-            <div class="bg-overlay"></div>
+        <!-- SLIDE 7: BROWSER-BASED MAGIC -->
+        <section class="section-slide bg-5">
             <div class="slide-content">
-                <span class="slide-label">06 / OWNERSHIP</span>
-                <h2 class="mega-title text-5xl md:text-7xl">YOU OWN THE SPACE.</h2>
-                <p class="body-text mb-8">
-                    When acquiring a DFW world, you're not just renting a server. You obtain a complete, editable virtual environment.
+                <span class="slide-label">06 / ACCESSIBILITY</span>
+                <h2 class="mega-title text-5xl md:text-7xl">NO DOWNLOADS.<br>NO BARRIERS.<br>JUST CLICK.</h2>
+                <p class="body-text">
+                    Everything we create lives in your browser. No apps to download, no accounts to create, no expensive hardware required. Just a link, a click, and you're inside a three-dimensional world. This isn't just convenient—it's philosophical.
                 </p>
-                <ul class="text-sm font-mono text-gray-400 space-y-2">
-                    <li>> Full world NFT rights on Ethereum</li>
-                    <li>> Complete editing capabilities</li>
-                    <li>> Original asset files included</li>
-                    <li>> Collaboration opportunities</li>
-                </ul>
+                <p class="body-text mt-6">
+                    The web was meant to be open, accessible, instant. We're bringing that ethos to spatial design. Whether you're on a high-end gaming PC or a basic smartphone, whether you're in Milan or Mumbai, whether you're 8 or 80—you can experience these spaces.
+                </p>
             </div>
         </section>
 
         <!-- ============================================= -->
-        <!-- PART 3: OUTPUT (WHAT) -->
+        <!-- PART 4: WHAT WE CREATE -->
         <!-- ============================================= -->
 
-        <!-- SLIDE 8: DATA / LISTS -->
+        <!-- SLIDE 8: CAPABILITIES -->
+        <section class="section-slide">
+            <div class="bg-image bg-7"></div>
+            <div class="bg-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-label">07 / CAPABILITIES</span>
+                <h2 class="mega-title text-5xl md:text-7xl">WHAT WE<br>CREATE.</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-lg font-light" style="color: var(--text-medium);">
+                    <div class="border-b pb-4" style="border-color: var(--border-medium);">
+                        <strong style="color: var(--text-dark);">Virtual Architecture</strong><br>
+                        <span style="font-size: 0.9rem;">Galleries, museums, stages, pavilions, headquarters—spaces designed for digital existence, not physical imitation.</span>
+                    </div>
+                    <div class="border-b pb-4" style="border-color: var(--border-medium);">
+                        <strong style="color: var(--text-dark);">Virtual Theater Productions</strong><br>
+                        <span style="font-size: 0.9rem;">Interactive performances where stories unfold in real-time, perspectives shift, and viewers become participants.</span>
+                    </div>
+                    <div class="border-b pb-4" style="border-color: var(--border-medium);">
+                        <strong style="color: var(--text-dark);">Fashion & Event Spaces</strong><br>
+                        <span style="font-size: 0.9rem;">Runways where gravity is optional, fashion shows attended by thousands, each with the perfect view.</span>
+                    </div>
+                    <div class="border-b pb-4" style="border-color: var(--border-medium);">
+                        <strong style="color: var(--text-dark);">Digital Design Objects</strong><br>
+                        <span style="font-size: 0.9rem;">Furniture, sculptures, environments—objects that exist purely in code but feel more real than pixels.</span>
+                    </div>
+                    <div class="border-b pb-4" style="border-color: var(--border-medium);">
+                        <strong style="color: var(--text-dark);">Complete Virtual Worlds</strong><br>
+                        <span style="font-size: 0.9rem;">Browser-based 3D environments where communities gather, culture happens, and the future takes shape.</span>
+                    </div>
+                    <div class="border-b pb-4" style="border-color: var(--border-medium);">
+                        <strong style="color: var(--text-dark);">Spatial Consulting</strong><br>
+                        <span style="font-size: 0.9rem;">We help brands, institutions, and creators imagine and build their presence in virtual space.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8.5: DIGITAL TOPOGRAPHIES -->
+        <section class="section-slide">
+            <div class="bg-image bg-2"></div>
+            <div class="bg-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-label">07B / EXPLORATION</span>
+                <h2 class="mega-title text-5xl md:text-7xl">DIGITAL<br>TOPOGRAPHIES.</h2>
+                <p class="body-text">
+                    Over 50 architectural models exploring what buildings become when freed from earth's constraints. These aren't just 3D models—they're experiments in spatial language. Galleries that spiral upward infinitely. Museums that remember your path. Pavilions composed of light and chrome. Event spaces where floors become ceilings.
+                </p>
+                <p class="body-text mt-6">
+                    Each model optimized to under 15MB. Each designed to load instantly in your browser. Each asking a question about what architecture means when physics is optional.
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+                    <div class="text-center p-4" style="background: rgba(250,250,250,0.8);">
+                        <div class="text-4xl font-bold font-grotesk mb-2" style="color: var(--text-dark);">50+</div>
+                        <div class="text-xs" style="color: var(--text-medium);">Architectural Models</div>
+                    </div>
+                    <div class="text-center p-4" style="background: rgba(250,250,250,0.8);">
+                        <div class="text-4xl font-bold font-grotesk mb-2" style="color: var(--text-dark);">15MB</div>
+                        <div class="text-xs" style="color: var(--text-medium);">Maximum File Size</div>
+                    </div>
+                    <div class="text-center p-4" style="background: rgba(250,250,250,0.8);">
+                        <div class="text-4xl font-bold font-grotesk mb-2" style="color: var(--text-dark);">∞</div>
+                        <div class="text-xs" style="color: var(--text-medium);">Possibilities</div>
+                    </div>
+                    <div class="text-center p-4" style="background: rgba(250,250,250,0.8);">
+                        <div class="text-4xl font-bold font-grotesk mb-2" style="color: var(--text-dark);">0</div>
+                        <div class="text-xs" style="color: var(--text-medium);">Downloads Required</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8.6: VIRTUAL FURNITURE -->
+        <section class="section-slide bg-5">
+            <div class="slide-content">
+                <span class="slide-label">07C / DESIGN</span>
+                <h2 class="mega-title text-5xl md:text-7xl">VIRTUAL<br>FURNITURE.</h2>
+                <p class="body-text">
+                    Chairs that don't need to support weight. Tables that can float. Sculptures that respond to music. Over 60 design objects exploring the question: what is furniture when function becomes symbolic?
+                </p>
+                <p class="body-text mt-6">
+                    These aren't just digital twins of physical objects. They're explorations of form freed from material constraints. A chair can be made of light. A sofa can pulse with data. A sculpture can dance with visitors. This is design for spaces where gravity is a choice, not a law.
+                </p>
+                <div class="mt-12 p-8 border-l-4" style="border-color: var(--text-dark); background: rgba(255,255,255,0.5);">
+                    <p class="text-lg italic mb-4" style="color: var(--text-medium);">
+                        "Think of a virtual Eames chair. In the physical world, it's design you sit in. In digital space, it's design that shapes how you experience the environment around you."
+                    </p>
+                    <p class="text-sm font-mono" style="color: var(--text-lighter);">
+                        60+ objects across categories: Chairs, Sofas, Tables, Sculptures, Musical Instruments, Automobiles
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8.7: THE PROCESS -->
+        <section class="section-slide">
+            <div class="bg-image bg-7"></div>
+            <div class="bg-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-label">07D / METHODOLOGY</span>
+                <h2 class="mega-title text-5xl md:text-7xl">HOW WE<br>BUILD.</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4" style="color: var(--text-dark);">Technical Foundation</h3>
+                        <p class="text-base mb-4" style="color: var(--text-medium); line-height: 1.7;">
+                            Every space begins with performance. We optimize mesh geometry, implement LOD strategies, and use efficient texture mapping. glTF/GLB format for universal compatibility. PBR materials for realistic shading without heavy computation.
+                        </p>
+                        <p class="text-base" style="color: var(--text-medium); line-height: 1.7;">
+                            Smart objects coordinate everything from lighting changes to character movements. Chain reactions trigger seamlessly. NPCs guide visitors. Environments adapt in real-time.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-4" style="color: var(--text-dark);">Design Philosophy</h3>
+                        <p class="text-base mb-4" style="color: var(--text-medium); line-height: 1.7;">
+                            Sound comes first—we build spaces around ambient sets, letting audio guide spatial rhythm. Pacing learned from TikTok: constant stimulation punctuated by silence. Lighting as narrative: spaces that respond to presence, that remember your path.
+                        </p>
+                        <p class="text-base" style="color: var(--text-medium); line-height: 1.7;">
+                            Platforms: Hyperfy, Mona, Oncyber. Each chosen for specific strengths. All browser-based. All accessible. All pushing boundaries of what's possible without downloads.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: PRINCIPLES -->
+        <section class="section-slide bg-5">
+            <div class="slide-content">
+                <span class="slide-label">08 / PRINCIPLES</span>
+                <h2 class="mega-title text-5xl md:text-7xl">THREE CORE<br>PRINCIPLES.</h2>
+                <div class="space-y-12 mt-12 max-w-3xl">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3" style="color: var(--text-dark);">1. Spatial Honesty</h3>
+                        <p class="text-lg" style="color: var(--text-medium); line-height: 1.7;">
+                            We don't fake physics. We don't pretend digital space needs walls or floors unless they serve a purpose. Every element exists because it enhances the experience, not because "that's how buildings work." This honesty creates spaces that feel authentic to their medium.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3" style="color: var(--text-dark);">2. Technical Excellence</h3>
+                        <p class="text-lg" style="color: var(--text-medium); line-height: 1.7;">
+                            Beauty means nothing if it doesn't load. Every space we create is optimized to run smoothly in browsers—under 15MB, instant access, 60fps. We obsess over file sizes, rendering efficiency, and performance because accessibility is not optional.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3" style="color: var(--text-dark);">3. Narrative Architecture</h3>
+                        <p class="text-lg" style="color: var(--text-medium); line-height: 1.7;">
+                            Every space tells a story. Not through text or labels, but through form, light, movement, and interaction. A spiral that climbs suggests growth. A cave invites intimacy. A floating platform promises freedom. The architecture itself is the narrative.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: THE FUTURE -->
+        <section class="section-slide">
+            <div class="bg-image bg-3"></div>
+            <div class="bg-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-label">09 / THE FUTURE</span>
+                <h2 class="mega-title text-5xl md:text-7xl">COLLECTIVE<br>IMAGINATION.</h2>
+                <p class="body-text">
+                    We're not building the metaverse. We're not creating the future of the internet. Those phrases are too grand, too final. What we're doing is simpler and more profound: we're exploring. Every project is an experiment. Every space is a question.
+                </p>
+                <p class="body-text mt-6">
+                    What happens when a museum can reshape itself based on who's visiting? How does fashion change when runways can exist in impossible geometries? What new forms of theater emerge when viewers can float through scenes? What does ownership mean when spaces can be forked, remixed, and evolved collectively?
+                </p>
+                <p class="body-text mt-6">
+                    We don't have all the answers. We're discovering them together, one space at a time.
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================================= -->
+        <!-- PART 5: SELECTED WORKS (Brief) -->
+        <!-- ============================================= -->
+
+        <!-- SLIDE 11: TRACK RECORD -->
         <section class="section-slide bg-8">
             <div class="slide-content h-full flex flex-col justify-center">
+                <span class="slide-label">10 / RECOGNITION</span>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
                     <div>
-                        <span class="text-xs font-mono text-gray-600 mb-6 block">RECOGNITION</span>
-                        <div class="space-y-4 text-sm text-gray-300">
+                        <span class="text-xs font-mono mb-6 block" style="color: var(--text-lighter);">AWARDS & HONORS</span>
+                        <div class="space-y-4 text-sm" style="color: var(--text-medium);">
                             <div class="list-item"><span>01</span> VCA x Draup Virtual Fashion Residency 1st Prize</div>
                             <div class="list-item"><span>02</span> Top 50 Creators of Metaverse by Metamundo</div>
                             <div class="list-item"><span>03</span> Creatorverse Buildathon Winner</div>
@@ -320,8 +615,8 @@
                         </div>
                     </div>
                     <div>
-                        <span class="text-xs font-mono text-gray-600 mb-6 block">EXHIBITIONS</span>
-                        <div class="space-y-4 text-sm text-gray-300">
+                        <span class="text-xs font-mono mb-6 block" style="color: var(--text-lighter);">EXHIBITIONS</span>
+                        <div class="space-y-4 text-sm" style="color: var(--text-medium);">
                             <div class="list-item"><span>IT</span> Fabbrica Del Vapore, Milan</div>
                             <div class="list-item"><span>UK</span> Royal Institution, London</div>
                             <div class="list-item"><span>US</span> Art Basel Miami</div>
@@ -333,137 +628,84 @@
             </div>
         </section>
 
-        <!-- SLIDE 9: SELECTED WORKS (Visual) -->
-        <section id="experience" class="section-slide bg-9">
+        <!-- SLIDE 12: SELECTED WORKS -->
+        <section class="section-slide bg-9">
             <div class="slide-content">
-                <div class="flex justify-between items-end mb-12 border-b border-white/10 pb-6">
-                    <h2 class="text-4xl font-bold text-white">SELECTED WORKS</h2>
-                    <span class="font-mono text-xs text-gray-500 hidden md:block">ARCHIVE 2021-2026</span>
+                <div class="flex justify-between items-end mb-12 border-b pb-6" style="border-color: var(--border-medium);">
+                    <h2 class="text-4xl font-bold" style="color: var(--text-dark);">SELECTED EXPLORATIONS</h2>
+                    <span class="font-mono text-xs hidden md:block" style="color: var(--text-lighter);">2021-2026</span>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Work 1 -->
-                    <div class="work-card group" onclick="openModal(fileSystemDB.Experience[0])">
-                        <img src="https://static.wixstatic.com/media/54a996_ba80e31fd25540a5b648f40640b7eaae~mv2.jpg">
+                    <div class="work-card group">
+                        <img src="https://static.wixstatic.com/media/54a996_ba80e31fd25540a5b648f40640b7eaae~mv2.jpg" alt="Virtual Theater">
                         <div class="absolute bottom-4 left-4">
-                            <span class="text-[10px] font-mono bg-white text-black px-1">THEATER</span>
-                            <p class="text-white font-bold mt-1">Why We Exist?</p>
+                            <span class="text-[10px] font-mono px-2 py-1" style="background-color: var(--text-dark); color: white;">VIRTUAL THEATER</span>
+                            <p class="font-bold mt-1" style="color: var(--text-dark);">Why We Exist?</p>
                         </div>
                     </div>
                     <!-- Work 2 -->
-                    <div class="work-card group" onclick="openModal(fileSystemDB.Experience[3])">
-                        <img src="https://static.wixstatic.com/media/54a996_47b0c01fb7404427ade7405c73862623~mv2.jpg">
+                    <div class="work-card group">
+                        <img src="https://static.wixstatic.com/media/54a996_2598bd0a3bab4c419b1939d8cee8b485~mv2.png" alt="Retail Space">
                         <div class="absolute bottom-4 left-4">
-                            <span class="text-[10px] font-mono bg-white text-black px-1">EVENT</span>
-                            <p class="text-white font-bold mt-1">C2W Runway</p>
+                            <span class="text-[10px] font-mono px-2 py-1" style="background-color: var(--text-dark); color: white;">SPATIAL RETAIL</span>
+                            <p class="font-bold mt-1" style="color: var(--text-dark);">Concept Store</p>
                         </div>
                     </div>
                     <!-- Work 3 -->
-                    <div class="work-card group" onclick="openModal(fileSystemDB.Gallery[1])">
-                        <img src="https://static.wixstatic.com/media/54a996_2598bd0a3bab4c419b1939d8cee8b485~mv2.png">
+                    <div class="work-card group">
+                        <img src="https://static.wixstatic.com/media/54a996_a4275b8206ae43d3ae134f283411acf2~mv2.jpg" alt="Museum">
                         <div class="absolute bottom-4 left-4">
-                            <span class="text-[10px] font-mono bg-white text-black px-1">RETAIL</span>
-                            <p class="text-white font-bold mt-1">Concept Store</p>
+                            <span class="text-[10px] font-mono px-2 py-1" style="background-color: var(--text-dark); color: white;">3D BROWSER</span>
+                            <p class="font-bold mt-1" style="color: var(--text-dark);">Scaffold</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                      <!-- Work 4 -->
-                     <div class="work-card group h-48" onclick="openModal(fileSystemDB.Gallery[0])">
-                        <img src="https://static.wixstatic.com/media/54a996_a4275b8206ae43d3ae134f283411acf2~mv2.jpg">
+                     <div class="work-card group h-48">
+                        <img src="https://static.wixstatic.com/media/54a996_47b0c01fb7404427ade7405c73862623~mv2.jpg" alt="C2W Runway">
                         <div class="absolute bottom-4 left-4">
-                            <span class="text-[10px] font-mono bg-white text-black px-1">MUSEUM</span>
-                            <p class="text-white font-bold mt-1">Scaffold</p>
+                            <span class="text-[10px] font-mono px-2 py-1" style="background-color: var(--text-dark); color: white;">FASHION EVENT</span>
+                            <p class="font-bold mt-1" style="color: var(--text-dark);">C2W Runway</p>
                         </div>
                     </div>
                     <!-- Work 5 -->
-                    <div class="work-card group h-48" onclick="openModal(fileSystemDB.Experience[2])">
-                        <img src="https://static.wixstatic.com/media/54a996_26886a672f784198b9f8af4c4c93a5b9~mv2.jpg">
+                    <div class="work-card group h-48">
+                        <img src="https://static.wixstatic.com/media/54a996_26886a672f784198b9f8af4c4c93a5b9~mv2.jpg" alt="Hatch">
                         <div class="absolute bottom-4 left-4">
-                            <span class="text-[10px] font-mono bg-white text-black px-1">THEATER</span>
-                            <p class="text-white font-bold mt-1">Hatch</p>
+                            <span class="text-[10px] font-mono px-2 py-1" style="background-color: var(--text-dark); color: white;">THEATER</span>
+                            <p class="font-bold mt-1" style="color: var(--text-dark);">Hatch</p>
                         </div>
                     </div>
                 </div>
+
+                <p class="text-center mt-12 text-sm font-mono" style="color: var(--text-light);">
+                    50+ architectural models • 60+ design objects • 3 virtual theater productions • Countless experiments
+                </p>
             </div>
         </section>
 
-        <!-- SLIDE 10: FOOTER -->
-        <section id="contact" class="section-slide bg-white text-black">
+        <!-- SLIDE 13: CONTACT / FOOTER -->
+        <section id="contact" class="section-slide" style="background-color: var(--text-dark);">
             <div class="slide-content text-center">
-                <h2 class="mega-title text-black mb-6">FORGE<br>REALITY.</h2>
-                <p class="text-xl text-gray-600 mb-12 font-light">
-                    The internet is still flat. We are here to change that.
+                <h2 class="mega-title text-white mb-6">LET'S BUILD<br>THE FUTURE.</h2>
+                <p class="text-xl mb-12 font-light" style="color: #cccccc;">
+                    Digital space is still being defined. Let's define it together.
                 </p>
                 <div class="flex flex-col md:flex-row justify-center gap-6 mb-24">
-                    <a href="mailto:main@d--f--w.com" class="px-10 py-4 bg-black text-white font-bold rounded-full hover:scale-105 transition-transform">Contact Studio</a>
-                    <a href="https://calendly.com/d--f--w/meeting" class="px-10 py-4 border border-black text-black font-bold rounded-full hover:bg-black hover:text-white transition-colors">Book Demo</a>
+                    <a href="mailto:main@d--f--w.com" class="px-10 py-4 bg-white font-bold rounded-full transition-transform hover:scale-105" style="color: var(--text-dark);">Contact Studio</a>
+                    <a href="https://calendly.com/d--f--w/meeting" class="px-10 py-4 border font-bold rounded-full transition-colors hover:bg-white" style="border-color: white; color: white;" onmouseover="this.style.color='var(--text-dark)'; this.style.backgroundColor='white';" onmouseout="this.style.color='white'; this.style.backgroundColor='transparent';">Book a Call</a>
                 </div>
-                <div class="text-[10px] font-mono text-gray-400">
-                    © 2026 DIGITAL FORGERY WORKSHOP
+                <div class="text-[10px] font-mono" style="color: #666666;">
+                    © 2026 DECENTRALIZE DESIGN · MILAN / METAVERSE
                 </div>
             </div>
         </section>
 
     </div>
 
-    <!-- MODAL (Standard) -->
-    <div id="quick-view-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
-        <div class="absolute inset-0 bg-black/95 backdrop-blur-md" onclick="closeModal()"></div>
-        <div class="relative bg-[#050505] w-full max-w-5xl max-h-[90vh] border border-white/20 flex flex-col md:flex-row overflow-hidden shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-4 right-4 z-20 p-2 bg-black/50 text-white rounded-full">✕</button>
-            <div class="w-full md:w-2/3 bg-black flex items-center justify-center border-r border-white/10" id="modal-media-container"></div>
-            <div class="w-full md:w-1/3 p-10 overflow-y-auto bg-[#111]">
-                <span id="modal-type" class="text-gray-500 text-[10px] font-mono mb-4 block tracking-widest uppercase">TYPE</span>
-                <h3 id="modal-title" class="text-3xl font-bold text-white mb-6">Title</h3>
-                <p id="modal-desc" class="text-gray-400 text-sm leading-relaxed mb-8">Description.</p>
-                <div id="modal-actions" class="mt-auto"></div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Simplified Data for Modal
-        const fileSystemDB = {
-            "Experience": [
-                { id: 'wwe', name: 'Why We Exist?', type: 'Virtual Theater', desc: 'Virtual Theater No:1. A pioneering venture into digital performance art.', img: 'https://static.wixstatic.com/media/54a996_ba80e31fd25540a5b648f40640b7eaae~mv2.jpg', link: 'https://hyperfy.io/pill' },
-                { id: 'balloon', name: 'Balloon', type: 'Virtual Theater', desc: 'Virtual Theater No:2. A 10-minute WebXR piece exploring digital identity.', img: 'https://static.wixstatic.com/media/54a996_c9415cfa41d943a7ae7ec18cc8a81a63~mv2.png', link: 'https://hyperfy.io/balloon' },
-                { id: 'hatch', name: 'Hatch', type: 'Virtual Theater', desc: 'Virtual Theater No:3. Exploring existence and freedom in WebXR.', img: 'https://static.wixstatic.com/media/54a996_26886a672f784198b9f8af4c4c93a5b9~mv2.jpg', link: 'https://hyperfy.io/hatch' },
-                { id: 'c2w', name: 'C2W Runway', type: 'Event Space', desc: 'First Metaverse Runway event held in Nov 2023.', img: 'https://static.wixstatic.com/media/54a996_47b0c01fb7404427ade7405c73862623~mv2.jpg', link: 'https://hyperfy.io/c2w' }
-            ],
-            "Gallery": [
-                { id: 'scaffold', name: 'Scaffold', type: 'Museum', desc: '3D Architectural Browser showcasing 50 digital topographies.', img: 'https://static.wixstatic.com/media/54a996_a4275b8206ae43d3ae134f283411acf2~mv2.jpg', link: 'https://hyperfy.io/scaffold' },
-                { id: 'retail', name: 'Retail', type: 'Commercial', desc: 'A hybrid retail model for the metaverse.', img: 'https://static.wixstatic.com/media/54a996_2598bd0a3bab4c419b1939d8cee8b485~mv2.png', link: 'https://hyperfy.io/retail' }
-            ]
-        };
-
-        const modal = document.getElementById('quick-view-modal');
-        function openModal(item) {
-            document.getElementById('modal-title').textContent = item.name || "Project";
-            document.getElementById('modal-desc').textContent = item.desc || "Details unavailable.";
-            document.getElementById('modal-type').textContent = (item.type || "Architecture").toUpperCase();
-            
-            const mediaContainer = document.getElementById('modal-media-container');
-            const imgUrl = item.img || 'https://placehold.co/800x600/111/333?text=Preview';
-            mediaContainer.innerHTML = `<img src="${imgUrl}" class="w-full h-full object-cover">`;
-            
-            const actions = document.getElementById('modal-actions');
-            actions.innerHTML = '';
-            if (item.link) {
-                actions.innerHTML = `<a href="${item.link}" target="_blank" class="block w-full border border-white text-white font-bold text-center py-4 hover:bg-white hover:text-black transition-colors uppercase tracking-widest text-xs">Enter Space ↗</a>`;
-            }
-            
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = 'auto';
-        }
-    </script>
 </body>
 </html>
