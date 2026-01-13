@@ -463,32 +463,31 @@
 
         /* DRAGGABLE WINDOWS */
         .window {
-            position: fixed;
-            background: #fff;
-            border: 4px solid #000;
-            box-shadow: 10px 10px 0 rgba(0,0,0,0.3);
-            z-index: 900;
-            min-width: 300px;
-            min-height: 200px;
-            display: none;
-        }
+    /* position: fixed;  <-- ESKİSİ */
+    position: absolute; /* <-- YENİSİ: Sayfayla birlikte kayar */
+    background: #fff;
+    border: 4px solid #000;
+    box-shadow: 10px 10px 0 rgba(0,0,0,0.3);
+    z-index: 900;
+    min-width: 300px;
+    min-height: 200px;
+    /* display: none; <-- ESKİSİ */
+    display: block; /* <-- YENİSİ: Başlangıçta görünür */
+}
 
-        .window.active {
-            display: block;
-        }
+        
 
         .window-header {
-            background: #000;
-            color: #fff;
-            padding: 0.75rem 1rem;
-            cursor: move;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            user-select: none;
+    background: #000;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
         }
 
         .window-close {
@@ -756,13 +755,7 @@
                     <img src="https://static.wixstatic.com/media/54a996_54c73b3af02e4793941ebe4d7f6269f4~mv2.png" alt="DIAGRAM 1" style="width: 100%; height: auto; display: block;">
                 </div>
 
-                <div class="video-trigger" onclick="openWindow('DFW METAOFFICE', 'https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4', 'video')">
-                    ▶ WATCH: DFW METAOFFICE
-                </div>
-
-                <div class="video-trigger" onclick="openWindow('DFW DESIGN', 'https://video.wixstatic.com/video/54a996_089c17f8355849d5a11f6115ab1025ba/1080p/mp4/file.mp4', 'video')">
-                    ▶ WATCH: DFW DESIGN
-                </div>
+               
 
                 <!-- HORIZONTAL SCROLL LOOP 1 -->
                 <div class="scroll-container">
@@ -814,13 +807,7 @@
                     <p>"WHAT BECOMES POSSIBLE WHEN WE LET DIGITAL SPACE BE ITSELF?"</p>
                 </div>
 
-                <div class="video-trigger" onclick="openWindow('STEVE JOBS EXPLAINING DFW', 'https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4', 'video')">
-                    ▶ WATCH: STEVE JOBS EXPLAINING DFW
-                </div>
-
-                <div class="video-trigger" onclick="openWindow('DFW PRESENTATION 2022', 'https://video.wixstatic.com/video/54a996_dcc34db653704ed9962289d9ed73dcd7/1080p/mp4/file.mp4', 'video')">
-                    ▶ WATCH: DFW PRESENTATION 2022
-                </div>
+                
             </div>
         </section>
 
@@ -891,13 +878,7 @@
                     <p>"DIGITAL SPACE DOESN'T NEED GRAVITY. IT NEEDS ITS OWN GRAMMAR."</p>
                 </div>
 
-                <div class="video-trigger" onclick="openWindow('ZEN BUBBLE RIDER', 'https://video.wixstatic.com/video/54a996_8353aa79da9442b0a71e284a473fb230/1080p/mp4/file.mp4', 'video')">
-                    ▶ WATCH: ZEN BUBBLE RIDER
-                </div>
-
-                <div class="video-trigger" onclick="openWindow('DFINITY LIPS SOFA', 'https://video.wixstatic.com/video/54a996_92de7517321a4940a50bd7454cffcf22/1080p/mp4/file.mp4', 'video')">
-                    ▶ WATCH: DFINITY LIPS SOFA
-                </div>
+               
             </div>
         </section>
 
@@ -957,13 +938,7 @@
                     <p>"SAME MOMENT. INFINITE PERSPECTIVES. THAT'S THE POWER OF SPATIAL STORYTELLING."</p>
                 </div>
 
-                <div class="video-trigger" onclick="openWindow('VIRTUAL THEATER MULTI-PERSPECTIVE', 'https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4', 'video')">
-                    ▶ WATCH: VIRTUAL THEATER EXPERIENCE
-                </div>
-
-                <div class="video-trigger" onclick="openWindow('CAVE DESIGN STORE', 'https://video.wixstatic.com/video/54a996_ea70bd1806ff4aa7a469ef888b17d1f6/1080p/mp4/file.mp4', 'video')">
-                    ▶ WATCH: CAVE DESIGN STORE
-                </div>
+                
 
                 <div class="grid-2">
                     <div class="info-card">
@@ -1042,17 +1017,7 @@
                     <div class="diagram-label">FROM CONCEPT TO WEB</div>
                 </div>
 
-                <div class="video-trigger" onclick="openWindow('DAOTOWN - MILAN 2024', 'https://video.wixstatic.com/video/54a996_fdd0f8d73d584186a2b6ad252aea65d8/1080p/mp4/file.mp4', 'video')">
-                    ▶ WATCH: DAOTOWN M3 2024
-                </div>
-
-                <div class="video-trigger" onclick="openWindow('UMMUSE MUSEUM', 'https://video.wixstatic.com/video/54a996_81dcccae716947fb925a2365cccaf4a9/720p/mp4/file.mp4', 'video')">
-                    ▶ WATCH: UMMUSE MUSEUM
-                </div>
-
-                <div class="video-trigger" onclick="openWindow('VERTICAL GALLERY #NP17658', 'https://video.wixstatic.com/video/54a996_15c2541f73fb4084aa3f7860dbf681b6/720p/mp4/file.mp4', 'video')">
-                    ▶ WATCH: VERTICAL GALLERY
-                </div>
+                
 
                 <!-- HORIZONTAL SCROLL LOOP 2 -->
                 <div class="scroll-container">
@@ -1143,10 +1108,7 @@
                     <div class="diagram-label">FROM BUILDING TO EXPLORING</div>
                 </div>
 
-                <div class="video-trigger" onclick="openWindow('EAGLE NEST PAVILION', 'https://video.wixstatic.com/video/54a996_7c2e66da063e4e5ba73e009ba2d608a9/1080p/mp4/file.mp4', 'video')">
-                    ▶ WATCH: EAGLE NEST PAVILION
-                </div>
-
+                
                 <div class="quote-block">
                     <p>"QUESTION WHY DIGITAL SPACES LOOK THIS WAY. IMAGINE WHAT THEY COULD BE. YOU'RE PART OF THIS."</p>
                 </div>
@@ -1253,201 +1215,202 @@
     <!-- DRAGGABLE WINDOWS CONTAINER -->
     <div id="windows-container"></div>
 
-   <script>
-        // DRAGGABLE WINDOW SYSTEM
-        let windowCounter = 0;
-        let activeWindow = null;
+  <script>
+    // --- GLB AYARLARI ---
+    // Dosyanın senin bilgisayarında, index.html ile aynı klasörde olduğunu varsayıyoruz:
+    const GLB_VIEWER_URL = "glb-viewer.html";
+    
+    let windowCounter = 0;
+    let activeWindow = null;
 
-        function openWindow(title, src, type = 'video') {
-            windowCounter++;
-            const windowId = `window-${windowCounter}`;
+    // PENCERE AÇMA FONKSİYONU
+    // x ve y: Sayfanın solundan ve üstünden piksel konumu (position: absolute için)
+    function openWindow(title, src, type = 'video', x = 100, y = 100, w = 500, h = 350) {
+        windowCounter++;
+        const windowId = `window-${windowCounter}`;
 
-            // RANDOM POSITIONING
-            const randomLeft = Math.floor(Math.random() * (window.innerWidth - 700)) + 50;
-            const randomTop = Math.floor(Math.random() * (window.innerHeight - 500)) + 100;
-            const randomWidth = Math.floor(Math.random() * 400) + 500; 
-            const randomHeight = Math.floor(Math.random() * 300) + 350; 
+        const windowEl = document.createElement('div');
+        windowEl.className = 'window'; // CSS'te zaten display: block yaptık
+        windowEl.id = windowId;
+        
+        // Konumlandırma
+        windowEl.style.left = `${x}px`;
+        windowEl.style.top = `${y}px`;
+        windowEl.style.width = `${w}px`;
+        windowEl.style.height = `${h}px`;
 
-            const windowEl = document.createElement('div');
-            windowEl.className = 'window active';
-            windowEl.id = windowId;
-            windowEl.style.left = `${randomLeft}px`;
-            windowEl.style.top = `${randomTop}px`;
-            windowEl.style.width = `${randomWidth}px`;
-            windowEl.style.height = `${randomHeight}px`;
+        let contentHTML = '';
 
-            let contentHTML = '';
-            if (type === 'video') {
-                contentHTML = `<video autoplay loop muted playsinline controls><source src="${src}" type="video/mp4"></video>`;
-            } else if (type === 'image') {
-                contentHTML = `<img src="${src}" alt="${title}">`;
-            } else if (type === 'iframe') {
-                contentHTML = `<iframe src="${src}"></iframe>`;
-            }
-
-            windowEl.innerHTML = `
-                <div class="window-header">
-                    <span>${title.toUpperCase()}</span>
-                    <button class="window-close" onclick="closeWindow('${windowId}')">×</button>
-                </div>
-                <div class="window-content">${contentHTML}</div>
-                <div class="window-resize"></div>
-            `;
-
-            document.getElementById('windows-container').appendChild(windowEl);
-            makeDraggable(windowEl);
-            makeResizable(windowEl);
-            bringToFront(windowEl);
+        if (type === 'video') {
+            contentHTML = `<video autoplay loop muted playsinline controls style="width:100%; height:100%; object-fit:cover;"><source src="${src}" type="video/mp4"></video>`;
+        } 
+        else if (type === 'glb') {
+            // GLB Viewer URL Yapısı
+            const finalSrc = `${GLB_VIEWER_URL}?url=${encodeURIComponent(src)}`;
+            contentHTML = `<iframe src="${finalSrc}" style="width:100%; height:100%; border:none;"></iframe>`;
+        }
+        else if (type === 'iframe') {
+            contentHTML = `<iframe src="${src}" style="width:100%; height:100%; border:none;"></iframe>`;
         }
 
-        function closeWindow(windowId) {
-            const windowEl = document.getElementById(windowId);
-            if (windowEl) {
-                windowEl.remove();
-            }
+        windowEl.innerHTML = `
+            <div class="window-header">
+                <span>${title.toUpperCase()}</span>
+                <button class="window-close" onclick="closeWindow('${windowId}')">×</button>
+            </div>
+            <div class="window-content">${contentHTML}</div>
+            <div class="window-resize"></div>
+        `;
+
+        // Pencereleri windows-container yerine direk body'ye ekleyelim ki absolute positioning sayfa genelinde çalışsın
+        document.body.appendChild(windowEl);
+        
+        makeDraggable(windowEl);
+        makeResizable(windowEl);
+        bringToFront(windowEl);
+    }
+
+    function closeWindow(windowId) {
+        const windowEl = document.getElementById(windowId);
+        if (windowEl) {
+            windowEl.remove();
         }
+    }
 
-        function bringToFront(windowEl) {
-            document.querySelectorAll('.window').forEach(w => {
-                w.style.zIndex = 900;
-            });
-            windowEl.style.zIndex = 950;
-            activeWindow = windowEl;
-        }
+    function bringToFront(windowEl) {
+        document.querySelectorAll('.window').forEach(w => {
+            w.style.zIndex = 900;
+        });
+        windowEl.style.zIndex = 950;
+    }
 
-        function makeDraggable(windowEl) {
-            const header = windowEl.querySelector('.window-header');
-            let isDragging = false;
-            let currentX, currentY, initialX, initialY;
+    // SÜRÜKLEME SİSTEMİ (Absolute pozisyona göre uyarlandı)
+    function makeDraggable(windowEl) {
+        const header = windowEl.querySelector('.window-header');
+        let isDragging = false;
+        let startX, startY, initialLeft, initialTop;
 
-            header.addEventListener('mousedown', dragStart);
+        header.addEventListener('mousedown', dragStart);
 
-            function dragStart(e) {
-                if (e.target.classList.contains('window-close')) return;
-
-                initialX = e.clientX - windowEl.offsetLeft;
-                initialY = e.clientY - windowEl.offsetTop;
-                isDragging = true;
-                bringToFront(windowEl);
-
-                document.addEventListener('mousemove', drag);
-                document.addEventListener('mouseup', dragEnd);
-            }
-
-            function drag(e) {
-                if (!isDragging) return;
-                e.preventDefault();
-                currentX = e.clientX - initialX;
-                currentY = e.clientY - initialY;
-                windowEl.style.left = `${currentX}px`;
-                windowEl.style.top = `${currentY}px`;
-            }
-
-            function dragEnd() {
-                isDragging = false;
-                document.removeEventListener('mousemove', drag);
-                document.removeEventListener('mouseup', dragEnd);
-            }
-        }
-
-        function makeResizable(windowEl) {
-            const resizer = windowEl.querySelector('.window-resize');
-            let isResizing = false;
-            let initialWidth, initialHeight, initialX, initialY;
-
-            resizer.addEventListener('mousedown', resizeStart);
-
-            function resizeStart(e) {
-                isResizing = true;
-                initialX = e.clientX;
-                initialY = e.clientY;
-                initialWidth = windowEl.offsetWidth;
-                initialHeight = windowEl.offsetHeight;
-
-                bringToFront(windowEl);
-                document.addEventListener('mousemove', resize);
-                document.addEventListener('mouseup', resizeEnd);
-            }
-
-            function resize(e) {
-                if (!isResizing) return;
-                e.preventDefault();
-                const width = initialWidth + (e.clientX - initialX);
-                const height = initialHeight + (e.clientY - initialY);
-                if (width > 300) windowEl.style.width = `${width}px`;
-                if (height > 200) windowEl.style.height = `${height}px`;
-            }
-
-            function resizeEnd() {
-                isResizing = false;
-                document.removeEventListener('mousemove', resize);
-                document.removeEventListener('mouseup', resizeEnd);
-            }
-        }
-
-        // SMOOTH SCROLL TO SECTION
-        function scrollToSection(id) {
-            const element = document.getElementById(id);
-            if (element) {
-                element.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        }
-
-        // HIGHLIGHT ACTIVE SECTION IN NAV
-        const sections = document.querySelectorAll('section[id]');
-        const navIcons = document.querySelectorAll('.nav-icon');
-
-        // ACTIVE SECTION HIGHLIGHTER
-        const updateActiveSection = () => {
-            let current = '';
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.pageYOffset >= sectionTop - 100) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navIcons.forEach((icon, index) => {
-                const sectionId = ['intro', 'problem', 'philosophy', 'vision', 'work', 'future', 'contact'][index];
-                if (sectionId === current) {
-                    icon.style.background = '#0064FF';
-                    icon.style.color = '#fff';
-                } else {
-                    icon.style.background = '#fff';
-                    icon.style.color = '#000';
-                }
-            });
-        };
-
-        // INIT (ANIMASYON KODLARI TAMAMEN SİLİNDİ)
-        document.addEventListener('DOMContentLoaded', () => {
-            // Sadece menü highlight fonksiyonunu çalıştır
-            updateActiveSection();
+        function dragStart(e) {
+            if (e.target.classList.contains('window-close')) return;
             
-            // VIDEO HOVER EFFECTS (Hızlandırma/Yavaşlatma efekti kalıyor)
-            const videoCards = document.querySelectorAll('.video-card');
-            videoCards.forEach(card => {
-                const video = card.querySelector('video');
-                card.addEventListener('mouseenter', () => {
-                    video.playbackRate = 0.5; 
-                });
-                card.addEventListener('mouseleave', () => {
-                    video.playbackRate = 1;
-                });
-            });
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            
+            // Mevcut left/top değerlerini al
+            const rect = windowEl.getBoundingClientRect();
+            // Absolute olduğu için scroll miktarını hesaba katmalıyız
+            initialLeft = rect.left + window.scrollX;
+            initialTop = rect.top + window.scrollY;
+
+            bringToFront(windowEl);
+
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', dragEnd);
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+
+            windowEl.style.left = `${initialLeft + dx}px`;
+            windowEl.style.top = `${initialTop + dy}px`;
+        }
+
+        function dragEnd() {
+            isDragging = false;
+            document.removeEventListener('mousemove', drag);
+            document.removeEventListener('mouseup', dragEnd);
+        }
+    }
+
+    // YENİDEN BOYUTLANDIRMA
+    function makeResizable(windowEl) {
+        const resizer = windowEl.querySelector('.window-resize');
+        let isResizing = false;
+        let initialWidth, initialHeight, initialX, initialY;
+
+        resizer.addEventListener('mousedown', resizeStart);
+
+        function resizeStart(e) {
+            isResizing = true;
+            initialX = e.clientX;
+            initialY = e.clientY;
+            initialWidth = windowEl.offsetWidth;
+            initialHeight = windowEl.offsetHeight;
+
+            bringToFront(windowEl);
+            document.addEventListener('mousemove', resize);
+            document.addEventListener('mouseup', resizeEnd);
+        }
+
+        function resize(e) {
+            if (!isResizing) return;
+            e.preventDefault();
+            const width = initialWidth + (e.clientX - initialX);
+            const height = initialHeight + (e.clientY - initialY);
+            if (width > 300) windowEl.style.width = `${width}px`;
+            if (height > 200) windowEl.style.height = `${height}px`;
+        }
+
+        function resizeEnd() {
+            isResizing = false;
+            document.removeEventListener('mousemove', resize);
+            document.removeEventListener('mouseup', resizeEnd);
+        }
+    }
+
+    // MENU HIGHLIGHT (Animasyonlar kaldırılmış hali)
+    const sections = document.querySelectorAll('section[id]');
+    const navIcons = document.querySelectorAll('.nav-icon');
+
+    const updateActiveSection = () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (window.pageYOffset >= sectionTop - 100) {
+                current = section.getAttribute('id');
+            }
         });
 
-        // SCROLL LISTENERS
-        window.addEventListener('scroll', () => {
-            // Animasyon fonksiyonu silindi, sadece menü güncellemesi kaldı
-            updateActiveSection();
+        navIcons.forEach((icon, index) => {
+            const sectionId = ['intro', 'problem', 'philosophy', 'vision', 'work', 'future', 'contact'][index];
+            if (sectionId === current) {
+                icon.style.background = '#0064FF';
+                icon.style.color = '#fff';
+            } else {
+                icon.style.background = '#fff';
+                icon.style.color = '#000';
+            }
         });
-    </script>
+    };
+
+    window.addEventListener('scroll', updateActiveSection);
+
+    // --- SAYFA YÜKLENDİĞİNDE PENCERELERİ AÇ ---
+    document.addEventListener('DOMContentLoaded', () => {
+        updateActiveSection();
+
+        // INTRO BÖLÜMÜNDEKİLER
+        openWindow('DFW METAOFFICE', 'https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4', 'video', 100, 450, 400, 300);
+        openWindow('DFW DESIGN', 'https://video.wixstatic.com/video/54a996_089c17f8355849d5a11f6115ab1025ba/1080p/mp4/file.mp4', 'video', 800, 500, 400, 300);
+
+        // PROBLEM BÖLÜMÜNDEKİLER (Y konumlarını arttırıyorum ki aşağıda çıksınlar)
+        openWindow('STEVE JOBS EXPLAINING', 'https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4', 'video', 200, 1200, 450, 320);
+
+        // WORK BÖLÜMÜNDEKİ GLB MODELİ (BURASI ÖNEMLİ)
+        // İstediğin GLB dosyasını burada 'glb' tipiyle açıyoruz
+        openWindow('OTTO MODEL 3D', 'https://github.com/decentralize-dfw/co/raw/refs/heads/main/otto-10-opt-v2.glb', 'glb', 300, 3500, 500, 500);
+        
+        // İstersen diğer videoları da buraya ekleyebilirsin:
+        // openWindow('TITLE', 'URL', 'video', X, Y, W, H);
+    });
+</script>
 
 </body>
 </html>
