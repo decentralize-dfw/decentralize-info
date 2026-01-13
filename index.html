@@ -315,6 +315,151 @@
             letter-spacing: 0.15em;
         }
 
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* HOVER EFFECTS */
+        .media-embed {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .media-embed:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .stat {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .info-card {
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateX(10px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* VIDEO GRID */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .video-card {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border: 4px solid currentColor;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .video-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-card-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.9);
+            color: #fff;
+            padding: 1rem;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover .video-card-label {
+            transform: translateY(0);
+        }
+
+        /* SPLIT LAYOUT */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin: 4rem 0;
+        }
+
+        .split-media {
+            aspect-ratio: 1;
+            overflow: hidden;
+            border: 4px solid currentColor;
+        }
+
+        .split-media video,
+        .split-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .split-content {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* LARGE TEXT BLOCK */
+        .large-text {
+            font-size: clamp(2rem, 4vw, 4rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            margin: 6rem 0;
+            text-align: center;
+        }
+
         /* MOBILE */
         @media (max-width: 768px) {
             section {
@@ -325,6 +470,18 @@
             .grid-3 {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .split-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .split-content {
+                padding: 2rem;
             }
 
             .nav-icons {
@@ -416,6 +573,13 @@
                 <div class="quote-block">
                     <p>"WHAT BECOMES POSSIBLE WHEN WE LET DIGITAL SPACE BE ITSELF?"</p>
                 </div>
+
+                <div class="media-embed">
+                    <video autoplay loop muted playsinline>
+                        <source src="https://video.wixstatic.com/video/54a996_ccdeba84c3054a7b93c1ffd59e4154c9/1080p/mp4/file.mp4" type="video/mp4">
+                    </video>
+                    <div class="media-label">CHROME TOPOLOGY</div>
+                </div>
             </div>
         </section>
 
@@ -442,15 +606,17 @@
                     </div>
                 </div>
 
-                <div class="grid-2">
-                    <div>
-                        <p>NO GRAVITY UNLESS WE WANT IT. NO SOLID MASSES UNLESS THEY SERVE A PURPOSE.</p>
-                        <p>CHROME SURFACES THAT REFLECT IMPOSSIBLE VISTAS. FLOATING FORMS THAT DEFY EXPECTATION.</p>
+                <div class="split-layout">
+                    <div class="split-content" style="background: rgba(0,0,0,0.05);">
+                        <h3>NEW LANGUAGE</h3>
+                        <p>NO GRAVITY. NO SOLID MASSES. CHROME SURFACES. FLOATING FORMS.</p>
+                        <div style="height: 2rem;"></div>
+                        <p style="font-size: 14px; opacity: 0.8;">EACH LANGUAGE HAS ITS OWN GRAMMAR. DIGITAL SPACE NEEDS ITS OWN VOCABULARY.</p>
                     </div>
-                    <div class="info-card">
-                        <h4>LIKE TEACHING A NEW LANGUAGE</h4>
-                        <p>YOU CAN'T TRANSLATE WORD-FOR-WORD. EACH LANGUAGE HAS ITS OWN GRAMMAR, ITS OWN LOGIC.</p>
-                        <p>DIGITAL SPACE IS THE SAME. IT NEEDS ITS OWN VOCABULARY.</p>
+                    <div class="split-media">
+                        <video autoplay loop muted playsinline>
+                            <source src="https://video.wixstatic.com/video/54a996_4f3ddef3afd043e8877a361c5eaf36c1/1080p/mp4/file.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
             </div>
@@ -460,39 +626,39 @@
         <section id="vision" class="bg-white">
             <div class="container">
                 <span class="section-label">03 / THE VISION</span>
-                <h2 style="color: #000;">SPACES THAT<br>THINK, BREATHE,<br>REMEMBER.</h2>
+                <h2 style="color: #000;">SPACES THAT<br>THINK.<br>BREATHE.<br>REMEMBER.</h2>
 
-                <div class="grid-2">
-                    <div class="info-card" style="border-color: #000; color: #000;">
-                        <h4>A MUSEUM THAT REMEMBERS YOUR FOOTSTEPS</h4>
-                        <p>THE SPACE LEARNS WHICH ARTWORKS MAKE YOU PAUSE. WHICH CORNERS INVITE CONTEMPLATION.</p>
-                        <p>THE NEXT VISITOR EXPERIENCES IT DIFFERENTLY—SHAPED BY COLLECTIVE MEMORY.</p>
+                <div class="large-text" style="color: #000;">
+                    MUSEUMS THAT LEARN
+                </div>
+
+                <div class="split-layout">
+                    <div class="split-media" style="border-color: #000;">
+                        <video autoplay loop muted playsinline>
+                            <source src="https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4" type="video/mp4">
+                        </video>
                     </div>
-
-                    <div class="info-card" style="border-color: #000; color: #000;">
-                        <h4>A THEATER WHERE YOU CHOOSE PERSPECTIVE</h4>
-                        <p>FLOAT ABOVE THE STAGE. STEP INSIDE THE SCENE. WALK ALONGSIDE PERFORMERS.</p>
-                        <p>SAME MOMENT. DIFFERENT FACETS. UNIQUE JOURNEYS.</p>
-                    </div>
-
-                    <div class="info-card" style="border-color: #000; color: #000;">
-                        <h4>RETAIL SPACES THAT TELL STORIES</h4>
-                        <p>PRODUCTS WITHIN NARRATIVE ENVIRONMENTS. FASHION IN CRYSTALLINE CAVERNS.</p>
-                        <p>SHOPPING BECOMES EXPLORATION. COMMERCE BECOMES CULTURE.</p>
-                    </div>
-
-                    <div class="info-card" style="border-color: #000; color: #000;">
-                        <h4>EVENTS THAT TRANSCEND TIME ZONES</h4>
-                        <p>MIDNIGHT IN NEW YORK. NOON IN TOKYO. PERFECT HOUR FOR EVERYONE.</p>
-                        <p>THOUSANDS ATTEND. EACH FROM THEIR PERFECT VIEWPOINT.</p>
+                    <div class="split-content">
+                        <h3 style="color: #000;">CHOOSE YOUR PERSPECTIVE</h3>
+                        <p style="color: #000;">FLOAT. STEP INSIDE. WALK ALONGSIDE.</p>
+                        <div style="height: 2rem;"></div>
+                        <p style="font-size: 14px; color: #000; opacity: 0.7;">SAME MOMENT. DIFFERENT FACETS.</p>
                     </div>
                 </div>
 
-                <div class="media-embed" style="border-color: #000;">
-                    <video autoplay loop muted playsinline>
-                        <source src="https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4" type="video/mp4">
-                    </video>
-                    <div class="media-label">VIRTUAL THEATER</div>
+                <div class="large-text" style="color: #000;">
+                    RETAIL AS EXPLORATION
+                </div>
+
+                <div class="grid-2">
+                    <div class="info-card" style="border-color: #000; color: #000;">
+                        <h4>FASHION IN CRYSTALLINE CAVERNS</h4>
+                        <p>SHOPPING BECOMES CULTURE.</p>
+                    </div>
+                    <div class="info-card" style="border-color: #000; color: #000;">
+                        <h4>EVENTS BEYOND TIME ZONES</h4>
+                        <p>THOUSANDS ATTEND. EACH FROM THEIR PERFECT VIEWPOINT.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -501,7 +667,7 @@
         <section id="work" class="bg-orange">
             <div class="container">
                 <span class="section-label">04 / WHAT WE CREATE</span>
-                <h2>DIGITAL<br>TOPOGRAPHIES<br>+ VIRTUAL<br>THEATER.</h2>
+                <h2>DIGITAL<br>SPACES.</h2>
 
                 <div class="grid-3">
                     <div class="stat">
@@ -518,25 +684,51 @@
                     </div>
                 </div>
 
-                <div class="grid-2">
-                    <div>
-                        <h3>52 ARCHITECTURAL MODELS</h3>
-                        <p>GALLERIES THAT SPIRAL INFINITELY. MUSEUMS THAT REMEMBER PATHS. PAVILIONS OF LIGHT AND CHROME.</p>
-                        <p>EACH UNDER 15MB. EACH BROWSER-BASED. EACH ASKING: WHAT IS ARCHITECTURE WHEN FREED FROM GRAVITY?</p>
-                    </div>
+                <div class="large-text">
+                    GALLERIES. MUSEUMS. PAVILIONS.
+                </div>
 
-                    <div>
-                        <h3>3 VIRTUAL THEATER PRODUCTIONS</h3>
-                        <p>INTERACTIVE PERFORMANCES IN REAL-TIME. THREE MODES: CINEMATIC, IMMERSIVE, ACTOR.</p>
-                        <p>A NEW MEDIUM THAT SYNTHESIZES CINEMA'S LANGUAGE AND THEATER'S LIVENESS.</p>
+                <div class="video-grid">
+                    <div class="video-card">
+                        <video autoplay loop muted playsinline>
+                            <source src="https://video.wixstatic.com/video/54a996_fdd0f8d73d584186a2b6ad252aea65d8/1080p/mp4/file.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-card-label">DAOTOWN · M3 2024</div>
                     </div>
+                    <div class="video-card">
+                        <video autoplay loop muted playsinline>
+                            <source src="https://video.wixstatic.com/video/54a996_26c6ded4e81a414bbdf5e4f08cd7faa8/720p/mp4/file.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-card-label">CHROME GALLERY</div>
+                    </div>
+                    <div class="video-card">
+                        <video autoplay loop muted playsinline>
+                            <source src="https://video.wixstatic.com/video/54a996_f2349b5b76c742c69f4f8d04ed5f04a5/1080p/mp4/file.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-card-label">FLOATING PAVILION</div>
+                    </div>
+                </div>
+
+                <div class="large-text">
+                    VIRTUAL THEATER
                 </div>
 
                 <div class="media-embed">
                     <video autoplay loop muted playsinline>
-                        <source src="https://video.wixstatic.com/video/54a996_fdd0f8d73d584186a2b6ad252aea65d8/1080p/mp4/file.mp4" type="video/mp4">
+                        <source src="https://video.wixstatic.com/video/54a996_57df8f2ad8f74dae91ae9b30f9bb9cc0/1080p/mp4/file.mp4" type="video/mp4">
                     </video>
-                    <div class="media-label">DAOTOWN · M3 2024</div>
+                    <div class="media-label">INTERACTIVE PERFORMANCE</div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="info-card">
+                        <h4>REAL-TIME</h4>
+                        <p>LIVE PERFORMANCES. INTERACTIVE.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>THREE MODES</h4>
+                        <p>CINEMATIC. IMMERSIVE. ACTOR.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -547,26 +739,32 @@
                 <span class="section-label">05 / THE FUTURE</span>
                 <h2>COLLECTIVE<br>IMAGINATION.</h2>
 
-                <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-                    <p style="font-size: clamp(1.2rem, 2vw, 1.8rem); font-weight: 700;">
-                        WE'RE NOT BUILDING THE METAVERSE.
-                    </p>
-                    <p>
-                        WE'RE EXPLORING. EVERY PROJECT IS AN EXPERIMENT. EVERY SPACE IS A QUESTION.
-                    </p>
-                    <p>
-                        THE SPACES WE CREATE ARE MEANT TO BE EXPLORED, QUESTIONED, REMIXED.
-                    </p>
+                <div class="large-text">
+                    NOT BUILDING.<br>EXPLORING.
+                </div>
+
+                <div class="split-layout">
+                    <div class="split-media">
+                        <video autoplay loop muted playsinline>
+                            <source src="https://video.wixstatic.com/video/54a996_08ad110d3f004cda82b9f61368e45cda/1080p/mp4/file.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="split-content">
+                        <h3>EVERY PROJECT = EXPERIMENT</h3>
+                        <p>EVERY SPACE = QUESTION.</p>
+                        <div style="height: 2rem;"></div>
+                        <p style="font-size: 14px; opacity: 0.7;">EXPLORE. QUESTION. REMIX.</p>
+                    </div>
                 </div>
 
                 <div class="quote-block">
-                    <p>"EVERY TIME YOU QUESTION WHY DIGITAL SPACES LOOK THE WAY THEY DO, YOU'RE PART OF THIS. EVERY TIME YOU IMAGINE WHAT THEY COULD BE INSTEAD, YOU'RE CONTRIBUTING."</p>
+                    <p>"QUESTION WHY DIGITAL SPACES LOOK THIS WAY. IMAGINE WHAT THEY COULD BE. YOU'RE PART OF THIS."</p>
                 </div>
 
                 <div class="grid-3">
                     <div class="stat">
                         <div class="stat-num">5</div>
-                        <div class="stat-label">AWARDS WON</div>
+                        <div class="stat-label">AWARDS</div>
                     </div>
                     <div class="stat">
                         <div class="stat-num">5</div>
@@ -584,11 +782,11 @@
         <section id="contact" class="bg-red">
             <div class="container">
                 <span class="section-label">06 / CONTACT</span>
-                <h2>LET'S BUILD<br>THE FUTURE.</h2>
+                <h2>LET'S BUILD.</h2>
 
-                <p style="font-size: clamp(1.2rem, 2vw, 1.5rem);">
-                    DIGITAL SPACE IS STILL BEING DEFINED. LET'S DEFINE IT TOGETHER.
-                </p>
+                <div class="large-text">
+                    DEFINE IT TOGETHER.
+                </div>
 
                 <div class="grid-2" style="margin-top: 4rem;">
                     <div class="info-card">
@@ -597,13 +795,13 @@
                     </div>
                     <div class="info-card">
                         <h4>BOOK A CALL</h4>
-                        <p><a href="https://calendly.com/d--f--w/meeting" style="color: inherit; text-decoration: underline;" target="_blank">CALENDLY.COM/D--F--W</a></p>
+                        <p><a href="https://calendly.com/d--f--w/meeting" style="color: inherit; text-decoration: underline;" target="_blank">CALENDLY</a></p>
                     </div>
                 </div>
 
                 <div style="margin-top: 6rem; text-align: center;">
                     <p style="font-size: 11px; letter-spacing: 0.2em; opacity: 0.7;">
-                        © 2026 DECENTRALIZE DESIGN · MILAN / METAVERSE
+                        © 2026 DECENTRALIZE™ · MILAN / METAVERSE
                     </p>
                 </div>
             </div>
@@ -639,7 +837,27 @@
         const sections = document.querySelectorAll('section[id]');
         const navIcons = document.querySelectorAll('.nav-icon');
 
-        window.addEventListener('scroll', () => {
+        // SCROLL ANIMATIONS
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('h1, h2, h3, .media-embed, .video-card, .stat, .info-card, .large-text, .quote-block');
+
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                const windowHeight = window.innerHeight;
+
+                if (elementTop < windowHeight - 100 && elementBottom > 0) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                } else {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(30px)';
+                }
+            });
+        };
+
+        // ACTIVE SECTION HIGHLIGHTER
+        const updateActiveSection = () => {
             let current = '';
 
             sections.forEach(section => {
@@ -659,6 +877,41 @@
                     icon.style.background = '#fff';
                     icon.style.color = '#000';
                 }
+            });
+        };
+
+        // INIT ANIMATIONS
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set initial styles for animated elements
+            const elements = document.querySelectorAll('h1, h2, h3, .media-embed, .video-card, .stat, .info-card, .large-text, .quote-block');
+            elements.forEach(element => {
+                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+            });
+
+            // Initial check
+            animateOnScroll();
+            updateActiveSection();
+        });
+
+        // SCROLL LISTENERS
+        window.addEventListener('scroll', () => {
+            animateOnScroll();
+            updateActiveSection();
+        });
+
+        // VIDEO HOVER EFFECTS
+        document.addEventListener('DOMContentLoaded', () => {
+            const videoCards = document.querySelectorAll('.video-card');
+            videoCards.forEach(card => {
+                const video = card.querySelector('video');
+                card.addEventListener('mouseenter', () => {
+                    video.playbackRate = 0.5; // Slow motion on hover
+                });
+                card.addEventListener('mouseleave', () => {
+                    video.playbackRate = 1;
+                });
             });
         });
     </script>
