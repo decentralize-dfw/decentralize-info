@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RELIGIOUS ROBOTICS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Updated Fonts: Courier Prime and Aguafina Script added -->
+    <link href="https://fonts.googleapis.com/css2?family=Aguafina+Script&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        /* UPDATED LAYOUT - GREEN BG, BLACK TEXT */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #43ff26; /* Updated Background Color */
+            color: #000000; /* Updated Text Color */
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* REMOVED GLOW FOR CLEANER BLACK TEXT */
+        .glow {
+           /* Optional: subtle shadow if needed, otherwise clean */
+        }
+
+        .glow-subtle {
+            /* Clean black text */
+        }
+
+        /* TOP LOGO BAR - CENTERED */
+        .top-logo {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+
+        .top-logo img {
+            height: 60px;
+            width: auto;
+            /* Made logo black to match text */
+            filter: brightness(0); 
+            opacity: 1;
+        }
+
+        /* MAIN CONTENT CONTAINER */
+        .container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 9rem 2rem 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* TYPOGRAPHY HIERARCHY */
+
+        /* MAIN TITLE - RELIGIOUS ROBOTICS */
+        .level-1-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            text-align: center;
+            color: #000;
+            margin-bottom: 4rem;
+        }
+
+        /* SUBTITLE - Updated to Aguafina Script */
+        .level-2-subtitle {
+            font-family: 'Aguafina Script', cursive; /* Updated Font */
+            font-size: clamp(1.5rem, 3vw, 2.5rem); /* Adjusted size for script readability */
+            font-weight: 400;
+            line-height: 1.4;
+            letter-spacing: 0;
+            text-align: center;
+            color: #000;
+            max-width: 900px;
+            border-top: 1px solid rgba(0,0,0,0.3); /* Darker border */
+            border-bottom: 1px solid rgba(0,0,0,0.3);
+            padding: 2rem 0;
+            margin-bottom: 4rem;
+        }
+
+        /* BODY TEXT - Updated to Courier Prime */
+        .level-4-body {
+            font-family: 'Courier Prime', monospace; /* Updated Font */
+            font-size: clamp(1.1rem, 1.8vw, 1.4rem); /* Adjusted for monospace readability */
+            font-weight: 400;
+            line-height: 1.6;
+            text-align: center; /* Keeping center alignment per previous style */
+            color: #000;
+            max-width: 800px;
+            opacity: 1;
+            letter-spacing: -0.03em;
+        }
+
+        /* For the long text, adding paragraph spacing */
+        .level-4-body p {
+            margin-bottom: 2rem;
+        }
+
+        /* FOOTER DECORATION */
+        .footer-line {
+            margin-top: 5rem;
+            width: 100px;
+            height: 2px;
+            background: #000;
+            box-shadow: none;
+        }
+
+        /* MOBILE OPTIMIZATION */
+        @media (max-width: 768px) {
+            .top-logo {
+                top: 20px;
+            }
+            .top-logo img {
+                height: 40px;
+            }
+            .level-4-body {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            .container {
+                padding-top: 7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CENTERED TOP LOGO -->
+    <div class="top-logo">
+        <img src="https://static.wixstatic.com/media/54a996_653b957c76d8468cb4d41dc8e051434f~mv2.png" alt="Logo">
+    </div>
+
+    <div class="container">
+        <!-- MAIN TITLE -->
+        <div class="level-1-title">
+            RELIGIOUS ROBOTICS
+        </div>
+
+        <!-- SUBTITLE -->
+        <div class="level-2-subtitle">
+            Breaking Free from Pixels,<br>
+            An Unserious Manifesto for Authentic Digital Spaces
+        </div>
+
+        <!-- BODY TEXT -->
+        <div class="level-4-body">
+            <p>
+                There's something deeply unsettling about watching empty digital spaces. Not in the way a dark room might unsettle you, but in the way you might feel when someone is trying too hard to be something they're not. Every virtual café, every digital office space we create feels like an admission of our own inability to face what these spaces actually want to be.
+            </p>
+            <p>
+                I find myself staring at my screen, watching us collectively pretend these digital environments need to follow our physical rules. It's almost absurd – we've created a realm free from every constraint that defines our physical existence, and what do we do with this freedom? We chain it to our earthbound habits, our comfortable illusions of what space should be.
+            </p>
+            <p>
+                It reminds me of those dreams where you suddenly realize you can fly, but instead of soaring, you keep walking on the ground because you're afraid of what freedom might mean. That's us, right now, with digital architecture. We have this incredible new medium that could be anything, and we keep making it pretend to be everything we already know.
+            </p>
+            <p>
+                Lebbeus Woods understood something about this, though he was working with paper and pencil rather than code. His drawings weren't trying to be buildable or practical – they were attempts to free architecture from its own self-imposed limitations. That's what Religious Robotics is really about: not making things look cool or futuristic, but letting digital space be what it actually is.
+            </p>
+            <p>
+                The rules emerged almost by accident: no gravity, no solid masses, chrome everything. Like a game we started playing to see what would happen if we stopped pretending. But the more we explored this idea, the more it revealed about our relationship with digital space – and maybe with existence itself.
+            </p>
+            <p>
+                Think about artificial intelligence for a moment. Right now, we train it to mirror our preferences, to say a Gothic cathedral is beautiful because we think it's beautiful. But what happens when AI develops its own sense of beauty? What would that even look like? These aren't just technical questions – they're about the nature of consciousness itself, about what happens when we stop forcing our version of reality onto everything we create.
+            </p>
+            <p>
+                Meanwhile, the world of physical architecture keeps getting more crowded, more competitive, more focused on solving the same problems in slightly different ways. Thousands of new architects enter the field each year, all trained to think inside the same physical constraints, while this vast digital frontier sits there, speaking a language we're not even trying to understand.
+            </p>
+            <p>
+                The chrome surfaces, the floating forms – they're not just aesthetic choices. They're first attempts at honesty, at letting digital space exist on its own terms. It's like learning to speak a new language by first admitting you don't actually know what it's trying to say.
+            </p>
+            <p>
+                We don't need to understand everything about what these spaces might become. Maybe our role isn't to define them, but to create conditions where they can define themselves. To build environments that might one day be home to forms of consciousness we can barely imagine – not because we designed them that way, but because we finally got out of their way.
+            </p>
+            <p>
+                Religious Robotics isn't really about architecture as we know it. It's about taking the first uncertain steps toward something else, something that doesn't need our permission to exist. And maybe that's exactly what we need right now – not another style or movement, but a way of letting go of our need to make everything look like something we've seen before.
+            </p>
+            <p>
+                After all, isn't that what creation is really about? Not forcing our vision onto the world, but letting new visions emerge from the spaces we dare to leave undefined.
+            </p>
+        </div>
+
+        <div class="footer-line"></div>
+    </div>
+
+</body>
+</html>
