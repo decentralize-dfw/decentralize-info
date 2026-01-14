@@ -64,20 +64,20 @@
             z-index: 1000;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
         }
 
         .nav-icon {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             position: relative;
-            opacity: 0.6;
+            opacity: 0.5;
             transition: all 0.3s ease;
         }
 
@@ -171,7 +171,11 @@
             height: 8vh;
         }
 
-        /* LEVEL 1 - GIANT QUOTE - Helvetica Bold */
+        .spacer-5 {
+            height: 4vh;
+        }
+
+        /* LEVEL 1 - GIANT HEADLINE - Helvetica Bold - NO QUOTES */
         .level-1-quote {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-size: clamp(3.5rem, 10vw, 10rem);
@@ -182,14 +186,6 @@
             text-align: center;
             color: #fff;
             padding: 0 2rem;
-        }
-
-        .level-1-quote::before {
-            content: '"';
-        }
-
-        .level-1-quote::after {
-            content: '"';
         }
 
         /* LEVEL 2 - SUBTITLE - Lilex */
@@ -231,6 +227,62 @@
             max-width: 700px;
             padding: 0 2rem;
             margin-top: 3rem;
+        }
+
+        /* SERVICES GRID */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 2rem;
+            background: rgba(255,255,255,0.02);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .service-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: clamp(1.2rem, 2vw, 1.6rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            letter-spacing: 0.02em;
+        }
+
+        .service-desc {
+            font-family: 'Lilex', monospace;
+            font-size: clamp(0.7rem, 1vw, 0.85rem);
+            line-height: 1.6;
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            font-family: 'Lilex', monospace;
+            font-size: clamp(0.65rem, 0.9vw, 0.75rem);
+            opacity: 0.6;
+        }
+
+        .service-features li {
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .service-features li:last-child {
+            border-bottom: none;
         }
 
         /* LEVEL 2 - DATA BLOCKS */
@@ -300,8 +352,7 @@
             width: auto;
             object-fit: contain;
             display: block;
-            filter: brightness(0) invert(1);
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
         .scroll-item a {
@@ -347,9 +398,19 @@
                 0 0 30px rgba(255,255,255,0.1),
                 0 0 60px rgba(255,255,255,0.05);
             z-index: 900;
-            min-width: 200px;
-            min-height: 150px;
+            min-width: 150px;
+            min-height: 100px;
             display: block;
+        }
+
+        .window.fullscreen {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 9999 !important;
+            border: none;
         }
 
         .window-header {
@@ -373,7 +434,12 @@
             cursor: grabbing;
         }
 
-        .window-close {
+        .window-controls {
+            display: flex;
+            gap: 6px;
+        }
+
+        .window-btn {
             background: #fff;
             color: #000;
             border: none;
@@ -388,9 +454,13 @@
             justify-content: center;
         }
 
-        .window-close:hover {
-            background: #f00;
+        .window-btn:hover {
+            background: #0af;
             color: #fff;
+        }
+
+        .window-btn.close:hover {
+            background: #f00;
         }
 
         .window-content {
@@ -437,6 +507,10 @@
             height: 14px;
             background: rgba(255,255,255,0.3);
             cursor: nwse-resize;
+        }
+
+        .window.fullscreen .window-resize {
+            display: none;
         }
 
         /* FOOTER LINKS */
@@ -492,17 +566,17 @@
             }
 
             .side-nav {
-                right: 10px;
-                gap: 8px;
+                right: 8px;
+                gap: 6px;
             }
 
             .nav-icon {
-                width: 22px;
-                height: 22px;
+                width: 20px;
+                height: 20px;
             }
 
             .container {
-                padding-right: 40px;
+                padding-right: 35px;
             }
 
             .top-logo {
@@ -512,6 +586,15 @@
 
             .top-logo img {
                 height: 35px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -531,20 +614,23 @@
         <div class="nav-icon" data-tooltip="PROBLEM" onclick="scrollToSection('problem')">
             <img src="https://static.wixstatic.com/media/54a996_5c1696cfda2a41909b021894f7236293~mv2.png" alt="Problem">
         </div>
+        <div class="nav-icon" data-tooltip="EXPERIENCE" onclick="scrollToSection('experience')">
+            <img src="https://static.wixstatic.com/media/54a996_edfe743a8afb47c2a7c743b9ec288da3~mv2.png" alt="Experience">
+        </div>
         <div class="nav-icon" data-tooltip="PHILOSOPHY" onclick="scrollToSection('philosophy')">
-            <img src="https://static.wixstatic.com/media/54a996_edfe743a8afb47c2a7c743b9ec288da3~mv2.png" alt="Philosophy">
+            <img src="https://static.wixstatic.com/media/54a996_eb3a59a9d22f454186e28c3c5d24461f~mv2.png" alt="Philosophy">
         </div>
         <div class="nav-icon" data-tooltip="VISION" onclick="scrollToSection('vision')">
-            <img src="https://static.wixstatic.com/media/54a996_eb3a59a9d22f454186e28c3c5d24461f~mv2.png" alt="Vision">
+            <img src="https://static.wixstatic.com/media/54a996_145e862db9034dd9b0249c171eb5a3fa~mv2.png" alt="Vision">
         </div>
         <div class="nav-icon" data-tooltip="WORK" onclick="scrollToSection('work')">
-            <img src="https://static.wixstatic.com/media/54a996_145e862db9034dd9b0249c171eb5a3fa~mv2.png" alt="Work">
+            <img src="https://static.wixstatic.com/media/54a996_0f5300ff7aac4ad7aced9e84ec9a543a~mv2.png" alt="Work">
         </div>
         <div class="nav-icon" data-tooltip="FUTURE" onclick="scrollToSection('future')">
-            <img src="https://static.wixstatic.com/media/54a996_0f5300ff7aac4ad7aced9e84ec9a543a~mv2.png" alt="Future">
+            <img src="https://static.wixstatic.com/media/54a996_5555b50437514963a389e43f199d5e0b~mv2.png" alt="Future">
         </div>
         <div class="nav-icon" data-tooltip="CONTACT" onclick="scrollToSection('contact')">
-            <img src="https://static.wixstatic.com/media/54a996_5555b50437514963a389e43f199d5e0b~mv2.png" alt="Contact">
+            <img src="https://static.wixstatic.com/media/54a996_653b957c76d8468cb4d41dc8e051434f~mv2.png" alt="Contact">
         </div>
     </nav>
 
@@ -660,11 +746,155 @@
             </div>
         </section>
 
+        <!-- EXPERIENCE / SERVICES -->
+        <section id="experience">
+            <div class="container">
+                <div class="level-2-top glow-subtle">
+                    02 / WHAT WE OFFER<br>
+                    BROWSER-BASED EXPERIENCES
+                </div>
+
+                <div class="spacer-20"></div>
+
+                <div class="level-1-quote glow">
+                    SERVICES
+                </div>
+
+                <div class="spacer-10"></div>
+
+                <div class="level-2-subtitle glow-subtle">
+                    CLICK A LINK. ENTER A WORLD. NO DOWNLOADS. NO APPS.
+                </div>
+
+                <div class="level-3-cta glow-subtle">
+                    EVERYTHING RUNS IN YOUR BROWSER UNDER 15MB
+                </div>
+
+                <div class="spacer-10"></div>
+
+                <!-- SERVICES GRID -->
+                <div class="services-grid">
+                    <!-- 3D DESIGN BROWSER -->
+                    <div class="service-card">
+                        <div class="service-title glow-subtle">3D Design Browser</div>
+                        <div class="service-desc">
+                            Transform your portfolio or products into an interactive 3D space. Share a single link. Anyone can explore immediately. We call this dimensional appreciation—making complex experiences simple to access.
+                        </div>
+                        <ul class="service-features">
+                            <li>Single-link access to full 3D environments</li>
+                            <li>Works on any device with a browser</li>
+                            <li>52 architecture models built this way</li>
+                            <li>60+ design objects ready to place</li>
+                            <li>Real-time navigation with WASD keys</li>
+                            <li>VR compatible with thumbstick controls</li>
+                        </ul>
+                    </div>
+
+                    <!-- VIRTUAL THEATER -->
+                    <div class="service-card">
+                        <div class="service-title glow-subtle">Virtual Theater</div>
+                        <div class="service-desc">
+                            A format between cinema and stage. Real-time digital performances where 3D files become actors. Everything scripted but happening live in your browser. Three productions completed: "Why We Exist?", "Balloon", and "Hatch".
+                        </div>
+                        <ul class="service-features">
+                            <li>Cinematic mode: watch from fixed cameras</li>
+                            <li>Immersive mode: walk through the scene</li>
+                            <li>Actor mode: become a performer yourself</li>
+                            <li>Time manipulation: repeat, reverse, loop</li>
+                            <li>Spatial audio that responds to position</li>
+                            <li>Under 15MB total file size</li>
+                        </ul>
+                    </div>
+
+                    <!-- MUSEUM/GALLERY -->
+                    <div class="service-card">
+                        <div class="service-title glow-subtle">Museum / Gallery Spaces</div>
+                        <div class="service-desc">
+                            Exhibition spaces that work differently than physical galleries. Walls can shift based on visitor traffic. Artworks can respond to proximity. Lighting adjusts automatically. The Neue²Dojo gallery hosts 300+ artworks. Scaffold shows 50 architectural designs.
+                        </div>
+                        <ul class="service-features">
+                            <li>Dynamic layouts that adapt to visitors</li>
+                            <li>Proximity-triggered interactions</li>
+                            <li>Environmental audio that changes per zone</li>
+                            <li>Multiple simultaneous exhibitions</li>
+                            <li>Global access, local experience</li>
+                            <li>No physical conservation constraints</li>
+                        </ul>
+                    </div>
+
+                    <!-- FASHION/RETAIL -->
+                    <div class="service-card">
+                        <div class="service-title glow-subtle">Fashion / Retail</div>
+                        <div class="service-desc">
+                            Runway shows where every seat is the best seat. Retail spaces where products float around you. The C2W Launch Runway hosted 16 digital fashion pieces with live global attendees. Shopping becomes spatial storytelling.
+                        </div>
+                        <ul class="service-features">
+                            <li>360° viewing of runway presentations</li>
+                            <li>Products respond to user movement</li>
+                            <li>Interactive preview before purchase</li>
+                            <li>Avatar try-on capabilities</li>
+                            <li>Blockchain payment integration</li>
+                            <li>Crystalline and floating display options</li>
+                        </ul>
+                    </div>
+
+                    <!-- DESIGN OBJECTS -->
+                    <div class="service-card">
+                        <div class="service-title glow-subtle">Design Objects</div>
+                        <div class="service-desc">
+                            Digital furniture and sculptures for virtual spaces. Chairs, sofas, tables, DJ equipment, carpets, and vehicles. Each piece optimized for browser performance. Four color variants: metallic, black, white, and red.
+                        </div>
+                        <ul class="service-features">
+                            <li>Mermaid Chair, Fetu Chair, DSE Chair series</li>
+                            <li>Glass Gougnut Sofa, Crawreck Sofa</li>
+                            <li>2070s DJ Table, Boardroom Table</li>
+                            <li>Osiris Rake, Midas Space sculptures</li>
+                            <li>XYZ008, Zen Bubble, Skewer vehicles</li>
+                            <li>All pieces under 2MB each</li>
+                        </ul>
+                    </div>
+
+                    <!-- ON-CHAIN OWNERSHIP -->
+                    <div class="service-card">
+                        <div class="service-title glow-subtle">On-Chain Ownership</div>
+                        <div class="service-desc">
+                            When you acquire a virtual world or theater, you get a complete, editable environment as an NFT on Ethereum. Not just a file—full ownership with modification rights. Change anything. Spawn new objects. Host your own events.
+                        </div>
+                        <ul class="service-features">
+                            <li>Full world NFT rights on Ethereum</li>
+                            <li>Complete editing capabilities</li>
+                            <li>Original asset files included</li>
+                            <li>Technical documentation provided</li>
+                            <li>Four theater worlds available</li>
+                            <li>One dedicated virtual runway</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="spacer-10"></div>
+
+                <div class="level-4-body glow-subtle">
+                    Everything loads in seconds. No installation required. Works on phones, tablets, laptops, desktops, and VR headsets. We optimize every model with mesh decimation, efficient UV mapping, and baked lighting. The glTF/GLB format keeps file sizes small while maintaining visual quality. Smart objects respond to triggers. NPCs guide visitors. Chain reactions coordinate lighting, sound, and movement. The technical complexity stays invisible—you just click and explore.
+                </div>
+
+                <div class="data-blocks">
+                    <div class="data-block">
+                        <div class="data-num glow">&lt;15MB</div>
+                        <div class="data-label">AVERAGE WORLD SIZE</div>
+                    </div>
+                    <div class="data-block">
+                        <div class="data-num glow">3</div>
+                        <div class="data-label">THEATER PRODUCTIONS</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- PHILOSOPHY -->
         <section id="philosophy">
             <div class="container">
                 <div class="level-2-top glow-subtle">
-                    02 / OUR PHILOSOPHY<br>
+                    03 / OUR PHILOSOPHY<br>
                     DIGITAL AUTONOMY
                 </div>
 
@@ -730,7 +960,7 @@
         <section id="vision">
             <div class="container">
                 <div class="level-2-top glow-subtle">
-                    03 / THE VISION<br>
+                    04 / THE VISION<br>
                     LIVING ARCHITECTURE
                 </div>
 
@@ -775,7 +1005,7 @@
         <section id="work">
             <div class="container">
                 <div class="level-2-top glow-subtle">
-                    04 / WHAT WE CREATE<br>
+                    05 / WHAT WE CREATE<br>
                     BROWSER-BASED WORLDS
                 </div>
 
@@ -841,7 +1071,7 @@
         <section id="future">
             <div class="container">
                 <div class="level-2-top glow-subtle">
-                    05 / THE FUTURE<br>
+                    06 / THE FUTURE<br>
                     COLLECTIVE DREAMING
                 </div>
 
@@ -907,14 +1137,14 @@
         <section id="contact">
             <div class="container">
                 <div class="level-2-top glow-subtle">
-                    06 / CONTACT<br>
+                    07 / CONTACT<br>
                     MILAN / METAVERSE
                 </div>
 
                 <div class="spacer-20"></div>
 
                 <div class="level-1-quote glow">
-                    LET'S FORGE THE FUTURE TOGETHER
+                    LET'S BUILD TOGETHER
                 </div>
 
                 <div class="spacer-20"></div>
@@ -928,7 +1158,7 @@
                 </div>
 
                 <div class="level-4-body glow-subtle">
-                    Digital Forgery Workshop is a design practice founded in Milan, operating at the critical intersection of architecture, fashion, art, and technology. Emerging from architectural roots, the workshop has evolved into a defining voice in virtual spatial design, challenging traditional disciplinary boundaries and creating new paradigms for digital experience. We work with museums reimagining how art can be experienced online. Fashion brands creating virtual showrooms that transcend physical retail. Cultural institutions building digital pavilions. Tech companies exploring new interface paradigms beyond screens. Artists and designers who want to push spatial digital work into new territories. Our process is collaborative and experimental—we don't just execute briefs, we explore possibilities together.
+                    Decentralize is a design practice founded in Milan, operating at the critical intersection of architecture, fashion, art, and technology. Emerging from architectural roots, we have evolved into a defining voice in virtual spatial design, challenging traditional disciplinary boundaries and creating new paradigms for digital experience. We work with museums reimagining how art can be experienced online. Fashion brands creating virtual showrooms that transcend physical retail. Cultural institutions building digital pavilions. Tech companies exploring new interface paradigms beyond screens. Artists and designers who want to push spatial digital work into new territories. Our process is collaborative and experimental—we don't just execute briefs, we explore possibilities together.
                 </div>
 
                 <div class="footer-links">
@@ -979,9 +1209,8 @@
     /**
      * WINDOW OPEN FUNCTION
      * Supports: video, glb, iframe, png, html (auto-scaled)
-     *
-     * For 'html' type: The webpage is rendered at full size (e.g., 1200x800)
-     * then scaled down to fit the window size using CSS transform.
+     * Mobile sizes are 50% of desktop
+     * Fullscreen toggle available
      */
     function openWindow(parentId, title, src, type = 'video', xPercent = 50, y = 50, w = 500, h = 350, htmlBaseWidth = 1200, htmlBaseHeight = 800) {
         windowCounter++;
@@ -993,10 +1222,14 @@
             return;
         }
 
-        // --- MOBILE CHECK ---
+        // Store original dimensions
+        const originalW = w;
+        const originalH = h;
+
+        // --- MOBILE: 50% of desktop size ---
         if (window.innerWidth < 768) {
-            w = window.innerWidth * 0.85;
-            h = w * 0.7;
+            w = Math.round(w * 0.5);
+            h = Math.round(h * 0.5);
             var leftPos = (parentSection.offsetWidth - w) / 2;
         } else {
             var leftPos = (parentSection.offsetWidth * (xPercent / 100)) - (w / 2);
@@ -1005,6 +1238,11 @@
         const windowEl = document.createElement('div');
         windowEl.className = 'window';
         windowEl.id = windowId;
+        windowEl.dataset.originalW = originalW;
+        windowEl.dataset.originalH = originalH;
+        windowEl.dataset.type = type;
+        windowEl.dataset.htmlBaseWidth = htmlBaseWidth;
+        windowEl.dataset.htmlBaseHeight = htmlBaseHeight;
 
         windowEl.style.left = `${leftPos}px`;
         windowEl.style.top = `${y}px`;
@@ -1012,7 +1250,7 @@
         windowEl.style.height = `${h}px`;
 
         let contentHTML = '';
-        const contentHeight = h - 30; // minus header
+        const contentHeight = h - 30;
 
         if (type === 'video') {
             contentHTML = `<video autoplay loop muted playsinline controls style="width:100%; height:100%; object-fit:cover;"><source src="${src}" type="video/mp4"></video>`;
@@ -1028,7 +1266,6 @@
             contentHTML = `<img src="${src}" style="width:100%; height:100%; object-fit:contain;">`;
         }
         else if (type === 'html') {
-            // SCALED HTML: Render at full size, scale down to fit window
             const scaleX = w / htmlBaseWidth;
             const scaleY = contentHeight / htmlBaseHeight;
             const scale = Math.min(scaleX, scaleY);
@@ -1043,7 +1280,10 @@
         windowEl.innerHTML = `
             <div class="window-header">
                 <span>${title.toUpperCase()}</span>
-                <button class="window-close" onclick="closeWindow('${windowId}')">×</button>
+                <div class="window-controls">
+                    <button class="window-btn fullscreen" onclick="toggleFullscreen('${windowId}')" title="Fullscreen">⤢</button>
+                    <button class="window-btn close" onclick="closeWindow('${windowId}')" title="Close">×</button>
+                </div>
             </div>
             <div class="window-content">${contentHTML}</div>
             <div class="window-resize"></div>
@@ -1056,13 +1296,61 @@
         }
 
         makeDraggable(windowEl);
-        makeResizable(windowEl, type, htmlBaseWidth, htmlBaseHeight);
+        makeResizable(windowEl);
         bringToFront(windowEl);
     }
 
     function closeWindow(windowId) {
         const el = document.getElementById(windowId);
         if (el) el.remove();
+    }
+
+    function toggleFullscreen(windowId) {
+        const el = document.getElementById(windowId);
+        if (!el) return;
+
+        if (el.classList.contains('fullscreen')) {
+            // Exit fullscreen
+            el.classList.remove('fullscreen');
+            el.style.width = el.dataset.savedW + 'px';
+            el.style.height = el.dataset.savedH + 'px';
+            el.style.left = el.dataset.savedL + 'px';
+            el.style.top = el.dataset.savedT + 'px';
+            el.style.position = 'absolute';
+
+            // Update scale for HTML type
+            updateHtmlScale(el);
+        } else {
+            // Enter fullscreen - save current state
+            el.dataset.savedW = el.offsetWidth;
+            el.dataset.savedH = el.offsetHeight;
+            el.dataset.savedL = el.offsetLeft;
+            el.dataset.savedT = el.offsetTop;
+            el.classList.add('fullscreen');
+
+            // Update scale for HTML type
+            setTimeout(() => updateHtmlScale(el), 50);
+        }
+    }
+
+    function updateHtmlScale(windowEl) {
+        const type = windowEl.dataset.type;
+        if (type === 'html') {
+            const wrapper = windowEl.querySelector('.scaled-html-wrapper');
+            if (wrapper) {
+                const width = windowEl.offsetWidth;
+                const height = windowEl.offsetHeight - 30;
+                const baseW = parseInt(wrapper.dataset.baseWidth);
+                const baseH = parseInt(wrapper.dataset.baseHeight);
+                const scaleX = width / baseW;
+                const scaleY = height / baseH;
+                const scale = Math.min(scaleX, scaleY);
+                const iframe = wrapper.querySelector('iframe');
+                if (iframe) {
+                    iframe.style.transform = `scale(${scale})`;
+                }
+            }
+        }
     }
 
     function bringToFront(windowEl) {
@@ -1078,7 +1366,8 @@
         header.addEventListener('pointerdown', startDrag);
 
         function startDrag(e) {
-            if (e.target.closest('.window-close')) return;
+            if (e.target.closest('.window-btn')) return;
+            if (windowEl.classList.contains('fullscreen')) return;
             e.preventDefault();
             bringToFront(windowEl);
 
@@ -1108,13 +1397,14 @@
         }
     }
 
-    // --- RESIZING (with HTML scale update) ---
-    function makeResizable(windowEl, type, htmlBaseWidth, htmlBaseHeight) {
+    // --- RESIZING ---
+    function makeResizable(windowEl) {
         const resizer = windowEl.querySelector('.window-resize');
         let isResizing = false;
         let startX, startY, startW, startH;
 
         resizer.addEventListener('pointerdown', (e) => {
+            if (windowEl.classList.contains('fullscreen')) return;
             e.preventDefault();
             isResizing = true;
             startX = e.clientX;
@@ -1132,25 +1422,10 @@
             if (!isResizing) return;
             const width = startW + (e.clientX - startX);
             const height = startH + (e.clientY - startY);
-            if (width > 150) windowEl.style.width = `${width}px`;
-            if (height > 120) windowEl.style.height = `${height}px`;
+            if (width > 120) windowEl.style.width = `${width}px`;
+            if (height > 100) windowEl.style.height = `${height}px`;
 
-            // Update scale for HTML type
-            if (type === 'html') {
-                const wrapper = windowEl.querySelector('.scaled-html-wrapper');
-                if (wrapper) {
-                    const contentHeight = height - 30;
-                    const baseW = parseInt(wrapper.dataset.baseWidth);
-                    const baseH = parseInt(wrapper.dataset.baseHeight);
-                    const scaleX = width / baseW;
-                    const scaleY = contentHeight / baseH;
-                    const scale = Math.min(scaleX, scaleY);
-                    const iframe = wrapper.querySelector('iframe');
-                    if (iframe) {
-                        iframe.style.transform = `scale(${scale})`;
-                    }
-                }
-            }
+            updateHtmlScale(windowEl);
         }
 
         function stopResize(e) {
@@ -1181,7 +1456,7 @@
         });
 
         navIcons.forEach((icon, index) => {
-            const sectionId = ['intro', 'problem', 'philosophy', 'vision', 'work', 'future', 'contact'][index];
+            const sectionId = ['intro', 'problem', 'experience', 'philosophy', 'vision', 'work', 'future', 'contact'][index];
             if (sectionId === current) {
                 icon.classList.add('active');
             } else {
@@ -1196,8 +1471,8 @@
         updateActiveSection();
 
         // VIDEO WINDOWS
-        openWindow('intro', 'DFW METAOFFICE', 'https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4', 'video', 20, 450, 320, 220);
-        openWindow('intro', 'DFW DESIGN', 'https://video.wixstatic.com/video/54a996_089c17f8355849d5a11f6115ab1025ba/1080p/mp4/file.mp4', 'video', 75, 550, 320, 220);
+        openWindow('intro', 'METAOFFICE', 'https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4', 'video', 20, 450, 320, 220);
+        openWindow('intro', 'DESIGN ELEMENTS', 'https://video.wixstatic.com/video/54a996_089c17f8355849d5a11f6115ab1025ba/1080p/mp4/file.mp4', 'video', 75, 550, 320, 220);
 
         openWindow('problem', 'STEVE JOBS', 'https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4', 'video', 50, 650, 380, 260);
 
@@ -1216,7 +1491,7 @@
         openWindow('work', 'DIGITAL TOPOGRAPHIES', 'https://static.wixstatic.com/media/54a996_4e9f8ec5649349a5ac7b21ef80e8272f~mv2.png', 'png', 85, 400, 200, 200);
 
         // HTML EXAMPLE (scaled website preview)
-        openWindow('future', 'DFW WEBSITE', 'https://www.digitalforgerywork.shop/', 'html', 75, 450, 350, 280, 1400, 900);
+        openWindow('future', 'WEBSITE PREVIEW', 'https://www.digitalforgerywork.shop/', 'html', 75, 450, 350, 280, 1400, 900);
     });
 </script>
 
