@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INDEX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aguafina+Script&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        /* YVES KLEIN BLUE LAYOUT */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #002FA7; /* Yves Klein Blue */
+            color: #FFFFFF; /* White Text */
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* TOP LOGO BAR - CENTERED */
+        .top-logo {
+            position: fixed;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+
+        .top-logo img {
+            height: 200px;
+            width: auto;
+            /* Invert to make white */
+            filter: brightness(0) invert(1);
+            opacity: 1;
+        }
+
+        /* MAIN CONTENT CONTAINER */
+        .container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 9rem 2rem 5rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* TYPOGRAPHY */
+
+        /* PAGE TITLE - CHANGED TO INDEX */
+        .page-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: clamp(2.5rem, 6vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            text-align: center;
+            margin-bottom: 5rem;
+            text-transform: uppercase;
+        }
+
+        /* CONTENT BLOCKS */
+        .content-block {
+            margin-bottom: 4rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* SECTION HEADERS (AWARDS, TALKS...) */
+        .section-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #fff;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        /* LIST ITEMS - CHANGED TO HELVETICA BOLD */
+        .list-item {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Changed to Helvetica */
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            font-weight: 700; /* Bold */
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+            opacity: 1; /* Increased opacity for bold text */
+        }
+
+        /* FOOTER DECORATION */
+        .footer-line {
+            margin-top: 5rem;
+            width: 100px;
+            height: 2px;
+            background: #fff;
+        }
+
+        /* MOBILE OPTIMIZATION */
+        @media (max-width: 768px) {
+            .top-logo {
+                top: 20px;
+            }
+            .top-logo img {
+                height: 40px;
+            }
+            .container {
+                padding-top: 7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CENTERED TOP LOGO - UPDATED -->
+    <div class="top-logo">
+        <img src="https://static.wixstatic.com/media/54a996_5c1696cfda2a41909b021894f7236293~mv2.png" alt="Logo">
+    </div>
+
+    <div class="container">
+        
+        <!-- PAGE TITLE CHANGED TO INDEX -->
+        <div class="page-title">INDEX</div>
+
+        <!-- AWARDS / MENTIONS -->
+        <div class="content-block">
+            <div class="section-title">AWARDS / MENTIONS</div>
+            <div class="list-item">Creatorverse Buildathon by Parcel x PangeaDAO, Music Venue, 2022, Winner</div>
+            <div class="list-item">Creatorverse Buildathon by Parcel x PangeaDAO, Meeting Space, 2022, Runner-Up</div>
+            <div class="list-item">Grant Program by EnterDAO's Landworks, Fashion Venue, 2022, Winner</div>
+            <div class="list-item">Grant Program by EnterDAO's Landworks, Headquarters, 2022, Winner</div>
+            <div class="list-item">Top 50 Creators of Metaverse by Metamundo, 2023</div>
+            <div class="list-item">CryptoCubes by Han, 2023, Runner-Up</div>
+            <div class="list-item">VCA x Draup Virtual Fashion Residency 1st Prize, selected by RedDAO, 2023</div>
+            <div class="list-item">MONA 3D Objects Buildathon, Center Pieces, 2024, Honorable Mention</div>
+        </div>
+
+        <!-- TALKS -->
+        <div class="content-block">
+            <div class="section-title">TALKS</div>
+            <div class="list-item">Virtual Show & Tell at Hyperfy, Hosted by untitled, xyz- 2023</div>
+            <div class="list-item">VCA Mentorship, 6th Cohort, Architecture in the Metaverse - 2023</div>
+            <div class="list-item">Opening Keynote, Digital Fashion Summit, Lifestyle Design Cluster, Creative Denmark -2024</div>
+        </div>
+
+        <!-- EXHIBITIONS -->
+        <div class="content-block">
+            <div class="section-title">EXHIBITIONS</div>
+            <div class="list-item">Power of the Nature @ Fabbrica Del Vapore, Milano / ITA - 2019</div>
+            <div class="list-item">The Art's Special Projects @ Fabbrica Del Vapore, Milano / ITA - 2019</div>
+            <div class="list-item">Communitas III: Digital Community by Kollektiv Kollektiv @ Kunsthaus Steffisburg / CH - 2021</div>
+            <div class="list-item">New Freedom Think @ Mads Gallery, Milano / ITA - 2022</div>
+            <div class="list-item">Art Design @ Holy Art Gallery, London / UK - 2022</div>
+            <div class="list-item">Klein Metaverse Event @ BabylonsNFT, Yacthingverse - 2022</div>
+            <div class="list-item">DYOR @ Kunsthalle Zürich, Zurich/ CH - 2022</div>
+            <div class="list-item">Creators of the Metaverse by Metamundo @ Art Basel Miami, Miami / USA - 2022</div>
+            <div class="list-item">FIRST LOOK METAVERSE WATCH PARTY @MONA -2023</div>
+            <div class="list-item">KODA by Polkadot @ Factory Berlin, Berlin / GER - 2023</div>
+            <div class="list-item">New Codes Exhibition by VCA, Draup, Mad Global @ Royal Institution, London / UK - 2023</div>
+        </div>
+
+        <!-- VIRTUAL WORLDS -->
+        <div class="content-block">
+            <div class="section-title">VIRTUAL WORLDS</div>
+            <div class="list-item">C2W Runway, Virtual Runway, Event, Hyperfy</div>
+            <div class="list-item">Afterparty, Interactive Shop, Event, Mona</div>
+            <div class="list-item">Concept Furniture Store, Showroom, Oncyber</div>
+            <div class="list-item">Scaffold, 3D Smart Browser, Showroom, Hyperfy</div>
+            <div class="list-item">C2W2 Runners, Conceptual, Showroom, Oncyber</div>
+            <div class="list-item">SERVICES, Info Point, Showroom, Oncyber</div>
+            <div class="list-item">Black City, MOCA ROOMS World, Museum City, Hyperfy</div>
+            <div class="list-item">Neue2Dojo, Independent Art Gallery, Hyperfy</div>
+            <div class="list-item">Promethade, Museum, Oncyber</div>
+            <div class="list-item">Forge, NoiseDAO Music Collection World, Museum City, Hyperfy</div>
+            <div class="list-item">JJ8, avatar / virtual fashion store, retail no.4, hyperfy</div>
+            <div class="list-item">C2W-R-V3 Rust,Bau,Rabbit,Nietzsc., avatar / virtual fashion store, retail no.3, Oncyber</div>
+            <div class="list-item">Blackcorridor, avatar / virtual fashion store, retail no.2, Oncyber</div>
+            <div class="list-item">QQ-FU2 Patio, avatar / virtual fashion store, retail no.1, Oncyber</div>
+            <div class="list-item">forgeshop.arch, Arch.Viewer, Building Exhibition, Oncyber</div>
+            <div class="list-item">forgeshop.design, Design Viewer, Objects Exhibition, Oncyber</div>
+            <div class="list-item">Why We Exist, virtual theater no 1, Hyperfy</div>
+            <div class="list-item">Balloon, virtual theater no 2, Hyperfy</div>
+            <div class="list-item">Hatch, virtual theater no:3, Hyperfy</div>
+        </div>
+
+        <!-- COMPLETED PROJECTS -->
+        <div class="content-block">
+            <div class="section-title">COMPLETED PROJECTS</div>
+            <div class="list-item">Why We Exist? / Virtual Theater (world) / CloneX</div>
+            <div class="list-item">C2W Virtual Runway / Event (world) / DFW</div>
+            <div class="list-item">Solar Panel Construction XR Integration / Digital Twin(world) / anon</div>
+            <div class="list-item">Scaffold / 3D Architecture Browser (world) / DFW</div>
+            <div class="list-item">Neue² Dojo Gallery / Virtual Art Space of the Future Forged in Blockchain (world) / F.D*</div>
+            <div class="list-item">Retail / C2W Virtual Shop (world) / DFW</div>
+            <div class="list-item">Black City / ROOMS (world) / MOCA</div>
+            <div class="list-item">Metacoders / 3D Collection Design (project) / crypto_Txt</div>
+            <div class="list-item">Radio Existpert / VRM (avatar) / NFT Crap</div>
+            <div class="list-item">0PP13 / Experimental Audio Museum (building) / NoiseDAO</div>
+            <div class="list-item">Centipede / High Frequency Building (building) / NoiseDAO</div>
+            <div class="list-item">Metaboilerism / Music NFT Building (building) / NoiseDAO</div>
+            <div class="list-item">The Constro / World Design (world) / Endangered Labs</div>
+            <div class="list-item">Black City, 2Pac / Music Video (artwork) / ROOMS</div>
+            <div class="list-item">Poddio Dark Twisted Verticale / Competition (building) / EnterDAO</div>
+            <div class="list-item">Museum of Unlimited Growth ii / ROOMS (building) / MOCA</div>
+            <div class="list-item">SpyderMosk / ROOMS (building) / MOCA</div>
+            <div class="list-item">Spyder Mosk Piccolo / ROOMS (building) / MOCA</div>
+            <div class="list-item">FlyClub / ROOMS (building) / MOCA</div>
+            <div class="list-item">Astral Egg Plant / Competition (building) / Parcel + PangeaDAO</div>
+            <div class="list-item">Finger Dome / Competition (building) / Parcel + PangeaDAO</div>
+            <div class="list-item">UMMUSE / Buildathon Submission (building) / Neon Buidl</div>
+            <div class="list-item">Holy Shadow HQ / Facility at DAOTown (building) / Neon Buidl</div>
+            <div class="list-item">PH / Performance Hall (building) / NoiseDAO</div>
+            <div class="list-item">Promethade / Museum (building) / F.D*</div>
+            <div class="list-item">Cave Design Store / Buildathon Submission (building) / Neon Buidl</div>
+            <div class="list-item">C2W Ticket Artwork / Competition (artwork) / VCA x Draup x RedDAO</div>
+            <div class="list-item">C2W / Click-to-Wear Collection (vrm avatars) / DFW</div>
+            <div class="list-item">C2W Virtual Runway / Event (world) / DFW</div>
+            <div class="list-item">pxl DUOMO / Competition (building) / CryptoCubes</div>
+        </div>
+
+        <!-- DIGITAL TOPOGRAPHIES -->
+        <div class="content-block">
+            <div class="section-title">DIGITAL TOPOGRAPHIES</div>
+            <div class="list-item">POTBELLY Q_FU (Digital_Topographies_00)</div>
+            <div class="list-item">XHBTION_SPC (Digital_Topographies_01)</div>
+            <div class="list-item">VEGANCELL+PARK (Digital_Topographies_02)</div>
+            <div class="list-item">BUREAU+THEATRE (Digital_Topographies_03)</div>
+            <div class="list-item">DIGITAL EXPO CENTER (Digital_Topographies_04)</div>
+            <div class="list-item">BEPFMV (Digital_Topographies_05)</div>
+            <div class="list-item">DECONSTRUCTIVIST EAGLE NEST (Digital_Topographies_06)</div>
+            <div class="list-item">ASTRAL EGG PLANT (Digital_Topographies_07)</div>
+            <div class="list-item">THE FINGER DOME (Digital_Topographies_08)</div>
+            <div class="list-item">UMMUSE (Digital_Topographies_09)</div>
+            <div class="list-item">#NP17658 (Digital_Topographies_10)</div>
+            <div class="list-item">HOLY SHADOW HQ (Digital_Topographies_11)</div>
+            <div class="list-item">TECHNO BRUTAL PUNK FABRIQUE (Digital_Topographies_12)</div>
+            <div class="list-item">K-DOCIINE HQ (Digital_Topographies_13)</div>
+            <div class="list-item">PODDIO VERTICALE (Digital_Topographies_14)</div>
+            <div class="list-item">PODDIO DARK TWISTED VERTICALE (Digital_Topographies_15)</div>
+            <div class="list-item">SPACE TIME ROOMS (Digital_Topographies_16)</div>
+            <div class="list-item">MATISSE TIME CHAIPEL (Digital_Topographies_17)</div>
+            <div class="list-item">MATSOUKA HILLS MANSION (Digital_Topographies_18)</div>
+            <div class="list-item">MUSEUM OF UNLIMITED GROWTH 2 (Digital_Topographies_19)</div>
+            <div class="list-item">SPYDER MOSK (Digital_Topographies_20)</div>
+            <div class="list-item">SPYDER MOSK PICCOLO (Digital_Topographies_21)</div>
+            <div class="list-item">THE FLY CLUB (Digital_Topographies_22)</div>
+            <div class="list-item">BEYOND THE INFINITY (Digital_Topographies_23)</div>
+            <div class="list-item">ATONAL VEINS (Digital_Topographies_24)</div>
+            <div class="list-item">C2W-R-v3 (Digital_Topographies_25)</div>
+            <div class="list-item">NEUEDOJO (Digital_Topographies_26)</div>
+            <div class="list-item">DFWAM (Digital_Topographies_27)</div>
+            <div class="list-item">PROMETHADE (Digital_Topographies_28)</div>
+            <div class="list-item">CAVE DESIGN STORE (Digital_Topographies_29)</div>
+            <div class="list-item">POP-YP (Digital_Topographies_30)</div>
+            <div class="list-item">C1TY (Digital_Topographies_31)</div>
+            <div class="list-item">MUSEBOROUGH PAVS (Digital_Topographies_32)</div>
+            <div class="list-item">FIGHT ARENA(Digital_Topographies_33)</div>
+            <div class="list-item">MIKADO FIBER PAVILLION (Digital_Topographies_34)</div>
+            <div class="list-item">POTBELLY QQ_FU_v2 (Digital_Topographies_35)</div>
+            <div class="list-item">CONCEPT FURNITURE STORE (Digital_Topographies_36)</div>
+            <div class="list-item">POKEMUSEUM (Digital_Topographies_37)</div>
+            <div class="list-item">THE CONSTRO (Digital_Topographies_38)</div>
+            <div class="list-item">METABOILERISM (Digital_Topographies_39)</div>
+            <div class="list-item">pxl DUOMO (Digital_Topographies_40)</div>
+            <div class="list-item">ROTAS VIRGIL (Digital_Topographies_41)</div>
+            <div class="list-item">BOXMATE (Digital_Topographies_42)</div>
+            <div class="list-item">CARBINE WICK (Digital_Topographies_43)</div>
+            <div class="list-item">0PP13 (Digital_Topographies_44)</div>
+            <div class="list-item">STARDEM (Digital_Topographies_45)</div>
+            <div class="list-item">ISOLA (Digital_Topographies_46)</div>
+            <div class="list-item">ALIEN EARTHQUAKE (Digital_Topographies_47)</div>
+            <div class="list-item">CENTIPEDE (Digital_Topographies_48)</div>
+            <div class="list-item">VERTICAL CANDY BUNGALOWS (Digital_Topographies_49)</div>
+            <div class="list-item">MYNHTTNWARE (Digital_Topographies_50)</div>
+            <div class="list-item">JJ8 (Digital_Topographies_51)</div>
+        </div>
+
+        <!-- DESIGN -->
+        <div class="content-block">
+            <div class="section-title">DESIGN</div>
+            <div class="list-item">MERMAIDCHAIR, chair1 (og + blck + chrome + red)</div>
+            <div class="list-item">FETUCHAIR, chair2 (og + blck + wht + red)</div>
+            <div class="list-item">DSE, chair3 (antrst + blck + wht + red)</div>
+            <div class="list-item">JACKTHELAD, chair4 (og + blck + wht + red)</div>
+            <div class="list-item">ARETAIX, chair5 (antrst + blck + wht + red)</div>
+            <div class="list-item">ARMAGEDDON, chair6 (og + blck + wht + dark)</div>
+            <div class="list-item">BILBAO LEGO CHAIR, chair7 (chrome + blck + wht + red)</div>
+            <div class="list-item">HIGGS BOSON, chair8 (chrome + night + concrete + red)</div>
+            <div class="list-item">E66, chair9 (og + blck + antrst + red)</div>
+            <div class="list-item">ACCELERATOR, chair10 (og + mono + davnc + red)</div>
+            <div class="list-item">GLASS GOUGNUT, sofa1 (og + blck + wht + red)</div>
+            <div class="list-item">SJSOC, sofa2 (og + mono + wht + neon)</div>
+            <div class="list-item">CRAWRECKSOFA, sofa3 (og + blck + wht + red)</div>
+            <div class="list-item">JAPON, sofa4 (og + blck + wht + red)</div>
+            <div class="list-item">2070S DJ TABLE, table1 (og + blck + wht + red)</div>
+            <div class="list-item">BOARDROOMTABLE-, table2 (og + blck + wht + red)</div>
+            <div class="list-item">BROWN SHARK TABLE, table3 (og + dark + rock + red)</div>
+            <div class="list-item">DECENTRLIZEJOKING1, music1 (og + blck + wht + red)</div>
+            <div class="list-item">DECENTRLIZEJOKING2_OFFROAD, music2 (og + gry + wht + red)</div>
+            <div class="list-item">DECENTRLIZE*JOKING2_2, music3 (og + blck + wht + red)</div>
+            <div class="list-item">SCREAMER, music4 (og + blck + wht + red)</div>
+            <div class="list-item">GENETIC CARPET, carpet1 (og + blck + wht + red)</div>
+            <div class="list-item">SPOOKY CARPET, carpet2 (og + blackigator + throne + davnc)</div>
+            <div class="list-item">OSIRIS RAKE, sculpture1 (og + blck + gry + red)</div>
+            <div class="list-item">MIDAS SPACE, sculpture2 (og + dark + light + candle)</div>
+            <div class="list-item">ANGRY NAPKIN, sculpture3 (og + blck + wht + red)</div>
+            <div class="list-item">W6O1M6, sculpture4 (og + blck + gry + red)</div>
+            <div class="list-item">STATUE OF HANGOVER, sculpture5 (sohiii + sohii + sohi + -)</div>
+            <div class="list-item">PRAİFİED, sculpture6 (og + blck + wht + red)</div>
+            <div class="list-item">SANCTİFİED, sculpture7 (og + blck + wht + red)</div>
+            <div class="list-item">ME-TREE-X, sculpture8 (og + blck + wht + red)</div>
+            <div class="list-item">MOLECULAR DATA PLANT, sculpture9 (og + blck + wht + red)</div>
+            <div class="list-item">NEO KLEIN, sculpture10 (og + blck + gry + red)</div>
+            <div class="list-item">SQUGGLE, sculpture11 (og + alien + gry + red)</div>
+            <div class="list-item">CROOKEDASWEFUNASYU, sculpture12 (og + blck + wht + red)</div>
+            <div class="list-item">LEGEND, sculpture13 (og + blck + wht + red)</div>
+            <div class="list-item">2002, sculpture14 (og + blck + tea + red)</div>
+            <div class="list-item">0FF_WITH_HIS_HEAD, sculpture15 (no colors listed)</div>
+            <div class="list-item">MYSTICALARCASES, sculpture16 (black + red + - + -)</div>
+            <div class="list-item">EXCLAMATIONAL PENCIL SHARPENER-ANIMATED, sculpture17 (og + wood + tea + red)</div>
+            <div class="list-item">XYZ008, automobile1 (og + blck + glasser + gold)</div>
+            <div class="list-item">ZENBUBBLE, automobile2 (og + blck + wht + neon)</div>
+            <div class="list-item">SKEWER, automobile3 (og + blck + wht + red)</div>
+            <div class="list-item">WELLINGTON, automobile4 (og + blck + wht + red)</div>
+            <div class="list-item">MARSDEADLEAF, automobile5 (og + villain + wht + red)</div>
+        </div>
+
+        <div class="footer-line"></div>
+    </div>
+
+</body>
+</html>
