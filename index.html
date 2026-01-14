@@ -616,12 +616,12 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background-color: rgba(0, 255, 255, 0.3); /* Cyan */
+            background-color: rgba(255, 255, 255, 0.1); /* Cyan */
         }
         .dev-label-h {
             position: absolute;
             left: 5px;
-            color: #0ff;
+            color: white;
             font-size: 10px;
             font-family: monospace;
             transform: translateY(-12px);
@@ -633,12 +633,12 @@
             top: 0;
             height: 100%;
             width: 2px;
-            background-color: rgba(255, 0, 0, 0.3); /* Kırmızı */
+            background-color: rgba(255, 255, 255, 0.1); /* Kırmızı */
         }
         .dev-label-v {
             position: absolute;
             top: 5px;
-            color: #f00;
+            color: white;
             font-size: 10px;
             font-family: monospace;
             margin-left: 2px;
@@ -1519,23 +1519,27 @@
         updateActiveSection();
 
         // VIDEO WINDOWS
-        openWindow('intro', 'METAOFFICE', 'https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4', 'video', 20, 450, 320, 220);
-        openWindow('intro', 'DESIGN ELEMENTS', 'https://video.wixstatic.com/video/54a996_089c17f8355849d5a11f6115ab1025ba/1080p/mp4/file.mp4', 'video', 75, 1300, 320, 220);
+        openWindow('intro', 'METAOFFICE', 'https://video.wixstatic.com/video/54a996_e6d16d06cf7b490bbc64d936760c2dae/1080p/mp4/file.mp4', 'video', 20, 600, 320, 220);
+        openWindow('intro', 'DESIGN ELEMENTS', 'https://video.wixstatic.com/video/54a996_089c17f8355849d5a11f6115ab1025ba/1080p/mp4/file.mp4', 'video', 75, 1600, 320, 220);
 
-        openWindow('problem', 'STEVE JOBS', 'https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4', 'video', 50, 650, 380, 260);
+        openWindow('problem', 'STEVE JOBS', 'https://video.wixstatic.com/video/54a996_6da48d6916b24734aba549bb585d4675/720p/mp4/file.mp4', 'video', 30, 1100, 380, 260);
 
-        openWindow('philosophy', 'matisse time chaipel', 'https://video.wixstatic.com/video/54a996_8aa90b1ff14142418242abf6726a45e2/1080p/mp4/file.mp4', 'video', 80, 250, 180, 180);
+        openWindow('philosophy', 'YA-BISH*OPPS', 'https://video.wixstatic.com/video/54a996_8aa90b1ff14142418242abf6726a45e2/1080p/mp4/file.mp4', 'video', 80, 250, 180, 180);
 
-        openWindow('work', 'YA-BISH*OPPS', 'https://video.wixstatic.com/video/54a996_b94f28de763848129b330a544614216c/1080p/mp4/file.mp4', 'video', 80, 250, 180, 180);
+        openWindow('work', 'digitops', 'https://video.wixstatic.com/video/54a996_bc5e4a8565ee4af4a9d31b14bce8083b/480p/mp4/file.mp4', 'video', 20, 1800, 180, 180);
+
+        openWindow('work', 'matisse time chaipel', 'https://video.wixstatic.com/video/54a996_b94f28de763848129b330a544614216c/1080p/mp4/file.mp4', 'video', 80, 250, 180, 180);
 
         // GLB MODELS
         const glbLink1 = 'https://raw.githubusercontent.com/decentralize-dfw/co/refs/heads/main/warhol-basq-opt-v1.glb';
         const glbLink2 = 'https://raw.githubusercontent.com/decentralize-dfw/c2w2-glb/main/papaz-900-opt-v89.glb';
         const glbLink3 = 'https://raw.githubusercontent.com/decentralize-dfw/digitaltopographies/main/2-VEGANCELL+PARK-Digital_Topographies_02.glb';
+        const glbLink4 = 'https://raw.githubusercontent.com/decentralize-dfw/digitaltopographies/main/1-XHBTION_SPC-Digital_Topographies_01.glb';
 
         openWindow('contact', 'logo3d', glbLink1, 'glb', 20, 1200, 420, 380);
         openWindow('philosophy', 'YA BISH OPPS', glbLink2, 'glb', 15, 250, 280, 320);
         openWindow('vision', 'VEGANCELL+PARK', glbLink3, 'glb', 18, 550, 240, 240);
+         openWindow('vision', '01_Xhbtion_Spc.glb', glbLink3, 'glb', 80, 2200, 340, 340);
 
         // PNG EXAMPLE
         openWindow('work', 'DIGITAL TOPOGRAPHIES', 'https://static.wixstatic.com/media/54a996_145e862db9034dd9b0249c171eb5a3fa~mv2.png', 'png', 85, 400, 200, 200);
@@ -1544,6 +1548,9 @@
         openWindow('future', 'WEBSITE PREVIEW', 'https://decentralize.design', 'html', 75, 450, 350, 280, 1400, 900);
 
         openWindow('philosophy', 'rr text', 'https://brief.decentralize.design/rr','html', 85, 450, 350, 280, 1400, 900);
+
+openWindow('philosophy', 'index', 'https://brief.decentralize.design/infolist','html', 30, 1200, 250, 400, 500, 800);
+        
 
 // --- DEBUG GRID OLUŞTURUCU ---
         // Her section için ızgara çizer
